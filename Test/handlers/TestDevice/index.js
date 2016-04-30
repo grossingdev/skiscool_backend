@@ -2,13 +2,10 @@ require('./styles.css');
 
 import React, { Component } from 'react';
 import TextInput from 'common/input/TextInput';
-const SERVER = 'http://localhost:3700';
-import io from 'socket.io-client/socket.io';
-import {log_console} from 'utils/log';
-//admin user: admin_root_123
+import container from './container';
+import request from 'superagent';
 class TestDevice extends Component {
   state = {
-    flagConnected: false,
     deviceID: "",
     userName: "",
     lat: "",
@@ -16,25 +13,41 @@ class TestDevice extends Component {
     errorDeviceID: "",
     errorUserName: "",
     errorLocation: "",
-
-    adminData: "",
   };
 
-  socketClient = null;
+  getIPLocation(){
+    request('GET', 'http://ipinfo.io')
+      .accept('application/json')
+      .end((err, res) => {
+        if (!err) {
+          let location = JSON.parse(res.text);
+          let locs = location.loc.split(",");
+          this.setState({
+            lat: locs[0],
+            lon: locs[1]
+          })
+        }
+    });
+  };
 
-  connectToServer() {
-    debugger;
-    if (this.socketClient != null) {
-      this.registerDevice();
-    } else {
-      this.socketClient = io.connect(SERVER);
-      this.registerEvent();
-    }
-
-
+  componentDidMount() {
+    this.getIPLocation();
   }
 
-  registerDevice() {
+  clearErrorText() {
+    let errorDeviceID = "";
+    let errorUserName = "";
+    let errorLocation = "";
+    this.setState({
+      errorDeviceID,  errorUserName, errorLocation
+    })
+  }
+
+  disconnectSever() {
+    this.props.socketClient.disconnect();
+  }
+
+  connectToServer() {
     let errorDeviceID = "";
     let errorUserName = "";
     let errorLocation = "";
@@ -58,62 +71,12 @@ class TestDevice extends Component {
       return;
     }
 
-    this.socketClient.emit('registerDevice', {
-      uuid: this.state.deviceID,
-      username: this.state.userName,
-      location: this.state.lat + this.state.lon
-    });
-  }
-  disconnectSever() {
-    debugger;
-    if (this.socketClient) {
-      this.socketClient.emit('disconnect', "");
-      this.socketClient.disconnect();
-      this.socketClient = null;
-      this.setState({
-        flagConnected: false,
-        adminData: ""
-      })
-    }
+    this.props.socketClient.connect(this.props, this.state);
   }
 
-  registerEvent() {
-    this.socketClient.on('connect', (data) => {
-      log_console('connectToServer connected' + JSON.stringify(data));
-      this.registerDevice();
-    });
+  componentWillReceiveProps(nextProps) {
 
-    // event handler for errors
-    this.socketClient.on('error', (msg) => {
-      log_console('error' + JSON.stringify(msg));
-    });
-
-    this.socketClient.on('register response', (msg) => {
-      log_console('register response completed');
-      this.setState({
-        flagConnected: true
-      })
-    });
-    this.socketClient.on('show_devices', (data) => {
-      this.setState({
-        adminData: JSON.stringify(data)
-      });
-      this.setState({
-        flagConnected: true
-      })
-      log_console('show_devices' + JSON.stringify(data));
-    })
   }
-
-  clearErrorText() {
-    let errorDeviceID = "";
-    let errorUserName = "";
-    let errorLocation = "";
-    this.setState({
-      errorDeviceID,  errorUserName, errorLocation
-    })
-  }
-
   render() {
     return (
       <div className="TestDevice">
@@ -127,7 +90,7 @@ class TestDevice extends Component {
             errorText={this.state.errorDeviceID}
             onChange={(deviceID)=>{this.setState({deviceID}); this.clearErrorText()}}
             value={this.state.deviceID}
-            readOnly={this.state.flagConnected}
+            readOnly={this.props.socketConnected}
           />
         </div>
 
@@ -140,7 +103,7 @@ class TestDevice extends Component {
             errorText={this.state.errorUserName}
             value={this.state.userName}
             onChange={(userName)=>{this.setState({userName});this.clearErrorText()}}
-            readOnly={this.state.flagConnected}
+            readOnly={this.props.socketConnected}
           />
         </div>
 
@@ -170,14 +133,14 @@ class TestDevice extends Component {
         </div>
         <div className="buttonArea">
           <div className="button btnConnect" onClick={()=>this.connectToServer()}>
-            {this.state.flagConnected ? "Update": "Connect"}
+            {this.props.socketConnected ? "Update": "Connect"}
           </div>
-          {this.state.flagConnected && <div className="button btnDisconnect" onClick={()=>this.disconnectSever()}>Disconnect</div>}
+          {this.props.socketConnected && <div className="button btnDisconnect" onClick={()=>this.disconnectSever()}>Disconnect</div>}
         </div>
-        {this.state.adminData}
+        {this.props.socketMessage.type + this.props.socketMessage.data}
       </div>
     );
   }
 }
 
-export default TestDevice;
+export default container(TestDevice);

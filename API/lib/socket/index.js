@@ -5,12 +5,13 @@ import socketIO from 'socket.io';
 import {removeObject, findByKey} from '../utils/utils';
 import DeviceModel from '../db/model';
 
+let adminSocket = null;
+
 const socket = (server) => {
   let socketServer = socketIO.listen(server);
 
   let devices = [];
   let deviceSockets = [];
-  let adminSocket = null;
   let rooms = [];
   let mainRoom = 'deviceLocation';
 
@@ -57,7 +58,9 @@ const socket = (server) => {
                   deviceSockets[socketID] = socket;
                   socket.emit('register response', "");
                   if (adminSocket) {
-                    adminSocket.emit('show_devices', devices);
+                    DeviceModel.find({}, function(err, data) {
+                      adminSocket.emit('show_devices', data);
+                    });
                   }
                 });
               }
@@ -86,7 +89,9 @@ const socket = (server) => {
               deviceSockets[socketID] = socket;
               socket.emit('register response', "");
               if (adminSocket) {
-                adminSocket.emit('show_devices', devices);
+                DeviceModel.find({}, function(err, data) {
+                  adminSocket.emit('show_devices', data);
+                });
               }
             })
 
@@ -106,10 +111,6 @@ const socket = (server) => {
       }
 
       // send notification about device is offline.
-      if (adminSocket) {
-        adminSocket.emit('show_devices', devices);
-      }
-
     });
   });
 }

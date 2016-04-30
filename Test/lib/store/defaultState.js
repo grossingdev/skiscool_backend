@@ -1,6 +1,12 @@
 const defaultValues = () => {
   return {
-
+    socketClient: {
+      connected: false,
+      message: {
+        type: '',
+        data: ''
+      }
+    }
   };
 };
 

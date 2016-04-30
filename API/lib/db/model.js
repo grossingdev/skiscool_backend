@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 import Schemas from './schema';
 
-const mongo_db_url = 'mongodb://localhost:27017/chat';
+const mongo_db_url = 'mongodb://localhost:27017/skiscool';
 let connection = mongoose.createConnection(mongo_db_url);
 autoIncrement.initialize(connection);
 

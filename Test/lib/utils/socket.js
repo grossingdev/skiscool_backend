@@ -4,7 +4,7 @@
 import {has} from 'lodash';
 import {log_console} from './log';
 import io from 'socket.io-client/socket.io';
-const SERVER = 'http://213.183.56.165:3700';
+const SERVER = 'http://37.187.112.9:3700'; //ns327841.ip-37-187-112.eu
 //admin user: admin_root_123
 
 const options ={

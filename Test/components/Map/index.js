@@ -28,9 +28,8 @@ class Map extends Component {
   };
 
   componentDidMount() {
-    L.mapbox.accessToken = 'pk.eyJ1Ijoic2VzaGFwcCIsImEiOiJjaWo0czhycnYwMDN3dXlrcmNxbTZlZmJuIn0.B1uMO8482t0yzVA1ClPoSw';
-    this.mapView = L.mapbox.map('map', 'mapbox.streets', { zoomControl: false,attributionControl: false}).setView([34.0500, -118.25], 5);
-    L.mapbox.styleLayer('mapbox://styles/siralonso/cij0jz9lg00q71mmbghrc31rl').addTo(this.mapView);
+    L.mapbox.accessToken = 'pk.eyJ1Ijoic2ltb25tYXAiLCJhIjoiY2luNHcwaGhyMDBydXdlbTJwZTdza2NkbSJ9.GZGPRYUc8yeYNOFEaQfM0A';
+    this.mapView = L.mapbox.map('map', 'mapbox.streets', { zoomControl: false,attributionControl: false}).setView([45.3007, 6.5800], 15);
     new L.Control.Zoom({ position: 'bottomright' }).addTo(this.mapView);
 
     let component = this;

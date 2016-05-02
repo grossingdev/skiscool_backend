@@ -24,7 +24,12 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "__DEV__"      : false,
+    "__PROD__"     : false,
+    "__DEBUG__"    : false,
+    "__DEBUG_NEW_WINDOW__" : false,
+    "__BASENAME__" : false
   },
   "parser": "babel-eslint",
   "rules": {

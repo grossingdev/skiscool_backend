@@ -9,10 +9,10 @@ module.exports = Object.assign({}, config({ env: 'development' }), {
     'eventsource-polyfill',
     // listen to code updates emitted by hot middleware:
     'webpack-hot-middleware/client',
-    './index.js',
+    './webapp/index_debug.js',
   ],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
 });

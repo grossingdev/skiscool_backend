@@ -29,7 +29,7 @@ class Map extends Component {
 
   componentDidMount() {
     L.mapbox.accessToken = 'pk.eyJ1Ijoic2ltb25tYXAiLCJhIjoiY2luNHcwaGhyMDBydXdlbTJwZTdza2NkbSJ9.GZGPRYUc8yeYNOFEaQfM0A';
-    this.mapView = L.mapbox.map('map', 'mapbox.streets', { zoomControl: false,attributionControl: false}).setView([45.3007, 6.5800], 15);
+    this.mapView = L.mapbox.map('map', 'simonmap.023dca42', { zoomControl: false,attributionControl: false}).setView([45.3007, 6.5800], 15);
     new L.Control.Zoom({ position: 'bottomright' }).addTo(this.mapView);
 
     let component = this;

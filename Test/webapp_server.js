@@ -5,7 +5,6 @@ var config = require('./webpack.config.dev');
 
 var app = express();
 var compiler = webpack(config);
-
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath,
@@ -13,11 +12,11 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.use('/public', express.static('public'));
-app.use('/icons', express.static('icons'));
+app.use('/webapp/public', express.static('public'));
+app.use('/webapp/icons', express.static('icons'));
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname,  '/webapp/index.html'));
 });
 
 app.listen(4000, function(err) {

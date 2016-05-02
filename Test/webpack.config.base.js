@@ -3,27 +3,27 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var postcssImport = require('postcss-import');
 var precss = require('precss');
-var styleVars = require('./globalStyleVars');
+var styleVars = require('./webapp/globalStyleVars');
 
 module.exports = function(options) {
-
+  console.info('env', options['env']);
   return {
     devtool: 'source-map',
     entry: [
-      './index.js',
+      './webapp/index.js',
     ],
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'bundle.js',
-      publicPath: '/dist/',
+      publicPath: '/webapp/dist/',
     },
     resolve: {
       modulesDirectories: [
         'node_modules',
-        'components',
-        'lib',
-        'actions',
-        'selectors',
+        'webapp/components',
+        'webapp/lib',
+        'webapp/actions',
+        'webapp/selectors',
       ],
     },
     plugins: [

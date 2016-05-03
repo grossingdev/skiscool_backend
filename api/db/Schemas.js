@@ -13,5 +13,13 @@ const Schemas = {
     created_at: Date,
     updated_at: Date
   }),
+  UserModel: new Schema({
+    id: Number,
+    userId: { type: String, required: true, unique: true },
+    userName: {type: String, required: true},
+    password: {type: String},
+    created_at: Date,
+    updated_at: Date
+  }),
 };
 export default Schemas;

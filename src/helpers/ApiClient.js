@@ -10,7 +10,7 @@ function formatUrl(path) {
     return 'http://' + config.apiHost + ':' + config.apiPort + adjustedPath;
   }
   // Prepend `/api` to relative URL, to proxy to API server.
-  return '/api' + adjustedPath;
+  return 'http://' + config.apiHost + ':' + 3700 + adjustedPath;
 }
 
 export default class ApiClient {
@@ -21,10 +21,6 @@ export default class ApiClient {
 
         if (params) {
           request.query(params);
-        }
-
-        if (__SERVER__ && req.get('cookie')) {
-          request.set('cookie', req.get('cookie'));
         }
 
         if (data) {

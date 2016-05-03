@@ -6,18 +6,31 @@ import session from 'express-session';
 import http from 'http';
 import bodyParser from 'body-parser';
 import * as actions from './actions/index';
-import {mapUrl} from 'utils/url.js';
+import {mapUrl} from './utils/url.js';
 
 const port = 3700;
 let app = express();
 let server = http.createServer(app);
-//app.use(session({
-//  secret: 'react and redux rule!!!!',
-//  resave: false,
-//  saveUninitialized: false,
-//  cookie: { maxAge: 0 }
-//}));
+
+let allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+  next();
+}
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
+app.use(session({
+  secret: 'react and redux rule!!!!',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 0 }
+}));
+app.use(allowCrossDomain);
 
 app.use((req, res) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);

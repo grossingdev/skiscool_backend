@@ -3,12 +3,14 @@
  */
 import { combineReducers } from 'redux';
 import socketClient from './SocketReducer';
+import user from './UserReducer';
 import { routerReducer } from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 const rootReducer = combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
-  socketClient
+  socketClient,
+  user
 });
 
 export default rootReducer;

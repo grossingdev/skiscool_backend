@@ -3,5 +3,7 @@ export default function login(req) {
     name: req.body.name
   };
   req.session.user = user;
-  return Promise.resolve(user);
+  return Promise.resolve({
+    authenticated: true
+  });
 }

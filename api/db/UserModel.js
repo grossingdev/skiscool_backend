@@ -3,13 +3,13 @@
  */
 import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
-import Schemas from './schema';
+import Schemas from './Schemas';
 
 const mongo_db_url = 'mongodb://localhost:27017/skiscool';
 let connection = mongoose.createConnection(mongo_db_url);
 autoIncrement.initialize(connection);
 
-Schemas.DeviceModel.pre('save', function(next) {
+Schemas.UserModel.pre('save', function(next) {
   // get the current date
   let currentDate = new Date();
   // change the updated_at field to current date
@@ -22,12 +22,12 @@ Schemas.DeviceModel.pre('save', function(next) {
 });
 
 
-Schemas.DeviceModel.plugin(autoIncrement.plugin, {
-  model: 'DeviceModel',
+Schemas.UserModel.plugin(autoIncrement.plugin, {
+  model: 'UserModel',
   field: 'id',
   startAt: 1,
   incrementBy: 1
 });
-const DeviceModel =  connection.model('DeviceModel', Schemas.DeviceModel);
+const DeviceModel =  connection.model('UserModel', Schemas.UserModel);
 // Create Database model schema
 export default DeviceModel;

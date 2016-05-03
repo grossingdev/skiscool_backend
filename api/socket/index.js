@@ -3,7 +3,7 @@
  */
 import socketIO from 'socket.io';
 import {removeObject, findByKey} from '../utils/utils';
-import DeviceModel from '../db/model';
+import DeviceModel from '../db/DeviceModel';
 
 let adminSocket = null;
 
@@ -23,7 +23,6 @@ const socket = (server) => {
     // Listen for register action
     console.info("connected", socketID);
     socket.on('registerDevice', function (data) {
-      debugger;
       if (data.username =="admin_root_123") {
         console.info("admin user logged in", data);
         adminSocket = socket;

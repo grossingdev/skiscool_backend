@@ -6,6 +6,10 @@ const defaultValues = () => {
         type: '',
         data: ''
       }
+    },
+    user: {
+      auth: false,
+      loading: false
     }
   };
 };

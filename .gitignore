@@ -1,3 +1,7 @@
-API/.idea
-API/node_modules
-API/dist
+.idea/
+node_modules/
+dist/
+*.iml
+webpack-assets.json
+webpack-stats.json
+npm-debug.log

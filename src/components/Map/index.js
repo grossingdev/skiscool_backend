@@ -1,7 +1,8 @@
 /** @flow */
 
 import React, { Component, PropTypes } from 'react';
-const MapboxLibrary = __CLIENT__ ? require( 'mapbox.js') : undefined;
+let L = null;
+__CLIENT__ ? L = require( 'mapbox.js') : undefined;
 
 import {isEqual} from 'lodash';
 import _ from 'lodash';
@@ -28,16 +29,14 @@ class Map extends Component {
   };
 
   componentDidMount() {
-    console.info("componentDidMount", "test");
     setTimeout(()=> {
       if (__CLIENT__ && this.mapView == null && !this.flagUnmounted) {
         if (flagMapInitialized === false) {
           L.mapbox.accessToken = 'pk.eyJ1Ijoic2ltb25tYXAiLCJhIjoiY2luNHcwaGhyMDBydXdlbTJwZTdza2NkbSJ9.GZGPRYUc8yeYNOFEaQfM0A';
-
-          this.mapView = L.mapbox.map('map', 'simonmap.023dca42', { zoomControl: false,attributionControl: false}).setView([45.3007, 6.5800], 15);
+          this.mapView = L.mapbox.map('map', 'simonmap.023dca42', {zoomControl: false, attributionControl: false}).setView([45.3007, 6.5800], 15);
           flagMapInitialized = true;
           new L.Control.Zoom({ position: 'bottomright' }).addTo(this.mapView);
-          this.mapView.on('mousedown', (e)=>{
+          this.mapView.on('mousedown', (event)=>{
             this.setState({
               flagShowOverlay: false
             });
@@ -60,25 +59,25 @@ class Map extends Component {
   }
 
   componentWillUnmount() {
-    console.info("componentWillUnmount", "test");
     this.removeOldMarkers();
     if (this.mapView != null) {
       this.mapView.remove();
       this.mapView = null;
     }
+
     this.flagUnmounted = true;
     flagMapInitialized = false;
   }
 
   showMapOverlay(marker) {
-    let transformMarker = marker._icon.style.transform;
-    let transformMap = this.mapView._mapPane.style.transform;
+    const transformMarker = marker._icon.style.transform;
+    const transformMap = this.mapView._mapPane.style.transform;
 
-    let results1 = transformMarker.match(/translate3d\((.+)px,(.+)px,(.+)px\)/);
-    let results2 = transformMap.match(/translate3d\((.+)px,(.+)px,(.+)px\)/);
+    const results1 = transformMarker.match(/translate3d\((.+)px,(.+)px,(.+)px\)/);
+    const results2 = transformMap.match(/translate3d\((.+)px,(.+)px,(.+)px\)/);
 
-    let translateValue = results1.slice(1, 3);
-    let translateValue1 = results2.slice(1, 3);
+    const translateValue = results1.slice(1, 3);
+    const translateValue1 = results2.slice(1, 3);
     this.setState({
       selectedDevice: marker.options.item,
       overlayX: parseInt(translateValue[0]) + parseInt(translateValue1[0]) ,

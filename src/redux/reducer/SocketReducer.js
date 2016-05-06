@@ -10,7 +10,6 @@ export default function socketClient(state = defaultState.socketClient, action) 
       return Object.assign({}, state, { connected: action.payload });
     case UPDATE_SOCKET_MESSAGE:
       return Object.assign({}, state, { message: action.payload });
-      return state;
     default:
       return state;
   }

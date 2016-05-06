@@ -14,11 +14,10 @@ function formatUrl(path) {
 }
 
 export default class ApiClient {
-  constructor(req) {
+  constructor() {
     methods.forEach((method) =>
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
-
         if (params) {
           request.query(params);
         }

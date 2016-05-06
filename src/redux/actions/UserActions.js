@@ -6,9 +6,9 @@ import API from 'utils/api';
 export const LOGIN = 'LOGIN';
 const login$ = createAction(LOGIN);
 
-export const login = (name) => {
+export const login = (param) => {
   return (dispatch) => {
-    API.account.login(null, {name})
+    API.account.login(null, param)
       .then((user) => {
         if (user.authenticated == true) {
           dispatch(login$({

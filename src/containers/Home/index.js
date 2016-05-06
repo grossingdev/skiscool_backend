@@ -6,18 +6,22 @@ import {isEqual} from 'lodash';
 class Home extends Component {
   static propTypes = {
     socketClient: PropTypes.object.isRequired,
-    user: PropTypes.object
+    user: PropTypes.object,
+    signIn: PropTypes.func
   };
+
   state = {
     keyword: '',
     flagShowResult: false
   };
+
   componentDidMount() {
-    //this.props.login('test');
-    this.props.signIn({
+    // this.props.login('test');
+    this.props.login({
       username: 'test',
       email: 'test@gmail.com',
-      password: 'test'
+      password: 'test',
+      fromSocial: 'default'
     });
   }
   componentWillReceiveProps(nextProps) {

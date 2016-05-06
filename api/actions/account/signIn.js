@@ -126,15 +126,14 @@ export default function signIn(req) {
           console.log('founder user: '+ foundUsers);
           // if users are found, we cannot create the user
           // send an appropriate response back
-          reject({
+          return reject({
             success: false,
             message: 'User with requested username and/or email already exists',
             data: {}
           });
-          return;
         } else {
           // create the user with specified data
-          let user = new User();
+          let user = new UserModel();
           user.username = username;
           user.password = password;
           user.email = email || ' ';
@@ -153,12 +152,10 @@ export default function signIn(req) {
               'username': user.username,
               'email': user.email
             };
-            var token = jwt.sign(payload, config.jwt.secret, {
-              expiresInMinutes: 14400*360
-            });
+            let token = jwt.sign(payload, config.jwt.secret);
             req.session.token = token;
-            
-            resolve({
+
+            return resolve({
               success: true,
               message: 'User added/created successfully',
               data: {
@@ -166,7 +163,6 @@ export default function signIn(req) {
                 'token': token
               }
             });
-            return;
           });
         }
       });

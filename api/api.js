@@ -40,7 +40,10 @@ app.use((req, res) => {
 
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
-  if (action && (req.method === 'POST') || req.method === 'GET') {
+  //allow Cross domains
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else if (action && (req.method === 'POST') || req.method === 'GET') {
     action(req, params)
       .then((result) => {
         if (result instanceof Function) {

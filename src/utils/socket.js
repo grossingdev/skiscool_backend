@@ -1,13 +1,13 @@
 /**
  * Created by baebae on 4/30/16.
  */
-import {log_console} from './log';
+import logConsole from './log';
 import io from 'socket.io-client';
-//const SERVER = 'http://37.187.112.9:3700'; //ns327841.ip-37-187-112.eu
-const SERVER = 'http://localhost:3700'; //ns327841.ip-37-187-112.eu
-//admin user: admin_root_123
+// const SERVER = 'http://37.187.112.9:3700'; // ns327841.ip-37-187-112.eu
+const SERVER = 'http://localhost:3700'; // ns327841.ip-37-187-112.eu
+// admin user: admin_root_123
 
-const options ={
+const options = {
   transports: ['websocket'],
   'force new connection': true
 };
@@ -22,7 +22,7 @@ export class SocketClient {
     this.props = props;
     this.deviceInfo = deviceInfo;
 
-    if (this.socketClient != null) {
+    if (this.socketClient !== null) {
       this.registerDevice();
     } else {
       this.socketClient = io.connect(SERVER, options);
@@ -32,17 +32,17 @@ export class SocketClient {
 
   registerEvent() {
     this.socketClient.on('connect', (data) => {
-      log_console('connectToServer connected' + JSON.stringify(data));
+      logConsole('connectToServer connected' + JSON.stringify(data));
       this.registerDevice();
     });
 
     // event handler for errors
     this.socketClient.on('error', (msg) => {
-      log_console('error' + JSON.stringify(msg));
+      logConsole('error' + JSON.stringify(msg));
     });
 
     this.socketClient.on('register response', (msg) => {
-      log_console('register response completed' + msg);
+      logConsole('register response completed' + msg);
       this.props.setSocketClientConnected(true);
     });
 
@@ -52,8 +52,8 @@ export class SocketClient {
         data: data
       });
       this.props.setSocketClientConnected(true);
-      log_console('show_devices' + JSON.stringify(data));
-    })
+      logConsole('show_devices' + JSON.stringify(data));
+    });
   }
 
   disconnect() {

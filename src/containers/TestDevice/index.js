@@ -19,6 +19,10 @@ class TestDevice extends Component {
     errorLocation: '',
   };
 
+  componentDidMount() {
+    this.getIPLocation();
+  }
+
   getIPLocation() {
     request('GET', 'http://ipinfo.io')
       .accept('application/json')
@@ -32,10 +36,6 @@ class TestDevice extends Component {
           });
         }
       });
-  };
-
-  componentDidMount() {
-    this.getIPLocation();
   }
 
   clearErrorText() {
@@ -44,7 +44,7 @@ class TestDevice extends Component {
     const errorLocation = '';
     this.setState({
       errorDeviceID, errorUserName, errorLocation
-    })
+    });
   }
 
   disconnectSever() {

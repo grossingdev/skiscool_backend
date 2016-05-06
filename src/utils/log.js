@@ -2,6 +2,8 @@
  * Created by nick on 4/16/16.
  */
 
-export const log_console = (log) => {
+const logConsole = (log) => {
   console.info(log);
 };
+
+export default logConsole;

@@ -48,6 +48,7 @@ function _publicRequest(method, route, params, body) {
           console.info("error:" + route, err);
           reject(res.body);
         } else {
+          console.info("result:" + route, res.body);
           resolve(res.body);
         }
       });

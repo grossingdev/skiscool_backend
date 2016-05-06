@@ -15,8 +15,9 @@ class Home extends Component {
   componentDidMount() {
     //this.props.login('test');
     this.props.signIn({
-      userName: 'test',
-      userId: 'test'
+      username: 'test',
+      email: 'test@gmail.com',
+      password: 'test'
     });
   }
   componentWillReceiveProps(nextProps) {

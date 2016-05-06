@@ -35,7 +35,6 @@ function _parameterizeRoute(route, params) {
   });
   return parameterized;
 }
-
 function _publicRequest(method, route, params, body) {
   if (!body) body = {};
   if (params) route = _parameterizeRoute(route, params);

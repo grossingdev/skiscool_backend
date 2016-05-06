@@ -15,9 +15,17 @@ const Schemas = {
   }),
   UserModel: new Schema({
     id: Number,
-    userId: { type: String, required: true, unique: true },
-    userName: {type: String, required: true},
-    password: {type: String},
+    name: String,
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    salt: String,
+    admin: Boolean,
+    location: String,
+    meta: {
+      age: Number,
+      website: String
+    },
     created_at: Date,
     updated_at: Date
   }),

@@ -7,6 +7,9 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import * as actions from './actions/index';
 import {mapUrl} from './utils/url.js';
+import PrettyError from 'pretty-error';
+
+const pretty = new PrettyError();
 
 const port = 3700;
 let app = express();
@@ -25,7 +28,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(session({
-  secret: 'react and redux rule!!!!',
+  secret: 'skiscool',
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 0 }
@@ -37,12 +40,13 @@ app.use((req, res) => {
 
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
-  if (action) {
+  if (action && (req.method === 'POST') || req.method === 'GET') {
     action(req, params)
       .then((result) => {
         if (result instanceof Function) {
           result(res);
         } else {
+          console.info("api result:" + req.url, result);
           res.json(result);
         }
       }, (reason) => {

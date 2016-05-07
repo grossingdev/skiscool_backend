@@ -120,7 +120,7 @@ const socket = (server) => {
 
     socket.on('registerDevice', function (data) {
       //check user is logged in.
-      checkAuth(data.token)
+      checkAuth(data.token, true)
         .then((user) => {
           registerDevice(user, data, socket);
         });

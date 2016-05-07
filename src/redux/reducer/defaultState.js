@@ -9,7 +9,8 @@ const defaultValues = () => {
     },
     user: {
       auth: false,
-      loading: false
+      loading: false,
+      token: ""
     }
   };
 };

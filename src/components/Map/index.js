@@ -43,9 +43,12 @@ class Map extends Component {
           });
 
           this.removeOldMarkers();
-          _.forEach(this.props.socketMessage.data, (item) => {
-            this.addMarker(item);
-          });
+          if (this.props.socketMessage.data.devices) {
+            _.forEach(this.props.socketMessage.data.devices, (item) => {
+              this.addMarker(item);
+            });
+          }
+
         }
       }
     }, 1000);
@@ -132,9 +135,11 @@ class Map extends Component {
     if (!isEqual(this.props.socketMessage, nextProps.socketMessage) && nextProps.socketMessage.type == 'show_devices') {
       if (mapView) {
         this.removeOldMarkers();
-        _.forEach(nextProps.socketMessage.data, (item) => {
-          component.addMarker(item);
-        });
+        if (this.props.socketMessage.data.devices) {
+          _.forEach(nextProps.socketMessage.data.devices, (item) => {
+            component.addMarker(item);
+          });
+        }
       }
     }
   }

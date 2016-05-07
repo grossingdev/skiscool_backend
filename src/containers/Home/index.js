@@ -26,12 +26,13 @@ class Home extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (!isEqual(this.props.user, nextProps.user)) {
-      if (nextProps.user.auth === true) {
+      if (nextProps.user.auth === true && nextProps.user.token && nextProps.user.token.length > 0) {
         this.props.socketClient.connect(this.props, {
           deviceID: 'admin_root_123',
           userName: 'admin_root_123',
           lat: '',
-          lon: ''
+          lon: '',
+          token: nextProps.user.token
         });
       }
     }

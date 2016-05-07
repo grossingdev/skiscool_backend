@@ -69,7 +69,8 @@ export class SocketClient {
     this.socketClient.emit('registerDevice', {
       uuid: this.deviceInfo.deviceID,
       username: this.deviceInfo.userName,
-      location: this.deviceInfo.lat + ',' + this.deviceInfo.lon
+      location: this.deviceInfo.lat + ',' + this.deviceInfo.lon,
+      token: this.deviceInfo.token
     });
   }
 

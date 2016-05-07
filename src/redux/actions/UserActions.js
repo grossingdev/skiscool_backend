@@ -2,6 +2,8 @@
  * Created by baebae on 5/3/16.
  */
 import { createAction } from 'redux-actions';
+import LocalStorage from 'utils/localStorage';
+
 import API from 'utils/api';
 export const LOGIN = 'LOGIN';
 const login$ = createAction(LOGIN);
@@ -9,11 +11,14 @@ const login$ = createAction(LOGIN);
 export const login = (param) => {
   return (dispatch) => {
     API.account.login(null, param)
-      .then((user) => {
-        if (user.authenticated == true) {
+      .then((res) => {
+        console.info('login result', res);
+        if (res.data.token && res.data.token.length > 0) {
+          LocalStorage.set("token", res.data.token);
           dispatch(login$({
             authenticated: true,
-          }))
+            token: res.data.token
+          }));
         }
       })
       .catch((err) => {
@@ -43,9 +48,7 @@ export const signIn = (param) => {
   return (dispatch) => {
     API.account.signIn(null, param).then((res) => {
       if (res.authenticated == true) {
-        dispatch(login$({
-          authenticated: true,
-        }))
+
       } else {
         console.info('signIn error:', res);
       }

@@ -7,7 +7,10 @@ import * as User from '../actions/UserActions';
 export default function user(state = defaultState.user, action) {
   switch (action.type) {
     case User.LOGIN:
-      return Object.assign({}, state, { auth: action.payload.authenticated});
+      return Object.assign({}, state, {
+        auth: action.payload.authenticated,
+        token: action.payload.token
+      });
     default:
       return state;
   }

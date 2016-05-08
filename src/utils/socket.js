@@ -4,7 +4,7 @@
 import logConsole from './log';
 import io from 'socket.io-client';
 // const SERVER = 'http://37.187.112.9:3700'; // ns327841.ip-37-187-112.eu
-const SERVER = 'http://localhost:3700'; // ns327841.ip-37-187-112.eu
+const SERVER = 'http://ns327841.ip-37-187-112.eu:3700'; // ns327841.ip-37-187-112.eu
 // admin user: admin_root_123
 
 const options = {

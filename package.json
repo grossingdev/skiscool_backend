@@ -63,7 +63,7 @@
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "development",
-        "PORT": 3000,
+        "PORT": 8080,
         "APIPORT": 3700
       }
     },
@@ -80,7 +80,7 @@
       "env": {
         "UV_THREADPOOL_SIZE": 100,
         "NODE_PATH": "./src",
-        "PORT": 3000,
+        "PORT": 8080,
         "APIPORT": 3700
       }
     },

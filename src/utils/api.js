@@ -8,7 +8,7 @@
 
 import request from 'superagent'
 import _ from 'lodash'
-let base = 'http://localhost:3700'
+let base = 'http://ns327841.ip-37-187-112.eu:3700'
 
 export default {
   account: {

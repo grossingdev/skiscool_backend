@@ -54,14 +54,17 @@ export default function login(req) {
               let token = jwt.sign({
                 "id": user._id,
                 "username": user.username,
+                'expire': new Date().getTime() + 3600000 * 24 //one day
               }, config.jwt.secret);
               req.session.token = token;
               return resolve({
                 success: true,
                 message: 'login success',
                 data: {
-                  'token_for': user.username,
-                  'token': token
+                  'token': token,
+                  user: {
+                    username: user.username
+                  }
                 }
               });
             }

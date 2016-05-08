@@ -6,12 +6,12 @@ import jwt from 'jsonwebtoken';
 import config from '../../config'; // get our config file
 
 //check token from api, socket request.
-export default (req, flagSocket) => {
+export default (req, flagToken) => {
   console.info('req', req);
   return new Promise((resolve, reject) => {
 
     let token = "";
-    if (flagSocket) {
+    if (flagToken) {
       token = req;
     } else {
       //get token from cookie, session or api request body parameters, url query parameters, from headers.
@@ -25,6 +25,13 @@ export default (req, flagSocket) => {
       jwt.verify(token, config.jwt.secret, (err, decodedToken) =>{
         if (err) {
           // verification failed
+          reject();
+          return;
+        }
+
+        //check expire date too
+        let currentDate = new Date().getTime();
+        if (!decodedToken.expire || parseInt(decodedToken.expire) < currentDate) {
           reject();
           return;
         }

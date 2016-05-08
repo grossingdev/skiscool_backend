@@ -47,11 +47,7 @@ export const logout = () => {
 export const signIn = (param) => {
   return (dispatch) => {
     API.account.signIn(null, param).then((res) => {
-      if (res.authenticated == true) {
 
-      } else {
-        console.info('signIn error:', res);
-      }
     }).catch((err) => {
 
     });

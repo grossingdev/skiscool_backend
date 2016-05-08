@@ -91,9 +91,7 @@ export default function signIn(req) {
                 'username': user.username,
                 'email': user.email
               };
-              let token = jwt.sign(payload, config.jwt.secret, {
-                expiresInMinutes: 14400
-              });
+              let token = jwt.sign(payload, config.jwt.secret);
               req.session.token = token;
               resolve({
                 success: true,
@@ -150,7 +148,8 @@ export default function signIn(req) {
             }
             let payload = {
               'username': user.username,
-              'email': user.email
+              'email': user.email,
+              'expire': new Date().getTime() + 3600000 * 24 //one day
             };
             let token = jwt.sign(payload, config.jwt.secret);
             req.session.token = token;
@@ -159,8 +158,10 @@ export default function signIn(req) {
               success: true,
               message: 'User added/created successfully',
               data: {
-                'token_for': user.username,
-                'token': token
+                'token': token,
+                'user': {
+                  'username': user.username
+                }
               }
             });
           });

@@ -5,6 +5,7 @@ import socketIO from 'socket.io';
 import {removeObject, findByKey} from '../utils/utils';
 import DeviceModel from '../db/DeviceModel';
 import checkAuth from '../actions/account/checkAuth';
+import _ from 'lodash';
 
 let adminSockets = [];
 let onlineSockets = [];

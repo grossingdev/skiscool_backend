@@ -135,7 +135,7 @@ class Map extends Component {
     if (!isEqual(this.props.socketMessage, nextProps.socketMessage) && nextProps.socketMessage.type == 'show_devices') {
       if (mapView) {
         this.removeOldMarkers();
-        if (this.props.socketMessage.data.devices) {
+        if (nextProps.socketMessage.data.devices) {
           _.forEach(nextProps.socketMessage.data.devices, (item) => {
             component.addMarker(item);
           });

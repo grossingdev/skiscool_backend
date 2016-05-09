@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 import Schemas from './Schemas';
 import bcrypt from 'bcrypt-nodejs';
-import config from '../../config'; // get our config file
+import config from '../config'; // get our config file
 
 let connection = mongoose.createConnection(config.mongo_db_url);
 autoIncrement.initialize(connection);

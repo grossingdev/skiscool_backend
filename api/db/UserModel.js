@@ -5,9 +5,9 @@ import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 import Schemas from './Schemas';
 import bcrypt from 'bcrypt-nodejs';
+import config from '../../config'; // get our config file
 
-const mongo_db_url = 'mongodb://localhost:27017/skiscool';
-let connection = mongoose.createConnection(mongo_db_url);
+let connection = mongoose.createConnection(config.mongo_db_url);
 autoIncrement.initialize(connection);
 
 Schemas.UserModel.pre('save', function(next) {

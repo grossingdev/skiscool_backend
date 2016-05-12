@@ -321,7 +321,7 @@ var Autocomplete = React.createClass({
   },
   renderImage() {
     return (
-      <img src="/public/icons/default/combo_arrow.svg" onClick={()=>{this.setState({ isOpen: !this.state.isOpen });}}/>
+      <img src="/icons/default/combo_arrow.svg" onClick={()=>{this.setState({ isOpen: !this.state.isOpen });}}/>
     )
   },
   render: function render() {

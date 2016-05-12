@@ -1,6 +1,5 @@
 /** @flow */
 
-require('./styles.css');
 
 import React, { Component, PropTypes } from 'react';
 import AutoComplete from './Autocomplete';
@@ -20,12 +19,13 @@ class AutoTextComplete extends Component {
   }
 
   render() {
+    let styles = require('./styles.scss');
     let {errorText, className, ...props} = this.props;
     if (errorText && errorText.length > 0) {
       className = className + " input-error";
     }
     return (
-      <div className={"AutoComplete " + className}>
+      <div className={styles.AutoComplete + ' ' + className}>
         <AutoComplete
           value={this.props.value}
           labelText=""
@@ -38,7 +38,7 @@ class AutoTextComplete extends Component {
           onSelect={(value) => this.props.onSelect(value)}
           renderItem={(item, isHighlighted) => {return this.props.renderItem(item, isHighlighted)}}
         />
-        {errorText && errorText.length > 0 && <div className="label_error">{errorText}</div>}
+        {errorText && errorText.length > 0 && <div className={styles.label_error}>{errorText}</div>}
       </div>
 
     )

@@ -1,1 +1,6 @@
 nohup node dist/api/api.js > /dev/null 2>&1 &
+
+mongo create account
+
+
+db.createUser({user:"admin_simon", pwd:"SimonAdmin123$",roles:["readWrite","dbAdmin"]})

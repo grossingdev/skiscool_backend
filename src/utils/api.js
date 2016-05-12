@@ -7,8 +7,16 @@
  */
 
 import request from 'superagent'
-import _ from 'lodash'
+import _ from 'lodash';
+let config = require('../config');
+debugger;
+
 let base = 'http://ns327841.ip-37-187-112.eu:3700'
+if (config.isProduction) {
+  base = 'http://ns327841.ip-37-187-112.eu:3700';
+} else {
+  base = 'http://localhost:3700';
+}
 
 export default {
   account: {

@@ -20,6 +20,7 @@ class LoginForm extends Component {
     username_error_text: '',
     password_error_text: '',
     email_error_text: '',
+    languages: [],
     gender: Copy.values.genders[0],
     userType: Copy.values.userTypes[0],
     selectedLanguage: ''
@@ -153,11 +154,29 @@ class LoginForm extends Component {
       </div>
     );
   }
-
+  addLanguage() {
+    let {languages} = this.state;
+    if (!_.includes(languages, this.state.selectedLanguage)) {
+      languages.push(this.state.selectedLanguage);
+      this.setState({languages});
+    }
+  }
+  getLanguages() {
+    let ret = '';
+    _.forEach(this.state.languages, (item) => {
+      if (ret.length > 0) {
+        ret = ret + ', ' + item;
+      } else {
+        ret = item;
+      }
+    });
+    return ret;
+  }
   renderSignupPage(styles) {
     let signupWithFacebook = (result) => {
 
     };
+
     return (
       <div className={styles.LoginForm + ' ' + styles.SignForm}>
         <div className={styles.FormContainer}>
@@ -203,7 +222,7 @@ class LoginForm extends Component {
           </div>
 
           <div className={styles.rowContainer}>
-            <TextInput ref= "language" placeholder="Languages" readOnly={true}></TextInput>
+            <TextInput ref= "language" placeholder="Languages" readOnly={true} value={this.getLanguages()}></TextInput>
             <div className={styles.btnDelete} onClick={()=>{this.clearLanguages()}}>
               <img src="/icons/default/delete_button.svg" />
             </div>

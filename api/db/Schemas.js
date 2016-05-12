@@ -4,30 +4,47 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
+const commonUserSchema = {
+  id: Number,
+  device_uuid: {type: String},
+  //essential fields
+  name: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true},
+  gender: { type: String, required: true},
+  age: {type: String, required: true},
+  age_range: {type: String, required: true},
+
+  //extra fields
+  image: String,
+  location: [Number], //will contains [lat, lon]
+  level: Schema.Types.Mixed, //will contains {ski_level: 0~4, ski_speed: number, etc}
+  languages: [String], //will contains ['en', 'ru']
+  meta: Schema.Types.Mixed, //will contains {friend_list: [objects], etc}
+  updated: { type: Date, default: Date.now },
+  online_status: Boolean
+};
+
 const Schemas = {
-  DeviceModel: new Schema({
+
+  Client: new Schema(
+    Object.assign({}, commonUserSchema)
+  ),
+
+  Instructor: new Schema(
+    Object.assign({}, commonUserSchema, {
+      schedule: Schema.Types.Mixed, //will contains array of [date, date]
+      rate: Number,
+      season_status: Schema.Types.Mixed, //will contains {lower: [weeknum, weeknum,...], medium: [weeknum], highest: [weeknum]}
+    })
+  ),
+
+  Hotel: new Schema({
     id: Number,
-    uuid: { type: String, required: true, unique: true },
-    location: {type:String, requrired: true},
-    username: {type: String, required: true},
-    created_at: Date,
-    updated_at: Date
-  }),
-  UserModel: new Schema({
-    id: Number,
-    name: String,
-    username: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    salt: String,
-    admin: Boolean,
-    location: String,
-    meta: {
-      age: Number,
-      website: String
-    },
-    created_at: Date,
-    updated_at: Date
-  }),
+    hotel_name: { type: String, required: true},
+    hotel_icon: String,
+    hotel_price: {type: Number, required: true},
+    hotel_type: String, //should be hotel/chalet
+  })
 };
 export default Schemas;

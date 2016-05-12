@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+  margin-right: 50px;
   min-width: 400px;
-  max-width: 400px;
   .FormContainer{
     flex: 2;
     display: flex;
@@ -60,7 +60,7 @@
     }
     .btnSignUp {
       padding: 0px;
-      width: 90%;
+      width: 100%;
       margin-top: 20px;
       height: 50px;
       font-size: 20px;
@@ -72,7 +72,7 @@
       }
     }
     .btnFacebook {
-      width: 90%;
+      width: 100%;
       margin-top: 5px;
       height: 50px;
       font-size: 20px;

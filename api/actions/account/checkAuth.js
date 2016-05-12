@@ -1,7 +1,7 @@
 /**
  * Created by BaeBae on 5/6/16.
  */
-import UserModel from '../../db/UserModel';
+import UserModel from '../../db/ClientsModel';
 import jwt from 'jsonwebtoken';
 import config from '../../config'; // get our config file
 

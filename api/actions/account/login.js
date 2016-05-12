@@ -1,37 +1,63 @@
-import UserModel from '../../db/UserModel';
+import UserModel from '../../db/ClientsModel';
 import bcrypt from 'bcrypt-nodejs';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
 
 export default function login(req) {
   return new Promise((resolve, reject) => {
-    let {username, password, fromSocial} = req.body;
+    let {username, password, fromSocial, email, userType} = req.body;
     if (fromSocial == 'default') {
+      let error_msg = '';
+      let statusCode = 0;
       if (!username) {
-        // email address is absolutely necessary for user creation
-        return reject({
-          success: false,
-          message: 'username required',
-          data: {}
-        });
-        return;
+        error_msg = 'User name is required.';
+        statusCode = 1000;
+      }
+
+      if (!email) {
+        error_msg = 'User Email is required.';
+        statusCode = 1001;
       }
 
       if (!password) {
-        return reject({
-          success: false,
-          message: 'password required',
-          data: {}
-        });
-        return;
+        error_msg = 'User password is required.';
+        statusCode = 1002;
       }
 
-      UserModel.findOne({username}, (err, user) => {
-        //console.log('user found:  '+JSON.stringify(user));
+      if (!age) {
+        error_msg = 'User age is required.';
+        statusCode = 1003;
+      }
+
+      if (!languages) {
+        error_msg = 'Language is required.';
+        statusCode = 1004;
+      }
+
+      if (!gender) {
+        error_msg = 'Gender is required.';
+        statusCode = 1005;
+      }
+
+      if (!userType) {
+        error_msg = 'User type is required.';
+        statusCode = 1006;
+      }
+
+      if (statusCode != 0) {
+        // email address is absolutely necessary for user creation
+        return reject({
+          success: false,
+          error_msg,
+          statusCode,
+        });
+      }
+
+      UserModel.findOne({email}, (err, user) => {
         if (err) {
           return reject({
             success: false,
-            message: 'Error occured while checking if the user exists',
+            message: 'Mongodb error occured while checking if the user exists',
             data: {
               'error': err
             }

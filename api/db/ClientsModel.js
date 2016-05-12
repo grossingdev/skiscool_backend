@@ -10,7 +10,7 @@ import config from '../config'; // get our config file
 let connection = mongoose.createConnection(config.mongo_db_url);
 autoIncrement.initialize(connection);
 
-Schemas.UserModel.pre('save', function(next) {
+Schemas.Client.pre('save', function(next) {
   // get the current date
   let currentDate = new Date();
   let component = this;
@@ -35,19 +35,18 @@ Schemas.UserModel.pre('save', function(next) {
       if (err) {
         return next(err);
       }
-      component.salt = salt;
       component.password = hash;
       next();
     });
   });
 });
 
-Schemas.UserModel.plugin(autoIncrement.plugin, {
-  model: 'UserModel',
+Schemas.Client.plugin(autoIncrement.plugin, {
+  model: 'Client',
   field: 'id',
   startAt: 1,
   incrementBy: 1,
 });
-const UserModel =  connection.model('UserModel', Schemas.UserModel);
+const Client =  connection.model('Client', Schemas.Client);
 // Create Database model schema
-export default UserModel;
+export default Client;

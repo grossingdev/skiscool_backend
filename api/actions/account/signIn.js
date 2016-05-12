@@ -1,172 +1,135 @@
-import UserModel from '../../db/UserModel';
+import Client from '../../db/ClientsModel';
+import Instructor from '../../db/InstructorsModel';
+
 import config from '../../config';
 import jwt from 'jsonwebtoken';
+import {findUser} from './common';
+import statusCodeMessage from '../statusCodeMessage';
 
 export default function signIn(req) {
   return new Promise((resolve, reject) => {
-    let {username, password, fromSocial, email} = req.body;
-    if (!username) {
-      // email address is absolutely necessary for user creation
-      return reject({
-        success: false,
-        message: 'username required',
-        data: {}
-      });
-      return;
-    }
+    let {username, password, fromSocial, age, languages, gender, email, userType} = req.body;
 
-    if (fromSocial === 'default' && !password) {
-      return reject({
-        success: false,
-        message: 'password required',
-        data: {}
-      });
-      return;
-    }
+    if (fromSocial === 'default') {
+      let statusCode = 0;
+      if (!username) {
+        statusCode = 1000;
+      }
 
-    if (fromSocial === 'default' && !email) {
-      return reject({
-        success: false,
-        message: 'email required',
-        data: {}
-      });
-      return;
-    }
+      if (!email) {
+        statusCode = 1001;
+      }
 
-    if (fromSocial === 'fb') {
-      if (!req.body.fbId) {
+      if (!password) {
+        statusCode = 1002;
+      }
+
+      if (!age && parseInt(age)) {
+        age = parseInt(age);
+        statusCode = 1003;
+      }
+
+      if (!languages) {
+        statusCode = 1004;
+      }
+
+      if (!gender) {
+        statusCode = 1005;
+      }
+
+      if (!userType) {
+        statusCode = 1006;
+      }
+
+      if (statusCode != 0) {
+        // email address is absolutely necessary for user creation
         return reject({
           success: false,
-          message: 'Facebook token id is required',
-          data: {}
+          msg: statusCodeMessage[statusCode],
+          statusCode,
         });
-        return;
+      }
+    }
+
+
+    if (fromSocial === 'fb') {
+      if (!req.body.fb_token) {
+        let statusCode = 1007;
+        return reject({
+          success: false,
+          msg: statusCodeMessage[statusCode],
+          statusCode,
+        });
       } else {
-        UserModel.find({username}, (err, foundUsers) => {
-          if (err) {
-            reject({
+        findUser(UserModel, email).then((code, users) => {
+          //db error
+          if (code == 2000) {
+            let statusCode = 1010;
+            return reject({
               success: false,
-              message: 'Error occured while checking if the user exists',
-              data: {
-                'error': err
-              }
+              msg: statusCodeMessage[statusCode],
+              statusCode,
             });
-            return;
-          }
-          if (foundUsers && foundUsers.length > 0) {
-            console.log('founder user', foundUsers);
-            // if they do, send an appropriate response back
-            reject({
+          //user found using email
+          } else if (code == 2001) {
+            let statusCode = 1011;
+            return reject({
               success: false,
-              message: 'User with requested username with facebook has been already exists',
-              data: {}
+              msg: statusCodeMessage[statusCode],
+              statusCode,
             });
-            return;
-          } else {
-            let generatedUserName = email.split('@')[0] + Math.floor(Math.random() * 10000);
-            let generatedPassword = Math.floor(Math.random() * 1000) + '' + Math.floor(Math.random() * 1000);
-            let user = new UserModel();
-            user.username = generatedUserName;
+          //user not found
+          } else if (code == 2002) {
+            let user = null;
+            if (userType == 'player') {
+              user = new Client();
+            } else if (userType == 'instructor') {
+              user = new Instructor();
+            }
+
+            user.name = username;
+            user.password = password;
             user.email = email;
-            user.password = generatedPassword;
-
-            //facebook
-            user.facebook.id = req.body.fbId;
-            user.fullname = req.body.fbFullName;
-            user.profile_pic = 'https://graph.facebook.com/' + req.body.fbId + '/picture?type=large';
-
-            user.save((err) => {
+            user.gender = gender;
+            user.age = age;
+            user.age_range = 'J0';
+            if (user.age < 30 && user.age_range > 20) {
+              user.age_range = 'J1';
+            }
+            user.save(function(err) {
               if (err) {
-                reject({
+                let statusCode = 1010;
+                return reject({
                   success: false,
-                  message: 'Error occured while saving the user',
-                  data: {
-                    'error': err
-                  }
+                  msg: statusCodeMessage[statusCode],
+                  statusCode,
                 });
-                return;
               }
-
               let payload = {
                 'username': user.username,
-                'email': user.email
+                'email': user.email,
+                'expire': new Date().getTime() + 3600000 * 24 //one day
               };
               let token = jwt.sign(payload, config.jwt.secret);
               req.session.token = token;
-              resolve({
+
+              return resolve({
                 success: true,
                 message: 'User added/created successfully',
+                statusCode: 0,
                 data: {
-                  'token_for': user.username,
-                  'token': token
+                  'token': token,
+                  'user': {
+                    'username': user.username
+                  }
                 }
               });
             });
           }
-        });
+        })
       }
     } else if (fromSocial == 'default') {
-      UserModel.find({
-        $or: [{'username': username}, {'email': email}]
-      }, (err, foundUsers) => {
-        if (err) {
-          reject({
-            success: false,
-            message: 'Error occured while checking if the user exists',
-            data: {
-              'error': err
-            }
-          });
-          return;
-        }
 
-        if (foundUsers && foundUsers.length > 0) {
-          console.log('founder user: '+ foundUsers);
-          // if users are found, we cannot create the user
-          // send an appropriate response back
-          return reject({
-            success: false,
-            message: 'User with requested username and/or email already exists',
-            data: {}
-          });
-        } else {
-          // create the user with specified data
-          let user = new UserModel();
-          user.username = username;
-          user.password = password;
-          user.email = email || ' ';
-          user.save(function(err) {
-            if (err) {
-              reject({
-                success: false,
-                message: 'Error occured while saving the user',
-                data: {
-                  'error': err
-                }
-              });
-              return;
-            }
-            let payload = {
-              'username': user.username,
-              'email': user.email,
-              'expire': new Date().getTime() + 3600000 * 24 //one day
-            };
-            let token = jwt.sign(payload, config.jwt.secret);
-            req.session.token = token;
-
-            return resolve({
-              success: true,
-              message: 'User added/created successfully',
-              data: {
-                'token': token,
-                'user': {
-                  'username': user.username
-                }
-              }
-            });
-          });
-        }
-      });
     }
   });
 }

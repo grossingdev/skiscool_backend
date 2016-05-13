@@ -148,7 +148,13 @@ class LoginForm extends Component {
 
 
   renderLoginPage(styles) {
-    let loginWithFacebook = (response) => {
+    let loginWithFacebook = (result) => {
+      let access_token = result.accessToken;
+      this.props.login({
+        access_token,
+        userType: this.state.userType.toLowerCase(),
+        fromSocial: 'fb'
+      });
     };
 
     return (
@@ -229,7 +235,12 @@ class LoginForm extends Component {
   }
   renderSignupPage(styles) {
     let signupWithFacebook = (result) => {
-
+      let access_token = result.accessToken;
+      this.props.signIn({
+        access_token,
+        userType: this.state.userType.toLowerCase(),
+        fromSocial: 'fb'
+      });
     };
 
     return (

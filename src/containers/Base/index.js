@@ -18,6 +18,10 @@ class Base extends Component {
     if (socketClient === null) {
       socketClient = new SocketClient();
     }
+    if (this.props.user.token.length == 0) {
+      this.props.checkToken();
+    }
+
   }
 
   _childrenWithProps() {
@@ -55,14 +59,23 @@ class Base extends Component {
     this.context.router.push('/');
   }
   renderMainSideBar () {
+    let flagLogin = false;
+    let {profile} = this.props.user;
+    if (profile.name && this.props.user.token.length > 0) {
+      flagLogin = true;
+    }
+
     return (
       <MainSideBar
         ref='MainSidebar'
         alignment='left'
+        flagLogin={flagLogin}
         gotoSignUp={()=>{this.gotoSignUp()}}
         gotoLogin={()=>{this.gotoLogin()}}
         gotoTestView={()=>{this.gotoTestView()}}
         gotoHomeView={()=>{this.gotoHomeView()}}
+        logout={()=>this.props.logout()}
+        profile={profile}
       >
       </MainSideBar>
     );

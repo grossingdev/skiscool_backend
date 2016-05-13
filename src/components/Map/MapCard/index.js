@@ -7,9 +7,9 @@ class MapCard extends Component {
   renderMarkerInfo(markerInfo, styles) {
     return(
       <div className={styles.info}>
-        <div className={styles.info}>Device UUID: {markerInfo.uuid}</div>
-        <div className={styles.info}>User Name: {markerInfo.username}</div>
-        <div className={styles.info}>Updated: {markerInfo.updated_at}</div>
+        <div className={styles.info}>Device UUID: {markerInfo.device_uuid}</div>
+        <div className={styles.info}>User Name: {markerInfo.email}</div>
+        <div className={styles.info}>Updated: {markerInfo.updated}</div>
       </div>
     )
   }

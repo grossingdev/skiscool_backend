@@ -42,7 +42,7 @@ class Sidebar extends Component {
     return (
       <div className={styles.top_area}>
         <img
-          src="/icons/logo.svg"
+          src='/icons/logo.svg'
           className={styles.logo_icon}
           onClick={()=>this.showHideMenuBar()}
         />
@@ -51,29 +51,40 @@ class Sidebar extends Component {
   }
 
   renderButtonArea(styles) {
-    return (
-      <div className={styles.buttonArea}>
-        <Button type="label" className={styles.login} onClick={()=>this.props.gotoSignUp()}>
-          {"Signup"}
-        </Button>
+    if (this.props.flagLogin) {
+      return (
+        <div className={styles.buttonArea}>
+          <Button type='label' className={styles.login} onClick={()=>this.props.logout()}>
+            {'Logout - ' + this.props.profile.name}
+          </Button>
 
-        <Button type="label" className={styles.login} onClick={()=>this.props.gotoLogin()}>
-          {"Login"}
-        </Button>
+          <Button type='label' className={styles.login} onClick={()=>this.props.gotoTestView()}>
+            {'Emulate Device Location'}
+          </Button>
+        </div>
+      )
+    } else {
+      return (
+        <div className={styles.buttonArea}>
+          <Button type='label' className={styles.login} onClick={()=>this.props.gotoSignUp()}>
+            {'Signup'}
+          </Button>
 
-        <Button type="label" className={styles.login} onClick={()=>this.props.gotoTestView()}>
-          {"Emulate Device Location"}
-        </Button>
-      </div>
-    )
+          <Button type='label' className={styles.login} onClick={()=>this.props.gotoLogin()}>
+            {'Login'}
+          </Button>
+        </div>
+      )
+    }
+
   }
   render() {
     const styles = require('./styles.scss');
     let openVisible = (this.state.lockOpen || this.state.flagOpen) ? 'visible' : 'invisible';
     let closeVisible = (this.state.lockOpen || this.state.flagOpen) ? 'invisible' : 'visible';
-    let containerClassName = "not_opened";
+    let containerClassName = 'not_opened';
     if (this.state.lockOpen || this.state.flagOpen) {
-      containerClassName = "opened"
+      containerClassName = 'opened'
     }
     return (
       <div

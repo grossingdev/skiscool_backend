@@ -9,7 +9,26 @@ import {apiResult$} from './APIResultActions';
 
 export const LOGIN = 'LOGIN';
 const login$ = createAction(LOGIN);
+export const checkToken = () => {
+  return (dispatch) => {
+    let token = LocalStorage.get('token');
+    if (token && token.length > 0) {
+      API.account.checkToken(null, {
+        token: token,
+      }, dispatch).then((res) => {
+        if (res.data.token && res.data.token.length > 0) {
+          LocalStorage.set("token", res.data.token);
+          dispatch(login$({
+            authenticated: true,
+            token: res.data.token,
+            profile: res.data.user
+          }));
+        }
+      });
+    }
 
+  };
+}
 export const login = (param) => {
   return (dispatch) => {
     API.account.login(null, param, dispatch)
@@ -19,7 +38,8 @@ export const login = (param) => {
           LocalStorage.set("token", res.data.token);
           dispatch(login$({
             authenticated: true,
-            token: res.data.token
+            token: res.data.token,
+            profile: res.data.user
           }));
         }
       });
@@ -31,8 +51,11 @@ export const logout = () => {
     API.account.logout(null, {name}, dispatch)
       .then((user) => {
         if (user.success == true) {
+          LocalStorage.set("token", '');
           dispatch(login$({
             authenticated: false,
+            token: '',
+            profile: {}
           }))
         }
       });
@@ -50,7 +73,8 @@ export const signIn = (param) => {
         LocalStorage.set("token", res.data.token);
         dispatch(login$({
           authenticated: true,
-          token: res.data.token
+          token: res.data.token,
+          profile: res.data.user
         }));
       }
     });

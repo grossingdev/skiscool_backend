@@ -9,7 +9,8 @@ export default function user(state = defaultState.user, action) {
     case User.LOGIN:
       return Object.assign({}, state, {
         auth: action.payload.authenticated,
-        token: action.payload.token
+        token: action.payload.token,
+        profile: action.payload.profile
       });
     default:
       return state;

@@ -8,19 +8,30 @@ class TestDevice extends Component {
     socketConnected: PropTypes.bool,
     socketMessage: PropTypes.object
   };
-
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
   state = {
     deviceID: '',
-    userName: '',
     lat: '',
     lon: '',
     errorDeviceID: '',
-    errorUserName: '',
     errorLocation: '',
   };
 
-  componentDidMount() {
-    this.getIPLocation();
+  componentWillMount() {
+    let flagLogin = false;
+    let {profile} = this.props.user;
+    if (profile.name && this.props.user.token.length > 0) {
+      flagLogin = true;
+    }
+
+    if (flagLogin) {
+      this.getIPLocation();
+    } else {
+      alert("login please");
+      this.context.router.replace('/');
+    }
   }
 
   getIPLocation() {
@@ -40,10 +51,9 @@ class TestDevice extends Component {
 
   clearErrorText() {
     const errorDeviceID = '';
-    const errorUserName = '';
     const errorLocation = '';
     this.setState({
-      errorDeviceID, errorUserName, errorLocation
+      errorDeviceID, errorLocation
     });
   }
 
@@ -53,29 +63,31 @@ class TestDevice extends Component {
 
   connectToServer() {
     let errorDeviceID = '';
-    let errorUserName = '';
     let errorLocation = '';
 
     if (this.state.deviceID === '') {
       errorDeviceID = 'Required';
     }
 
-    if (this.state.userName === '') {
-      errorUserName = 'Required';
-    }
-
     if (this.state.lat === '' || this.state.lon === '' ) {
       errorLocation = 'Required';
     }
 
-    if (errorDeviceID.length > 0 || errorUserName.length > 0 || errorLocation.length > 0){
+    if (errorDeviceID.length > 0 || errorLocation.length > 0){
       this.setState({
-        errorDeviceID, errorUserName, errorLocation
+        errorDeviceID, errorLocation
       });
       return;
     }
 
-    this.props.socketClient.connect(this.props, this.state);
+    let value = {
+      deviceID: this.state.deviceID,
+      lat: this.state.lat,
+      lon: this.state.lon,
+      token: this.props.user.token,
+      email: this.props.user.profile.email
+    };
+    this.props.socketClient.connect(this.props, value, this.props.socketConnected);
   }
 
   render() {
@@ -99,13 +111,11 @@ class TestDevice extends Component {
         <div className={styles.itemArea}>
           User Name:
           <TextInput
-            ref='username'
+            ref='email'
             className={styles.textInput}
-            placeholder='User Name'
-            errorText={this.state.errorUserName}
-            value={this.state.userName}
-            onChange={(userName)=>{this.setState({userName});this.clearErrorText()}}
-            readOnly={this.props.socketConnected}
+            placeholder='User Email'
+            value={this.props.user.profile.email}
+            readOnly={true}
           />
         </div>
 

@@ -13,15 +13,22 @@ export const findUser = (UserModel, email) => {
   return new Promise((resolve, reject) => {
     UserModel.find({email}, (err, foundUsers) => {
       if (err) {
-        return resolve(2000, null);
+        return resolve({
+          status: 2000
+        });
       }
       if (foundUsers && foundUsers.length > 0) {
         console.log('founder user: '+ foundUsers);
         // if users are found, we cannot create the user
         // send an appropriate response back
-        return resolve(2001, foundUsers);
+        return resolve({
+          status: 2001,
+          users: foundUsers
+        });
       } else {
-        return resolve(2002, null);
+        return resolve({
+          status: 2002
+        });
       }
     });
   });

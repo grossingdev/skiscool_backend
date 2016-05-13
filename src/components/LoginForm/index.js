@@ -59,7 +59,6 @@ class LoginForm extends Component {
         state[stateName] = apiResult.msg;
         this.setState(state);
       }
-
       if (apiResult.error_code == 0) {
         alert(apiResult.msg);
         this.props.resetAPIResult();
@@ -67,6 +66,9 @@ class LoginForm extends Component {
       }
     }
 
+    if (nextProps.user.profile.name && nextProps.user.token.length > 0) {
+      this.context.router.replace('/');
+    }
   }
 
   checkSignupParam() {
@@ -110,6 +112,7 @@ class LoginForm extends Component {
       this.props.login({
         email,
         password,
+        userType: this.state.userType.toLowerCase(),
         fromSocial: 'default'
       });
     }
@@ -127,12 +130,13 @@ class LoginForm extends Component {
     if (this.props.pageType == "signupPage") {
       this.refs.username.clearText();
       this.refs.age.clearText();
-      this.clearLanguages();
+      this.setState({languages: []});
     }
 
     this.refs.email.clearText();
     this.refs.password.clearText();
   }
+
   switchView() {
     this.clearFormViews();
     if (this.props.pageType == "loginPage") {
@@ -141,6 +145,8 @@ class LoginForm extends Component {
       this.context.router.replace('/login');
     }
   };
+
+
   renderLoginPage(styles) {
     let loginWithFacebook = (response) => {
     };
@@ -158,17 +164,9 @@ class LoginForm extends Component {
         </div>
 
         <div className={styles.ComponentArea}>
-          <TextInput
-            ref= "email"
-            placeholder="Email"
-            errorText={this.state.username_error_text}
-          />
-          <TextInput
-            ref= "password"
-            placeholder="Password"
-            type="password"
-            errorText={this.state.password_error_text}
-          />
+          {this.renderUserTypeArea(styles)}
+          <TextInput ref= "email" placeholder="Email" errorText={this.state.email_error_text}/>
+          <TextInput ref= "password" placeholder="Password" type="password" errorText={this.state.password_error_text}/>
 
           <div className={styles.TextInput}></div>
           <div className={styles.terms_policy}>
@@ -192,6 +190,7 @@ class LoginForm extends Component {
       </div>
     );
   }
+
   addLanguage() {
     let {languages} = this.state;
     if (!_.includes(languages, this.state.selectedLanguage)) {
@@ -200,9 +199,6 @@ class LoginForm extends Component {
     }
   }
 
-  clearLanguages() {
-    this.setState({languages: []});
-  }
   getLanguages() {
     let ret = '';
     _.forEach(this.state.languages, (item) => {
@@ -213,6 +209,23 @@ class LoginForm extends Component {
       }
     });
     return ret;
+  }
+
+  renderUserTypeArea(styles) {
+    return (
+      <div className={styles.rowContainer}>
+        <div className={styles.selectArea + ' ' + styles.userTypeArea}>
+          <div className={styles.labelFormField}>{Copy.values.typeUser}</div>
+          <AutoTextComplete
+            className={styles.selectList}
+            onSelect={(userType) => this.setState({userType})}
+            value={this.state.userType}
+            items={Copy.values.userTypes}
+            renderItem={(item)=>{return <div key={item} className={styles.optionItem}>{item}</div>}}
+          />
+        </div>
+      </div>
+    );
   }
   renderSignupPage(styles) {
     let signupWithFacebook = (result) => {
@@ -232,18 +245,7 @@ class LoginForm extends Component {
         </div>
 
         <div className={styles.ComponentArea}>
-          <div className={styles.rowContainer}>
-            <div className={styles.selectArea + ' ' + styles.userTypeArea}>
-              <div className={styles.labelFormField}>{Copy.values.typeUser}</div>
-              <AutoTextComplete
-                className={styles.selectList}
-                onSelect={(userType) => this.setState({userType})}
-                value={this.state.userType}
-                items={Copy.values.userTypes}
-                renderItem={(item)=>{return <div key={item} className={styles.optionItem}>{item}</div>}}
-              />
-            </div>
-          </div>
+          {this.renderUserTypeArea(styles)}
 
           <TextInput ref= "username" placeholder="Username" errorText={this.state.username_error_text}></TextInput>
           <TextInput ref= "email" placeholder="Email" errorText={this.state.email_error_text}></TextInput>
@@ -265,7 +267,7 @@ class LoginForm extends Component {
 
           <div className={styles.rowContainer}>
             <TextInput ref= "language" placeholder="Languages" readOnly={true} value={this.getLanguages()} errorText={this.state.language_error_text}></TextInput>
-            <div className={styles.btnDelete} onClick={()=>{this.clearLanguages()}}>
+            <div className={styles.btnDelete} onClick={()=>{this.setState({languages: []})}}>
               <img src="/icons/default/delete_button.svg" />
             </div>
 

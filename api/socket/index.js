@@ -18,7 +18,7 @@ const updateAdmin = (socket, data) => {
 };
 
 const updateAllAdmin = () => {
-  Client.find({ location: { $exists: true } }, {name: 1, location: 1, email: 1}, function(err, data) {
+  Client.find({ location: { $gt:[] } }, {name: 1, location: 1, email: 1, device_uuid: 1, updated: 1}, function(err, data) {
     _.forEach(adminSockets, (adminSocket) => {
       if (err) {
         adminSocket.socket.emit('error', err);
@@ -29,8 +29,8 @@ const updateAllAdmin = () => {
   });
 }
 
-const registerDevice = (user, data, socket) => {
-  if (data.username =="admin_root_123") {
+const registerDevice = (data, socket) => {
+  if (data.email =="admin_simon@gmail.com") {
     //if admin registered
     console.info("admin user logged in", data);
 
@@ -41,25 +41,25 @@ const registerDevice = (user, data, socket) => {
     });
 
     //return current device information
-    Client.find({ location: { $exists: true } }, {name: 1, location: 1, email: 1}, function(err, data) {
+    Client.find({ location: { $gt:[] } }, {name: 1, location: 1, email: 1, device_uuid: 1, updated: 1}, function(err, data) {
       updateAdmin(socket, data);
     });
   } else {
     console.info("device is registered:", data);
 
     //check device is registered
-    Client.findOne({ device_uuid: data.device_uuid }, function (err, user) {
+    Client.findOne({ email: data.email }, function (err, user) {
 
       //if no devices from database
       if (user != null) {
         //update device username, location
         let updateData = {
           device_uuid: data.device_uuid,
-          name: user.name,
           location: data.location,
+          updated: new Date()
         };
-        Client.update({device_uuid: data.device_uuid}, updateData, function(err, user) {
-          if (!err && device) {
+        Client.update({email: data.email}, updateData, function(err, user) {
+          if (!err && user) {
             console.log('User location updated ', user);
             onlineSockets.push({
               socketId: socket.id,
@@ -91,7 +91,7 @@ const socket = (server) => {
       //check user is logged in.
       checkAuth(data.token, true)
         .then((user) => {
-          registerDevice(user, data, socket);
+          registerDevice(data, socket);
         });
     });
 

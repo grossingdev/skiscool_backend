@@ -105,9 +105,7 @@ class Map extends Component {
         iconAnchor: [25, 60],
       });
 
-      let locations = item.location.split(',');
-
-      let marker = new customMarker([parseFloat(locations[0]), parseFloat(locations[1])], {icon: mapIcon, item: item})
+      let marker = new customMarker(item.location, {icon: mapIcon, item: item})
         .addTo(mapView);
       this.markers.push(marker);
 

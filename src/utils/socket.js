@@ -24,16 +24,16 @@ export class SocketClient {
   deviceInfo = {};
   props = null;
 
-  connect(props, deviceInfo) {
+  connect(props, deviceInfo, flagUpdate) {
     this.props = props;
     this.deviceInfo = deviceInfo;
 
-    if (this.socketClient !== null) {
-      this.registerDevice();
-    } else {
-      this.socketClient = io.connect(SERVER, options);
-      this.registerEvent();
+    if (this.socketClient !== null && !flagUpdate) {
+      this.disconnect();
     }
+
+    this.socketClient = io.connect(SERVER, options);
+    this.registerEvent();
   }
 
   registerEvent() {
@@ -74,7 +74,7 @@ export class SocketClient {
   registerDevice() {
     this.socketClient.emit('registerDevice', {
       device_uuid: this.deviceInfo.deviceID,
-      name: this.deviceInfo.userName,
+      email: this.deviceInfo.email,
       location: [this.deviceInfo.lat, this.deviceInfo.lon],
       token: this.deviceInfo.token
     });

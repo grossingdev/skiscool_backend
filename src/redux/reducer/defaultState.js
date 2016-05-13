@@ -10,11 +10,12 @@ const defaultValues = () => {
     user: {
       auth: false,
       loading: false,
-      token: ""
+      token: '',
+      profile: {}
     },
     apiResult: {
       error_code: 0,
-      msg: ""
+      msg: ''
     }
   };
 };

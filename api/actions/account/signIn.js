@@ -79,9 +79,9 @@ export default function signIn(req) {
         dbModel = Instructor;
       }
 
-      findUser(dbModel, email).then((code, users) => {
+      findUser(dbModel, email).then((res) => {
         //db error
-        if (code == 2000) {
+        if (res.status == 2000) {
           let statusCode = 1010;
           return reject({
             success: false,
@@ -89,7 +89,7 @@ export default function signIn(req) {
             statusCode,
           });
           //user found using email
-        } else if (code == 2001) {
+        } else if (res.status == 2001) {
           let statusCode = 1011;
           return reject({
             success: false,
@@ -97,7 +97,7 @@ export default function signIn(req) {
             statusCode,
           });
           //user not found
-        } else if (code == 2002) {
+        } else if (res.status == 2002) {
           let user = null;
           if (userType == 'player') {
             user = new Client();
@@ -133,7 +133,7 @@ export default function signIn(req) {
             let payload = {
               'name': user.name,
               'email': user.email,
-              'type' : userType,
+              'userType' : userType,
               'expire': new Date().getTime() + 3600000 * 24 //one day
             };
             let token = jwt.sign(payload, config.jwt.secret);

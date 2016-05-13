@@ -2,7 +2,7 @@
  * Created by BaeBae on 5/6/16.
  */
 import Client from '../../db/ClientsModel';
-import Instructor from '../../db/ClientsModel';
+import Instructor from '../../db/InstructorsModel';
 import jwt from 'jsonwebtoken';
 import config from '../../config'; // get our config file
 import {findUser} from './common';
@@ -37,15 +37,13 @@ export default (req, flagToken) => {
           return;
         }
         let userType = decodedToken.userType;
-        let dbModel = null;
-        if (userType == 'player') {
-          dbModel = Client;
-        } else if (userType == 'instructor') {
+        let dbModel = Client;
+        if (userType == 'instructor') {
           dbModel = Instructor;
         }
-        findUser(dbModel, decodedToken.email).then((code, users) => {
-          if (code == 2001) {
-            return resolve(users[0], decodedToken);
+        findUser(dbModel, decodedToken.email).then((res) => {
+          if (res.status == 2001) {
+            return resolve(res.users[0], decodedToken);
           } else {
             return reject();
           }

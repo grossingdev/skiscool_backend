@@ -33,6 +33,10 @@ export default {
       method: 'POST',
       route: '/account/signIn',
     }),
+    checkToken: _generateRequest({
+      method: 'POST',
+      route: '/account/checkToken',
+    }),
   },
 };
 

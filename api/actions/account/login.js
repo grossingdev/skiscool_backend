@@ -38,9 +38,9 @@ export default function login(req) {
       } else if (userType == 'instructor') {
         dbModel = Instructor;
       }
-      findUser(dbModel, email).then((code, users) => {
+      findUser(dbModel, email).then((res) => {
         //db error
-        if (code == 2000) {
+        if (res.status == 2000) {
           let statusCode = 1010;
           return reject({
             success: false,
@@ -48,8 +48,8 @@ export default function login(req) {
             statusCode,
           });
           //user found using email
-        } else if (code == 2001) {
-          let user = users[0];
+        } else if (res.status == 2001) {
+          let user = res.users[0];
           bcrypt.compare( password, user.password, (err, isMatch) => {
             //password is not matching
             if (err || !isMatch)  {
@@ -65,9 +65,9 @@ export default function login(req) {
             //login completed
             if (isMatch) {
               let token = jwt.sign({
-                "id": user._id,
-                "name": user.name,
-                'type' : userType,
+                'name': user.name,
+                'email': user.email,
+                'userType' : userType,
                 'expire': new Date().getTime() + 3600000 * 24 //one day
               }, config.jwt.secret);
               req.session.token = token;
@@ -85,7 +85,7 @@ export default function login(req) {
             }
           });
           //user not found
-        } else if (code == 2002) {
+        } else if (res.status == 2002) {
           let statusCode = 1012;
           return reject({
             success: false,

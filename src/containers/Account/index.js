@@ -31,7 +31,8 @@ class AccountView extends Component {
         <div className={styles['component_area']}>
           <LoginForm
             pageType={pageType}
-          ></LoginForm>
+            {...this.props}
+          />
         </div>
         <div className={styles['app_area']}>
           <AppPage></AppPage>

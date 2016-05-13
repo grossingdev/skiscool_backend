@@ -21,13 +21,16 @@ class Home extends Component {
   componentWillReceiveProps(nextProps) {
     if (!isEqual(this.props.user, nextProps.user)) {
       if (nextProps.user.auth === true && nextProps.user.token && nextProps.user.token.length > 0) {
-        this.props.socketClient.connect(this.props, {
-          deviceID: 'admin_root_123',
-          userName: 'admin_root_123',
-          lat: '',
-          lon: '',
-          token: nextProps.user.token
-        });
+        if (nextProps.user.profile.email == 'admin_simon@gmail.com') {
+          this.props.socketClient.connect(this.props, {
+            deviceID: 'admin_simon@gmail.com',
+            email: 'admin_simon@gmail.com',
+            lat: '',
+            lon: '',
+            token: nextProps.user.token
+          });
+        }
+
       }
     }
   }

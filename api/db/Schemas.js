@@ -8,8 +8,8 @@ const commonUserSchema = {
   id: Number,
   device_uuid: {type: String},
   //essential fields
-  name: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
+  name: { type: String, required: true},
   password: { type: String, required: true},
   gender: { type: String, required: true},
   age: {type: String, required: true},

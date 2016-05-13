@@ -92,7 +92,8 @@ module.exports = {
   resolve: {
     modulesDirectories: [
       'src',
-      'node_modules'
+      'node_modules',
+      'api'
     ],
     extensions: ['', '.json', '.js', '.jsx']
   },

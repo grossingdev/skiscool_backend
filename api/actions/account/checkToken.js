@@ -1,4 +1,5 @@
 import checkAuth from './checkAuth'
+import statusCodeMessage from '../statusCodeMessage';
 
 export default function checkToken(req) {
   return new Promise((resolve, reject) => {
@@ -6,18 +7,22 @@ export default function checkToken(req) {
     checkAuth(token, true).then((user) => {
       return resolve({
         success: true,
+        statusCode: 0,
         message: 'valid token',
         data: {
           'token': token,
           user: {
-            'username': user.username
+            'name': user.name,
+            'email': user.email
           }
         }
       });
     }, () => {
+      let statusCode = 1015;
       return reject({
         success: false,
-        message: 'invalid token',
+        msg: statusCodeMessage[statusCode],
+        statusCode,
       });
     })
   });

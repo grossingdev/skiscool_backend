@@ -8,8 +8,9 @@
 
 import request from 'superagent'
 import _ from 'lodash';
+import {apiResult$} from 'redux/actions/APIResultActions';
+
 let config = require('../config');
-debugger;
 
 let base = 'http://ns327841.ip-37-187-112.eu:3700'
 if (config.isProduction) {
@@ -43,7 +44,7 @@ function _parameterizeRoute(route, params) {
   });
   return parameterized;
 }
-function _publicRequest(method, route, params, body) {
+function _publicRequest(method, route, params, body, dispatch) {
   if (!body) body = {};
   if (params) route = _parameterizeRoute(route, params);
   return new Promise((resolve, reject) => {
@@ -51,12 +52,28 @@ function _publicRequest(method, route, params, body) {
       .accept('application/json')
       .send(body)
       .end((err, res) => {
-        if (!res) { res = {}; }
-        if (err) {
-          console.info("error:" + route, err);
-          reject(res.body);
+        if (!res) {
+          console.info("Network error");
+          return dispatch(apiResult$({
+            err_code: -1,
+            err_msg: "Network Error."
+          }))
+        } else if (err) {
+          console.info("API error:" + route, res.body);
+          if (dispatch) {
+            dispatch(apiResult$({
+              error_code: res.body.statusCode,
+              msg: res.body.msg
+            }));
+          }
         } else {
           console.info("result:" + route, res.body);
+          if (dispatch) {
+            dispatch(apiResult$({
+              error_code: 0,
+              msg: res.body.message
+            }));
+          }
           resolve(res.body);
         }
       });

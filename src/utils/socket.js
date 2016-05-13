@@ -3,9 +3,15 @@
  */
 import logConsole from './log';
 import io from 'socket.io-client';
-// const SERVER = 'http://37.187.112.9:3700'; // ns327841.ip-37-187-112.eu
-const SERVER = 'http://ns327841.ip-37-187-112.eu:3700'; // ns327841.ip-37-187-112.eu
-// admin user: admin_root_123
+
+let config = require('../config');
+
+let SERVER = 'http://ns327841.ip-37-187-112.eu:3700';
+if (config.isProduction) {
+  SERVER = 'http://ns327841.ip-37-187-112.eu:3700';
+} else {
+  SERVER = 'http://localhost:3700';
+}
 
 const options = {
   transports: ['websocket'],
@@ -67,9 +73,9 @@ export class SocketClient {
 
   registerDevice() {
     this.socketClient.emit('registerDevice', {
-      uuid: this.deviceInfo.deviceID,
-      username: this.deviceInfo.userName,
-      location: this.deviceInfo.lat + ',' + this.deviceInfo.lon,
+      device_uuid: this.deviceInfo.deviceID,
+      name: this.deviceInfo.userName,
+      location: [this.deviceInfo.lat, this.deviceInfo.lon],
       token: this.deviceInfo.token
     });
   }

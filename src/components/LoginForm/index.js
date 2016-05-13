@@ -9,7 +9,7 @@ import TextInput from 'components/common/input/TextInput';
 import AutoTextComplete from 'components/common/input/AutoTextComplete';
 import FacebookButton from 'components/common/button/Facebook';
 import Copy from 'utils/copy';
-import {has} from 'lodash';
+import {has, isEqual} from 'lodash';
 import Api from 'utils/api';
 class LoginForm extends Component {
   static contextTypes = {
@@ -20,6 +20,8 @@ class LoginForm extends Component {
     username_error_text: '',
     password_error_text: '',
     email_error_text: '',
+    age_error_text: '',
+    language_error_text: '',
     languages: [],
     gender: Copy.values.genders[0],
     userType: Copy.values.userTypes[0],
@@ -27,41 +29,85 @@ class LoginForm extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    let error = nextProps.error;
-    if (error) {
-      switch(error.status) {
-        case 'email_or_username_not_found':
-          if (has(error, 'errors')) {
-            this.setState({
-              username_error_text: error.errors.join('.\n')
-            });
-          }
+    let {apiResult} = nextProps;
+    if (apiResult && apiResult.msg && apiResult.msg.length > 0) {
+      let stateName = '';
+      switch (apiResult.error_code) {
+        case 1000:
+        case 1010:
+        case 1014:
+          stateName = 'username_error_text';
           break;
-        default:
-          console.log('error', error);
-          if (has(error, 'errors')) {
-            this.setState({
-              password_error_text: error.errors.join('.\n')
-            });
-          }
+        case 1004:
+          stateName = 'language_error_text';
+          break;
+        case 1001:
+        case 1011:
+        case 1012:
+          stateName = 'email_error_text';
+          break;
+        case 1002:
+        case 1013:
+          stateName = 'password_error_text';
+          break;
+        case 1003:
+          stateName = 'age_error_text';
+          break;
+      }
+      if (stateName.length > 0) {
+        let state = {};
+        state[stateName] = apiResult.msg;
+        this.setState(state);
+      }
+
+      if (apiResult.error_code == 0) {
+        alert(apiResult.msg);
+        this.props.resetAPIResult();
+        this.clearFormViews();
       }
     }
+
   }
 
   checkSignupParam() {
-    let userName = this.refs.username.getText();
+    let name = this.refs.username.getText();
+    let email = this.refs.email.getText();
+    let password = this.refs.password.getText();
+    let age = this.refs.age.getText();
+
+    this.setState({
+      username_error_text: name ? '' : Copy.common.required,
+      email_error_text: email ? '' : Copy.common.required,
+      password_error_text: password ? '' : Copy.common.required,
+      age_error_text: age ? '' : Copy.common.required,
+      language_error_text: this.getLanguages() ? '': Copy.common.required
+    });
+
+    if (name && email && password && age ) {
+      this.props.signIn({
+        name,
+        email,
+        password,
+        age,
+        gender: this.state.gender,
+        userType: this.state.userType.toLowerCase(),
+        languages: this.getLanguages(),
+        fromSocial: 'default'
+      });
+    }
+  }
+
+  checkLoginParam() {
     let email = this.refs.email.getText();
     let password = this.refs.password.getText();
 
     this.setState({
-      username_error_text: userName ? '' : Copy.common.required,
       email_error_text: email ? '' : Copy.common.required,
       password_error_text: password ? '' : Copy.common.required
     });
 
-    if (userName && email && password) {
-      this.props.signIn({
-        userName,
+    if (email && password) {
+      this.props.login({
         email,
         password,
         fromSocial: 'default'
@@ -69,37 +115,29 @@ class LoginForm extends Component {
     }
   }
 
-  checkLoginParam() {
-    let username = this.refs.username.getText();
-    let password = this.refs.password.getText();
-
-    this.setState({
-      username_error_text: username ? '' : Copy.common.required,
-      password_error_text: password ? '' : Copy.common.required
-    });
-
-    if (username && password) {
-      this.props.login({
-        username,
-        password,
-        fromSocial: 'default'
-      });
-    }
-  }
-  switchView() {
+  clearFormViews() {
     this.setState({
       username_error_text: '',
       password_error_text: '',
       email_error_text: '',
-      email_error_gender: '',
+      age_error_text: '',
+      language_error_text: ''
     });
-    this.refs.username.clearText();
-    this.refs.password.clearText();
 
+    if (this.props.pageType == "signupPage") {
+      this.refs.username.clearText();
+      this.refs.age.clearText();
+      this.clearLanguages();
+    }
+
+    this.refs.email.clearText();
+    this.refs.password.clearText();
+  }
+  switchView() {
+    this.clearFormViews();
     if (this.props.pageType == "loginPage") {
       this.context.router.replace('/signup');
     } else if (this.props.pageType == "signupPage"){
-      this.refs.email.clearText();
       this.context.router.replace('/login');
     }
   };
@@ -121,8 +159,8 @@ class LoginForm extends Component {
 
         <div className={styles.ComponentArea}>
           <TextInput
-            ref= "username"
-            placeholder="Username/Email"
+            ref= "email"
+            placeholder="Email"
             errorText={this.state.username_error_text}
           />
           <TextInput
@@ -160,6 +198,10 @@ class LoginForm extends Component {
       languages.push(this.state.selectedLanguage);
       this.setState({languages});
     }
+  }
+
+  clearLanguages() {
+    this.setState({languages: []});
   }
   getLanguages() {
     let ret = '';
@@ -208,7 +250,7 @@ class LoginForm extends Component {
           <TextInput ref= "password" placeholder="Password" type="password" errorText={this.state.password_error_text}></TextInput>
 
           <div className={styles.rowContainer}>
-            <TextInput ref= "age" placeholder="Age" type="num" errorText={this.state.password_error_text} />
+            <TextInput ref= "age" placeholder="Age" type="num" errorText={this.state.age_error_text} />
             <div className={styles.selectArea}>
               <div className={styles.labelFormField}>{Copy.values.typeGender}</div>
               <AutoTextComplete
@@ -222,7 +264,7 @@ class LoginForm extends Component {
           </div>
 
           <div className={styles.rowContainer}>
-            <TextInput ref= "language" placeholder="Languages" readOnly={true} value={this.getLanguages()}></TextInput>
+            <TextInput ref= "language" placeholder="Languages" readOnly={true} value={this.getLanguages()} errorText={this.state.language_error_text}></TextInput>
             <div className={styles.btnDelete} onClick={()=>{this.clearLanguages()}}>
               <img src="/icons/default/delete_button.svg" />
             </div>

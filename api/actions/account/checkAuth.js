@@ -1,10 +1,11 @@
 /**
  * Created by BaeBae on 5/6/16.
  */
-import UserModel from '../../db/ClientsModel';
+import Client from '../../db/ClientsModel';
+import Instructor from '../../db/ClientsModel';
 import jwt from 'jsonwebtoken';
 import config from '../../config'; // get our config file
-
+import {findUser} from './common';
 //check token from api, socket request.
 export default (req, flagToken) => {
   console.info('req', req);
@@ -35,28 +36,18 @@ export default (req, flagToken) => {
           reject();
           return;
         }
-
-        // verification passed, put the decodedToken onto request object (req)
-        UserModel.findOne({
-          $or: [{
-            username: decodedToken.username
-          }, {
-            email: decodedToken.email
-          }]
-        }, function(err, foundUser) {
-          if (err) {
-            //database search error
-            reject();
-            return;
-          }
-          if (foundUser) {
-            //success
-            resolve(foundUser, decodedToken);
-            return;
+        let userType = decodedToken.userType;
+        let dbModel = null;
+        if (userType == 'player') {
+          dbModel = Client;
+        } else if (userType == 'instructor') {
+          dbModel = Instructor;
+        }
+        findUser(dbModel, decodedToken.email).then((code, users) => {
+          if (code == 2001) {
+            return resolve(users[0], decodedToken);
           } else {
-            //no such user from database.
-            reject();
-            return;
+            return reject();
           }
         });
       });

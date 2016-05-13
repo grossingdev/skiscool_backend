@@ -2,8 +2,8 @@
  * Created by baebae on 5/3/16.
  */
 import socketIO from 'socket.io';
-import {removeObject, findByKey} from '../utils/utils';
-import DeviceModel from '../db/DeviceModel';
+import {removeObject} from '../utils/utils';
+import Client from '../db/ClientsModel';
 import checkAuth from '../actions/account/checkAuth';
 import _ from 'lodash';
 
@@ -18,7 +18,7 @@ const updateAdmin = (socket, data) => {
 };
 
 const updateAllAdmin = () => {
-  DeviceModel.find({}, function(err, data) {
+  Client.find({ location: { $exists: true } }, {name: 1, location: 1, email: 1}, function(err, data) {
     _.forEach(adminSockets, (adminSocket) => {
       if (err) {
         adminSocket.socket.emit('error', err);
@@ -41,61 +41,29 @@ const registerDevice = (user, data, socket) => {
     });
 
     //return current device information
-    DeviceModel.find({}, function(err, data) {
+    Client.find({ location: { $exists: true } }, {name: 1, location: 1, email: 1}, function(err, data) {
       updateAdmin(socket, data);
     });
   } else {
     console.info("device is registered:", data);
 
     //check device is registered
-    DeviceModel.findOne({ uuid: data.uuid }, function (err, device) {
+    Client.findOne({ device_uuid: data.device_uuid }, function (err, user) {
 
       //if no devices from database
-      if (device == null) {
-        let newDevice = new DeviceModel({
-          uuid: data.uuid,
-          username: user.username,
-          location: data.location
-        });
-
-        // Save device information to database
-        newDevice.save(function (err) {
-          console.log(err);
-
-          if (err == null) {
-            //check device is updated
-            DeviceModel.findOne({ uuid: data.uuid }, function (err, device) {
-              if (!err && device) {
-                console.log('Device ' + device.uuid + ' is online');
-
-                onlineSockets.push({
-                  socketId: socket.id,
-                  uuid: data.uuid
-                });
-                socket.emit('register response', "");
-                updateAllAdmin();
-              }
-            });
-          }
-        })
-      } else {
-        //if device is already registered
-
-        let query = {
-          uuid: data.uuid
-        }
+      if (user != null) {
         //update device username, location
         let updateData = {
-          uuid: data.uuid,
-          username: user.username,
+          device_uuid: data.device_uuid,
+          name: user.name,
           location: data.location,
         };
-        DeviceModel.update(query, updateData, function(err, device) {
+        Client.update({device_uuid: data.device_uuid}, updateData, function(err, user) {
           if (!err && device) {
-            console.log('Device updated ', device);
+            console.log('User location updated ', user);
             onlineSockets.push({
               socketId: socket.id,
-              uuid: device.uuid
+              device_uuid: user.device_uuid
             });
             socket.emit('register response', "");
             updateAllAdmin();

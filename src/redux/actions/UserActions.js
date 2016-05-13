@@ -5,12 +5,14 @@ import { createAction } from 'redux-actions';
 import LocalStorage from 'utils/localStorage';
 
 import API from 'utils/api';
+import {apiResult$} from './APIResultActions';
+
 export const LOGIN = 'LOGIN';
 const login$ = createAction(LOGIN);
 
 export const login = (param) => {
   return (dispatch) => {
-    API.account.login(null, param)
+    API.account.login(null, param, dispatch)
       .then((res) => {
         console.info('login result', res);
         if (res.data.token && res.data.token.length > 0) {
@@ -20,36 +22,37 @@ export const login = (param) => {
             token: res.data.token
           }));
         }
-      })
-      .catch((err) => {
-        dispatch(login$({
-          authenticated: false,
-        }));
       });
   };
 }
 
 export const logout = () => {
   return (dispatch) => {
-    API.account.logout(null, {name})
+    API.account.logout(null, {name}, dispatch)
       .then((user) => {
         if (user.success == true) {
           dispatch(login$({
             authenticated: false,
           }))
         }
-      })
-      .catch((err) => {
       });
   };
 }
 
 export const signIn = (param) => {
   return (dispatch) => {
-    API.account.signIn(null, param).then((res) => {
+    API.account.signIn(null, param, dispatch).then((res) => {
+      dispatch(apiResult$({
+        err_code: 0
+      }));
 
-    }).catch((err) => {
-
+      if (res.data.token && res.data.token.length > 0) {
+        LocalStorage.set("token", res.data.token);
+        dispatch(login$({
+          authenticated: true,
+          token: res.data.token
+        }));
+      }
     });
   };
 }

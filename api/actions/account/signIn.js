@@ -8,11 +8,11 @@ import statusCodeMessage from '../statusCodeMessage';
 
 export default function signIn(req) {
   return new Promise((resolve, reject) => {
-    let {username, password, fromSocial, age, languages, gender, email, userType} = req.body;
+    let {name, password, fromSocial, age, languages, gender, email, userType} = req.body;
 
     if (fromSocial === 'default') {
       let statusCode = 0;
-      if (!username) {
+      if (!name) {
         statusCode = 1000;
       }
 
@@ -23,10 +23,13 @@ export default function signIn(req) {
       if (!password) {
         statusCode = 1002;
       }
-
-      if (!age && parseInt(age)) {
-        age = parseInt(age);
+      if (!age) {
         statusCode = 1003;
+      } else {
+        age = parseInt(age);
+        if (isNaN(age)) {
+          statusCode = 1003;
+        }
       }
 
       if (!languages) {
@@ -61,75 +64,95 @@ export default function signIn(req) {
           statusCode,
         });
       } else {
-        findUser(UserModel, email).then((code, users) => {
-          //db error
-          if (code == 2000) {
-            let statusCode = 1010;
-            return reject({
-              success: false,
-              msg: statusCodeMessage[statusCode],
-              statusCode,
-            });
-          //user found using email
-          } else if (code == 2001) {
-            let statusCode = 1011;
-            return reject({
-              success: false,
-              msg: statusCodeMessage[statusCode],
-              statusCode,
-            });
-          //user not found
-          } else if (code == 2002) {
-            let user = null;
-            if (userType == 'player') {
-              user = new Client();
-            } else if (userType == 'instructor') {
-              user = new Instructor();
-            }
-
-            user.name = username;
-            user.password = password;
-            user.email = email;
-            user.gender = gender;
-            user.age = age;
-            user.age_range = 'J0';
-            if (user.age < 30 && user.age_range > 20) {
-              user.age_range = 'J1';
-            }
-            user.save(function(err) {
-              if (err) {
-                let statusCode = 1010;
-                return reject({
-                  success: false,
-                  msg: statusCodeMessage[statusCode],
-                  statusCode,
-                });
-              }
-              let payload = {
-                'username': user.username,
-                'email': user.email,
-                'expire': new Date().getTime() + 3600000 * 24 //one day
-              };
-              let token = jwt.sign(payload, config.jwt.secret);
-              req.session.token = token;
-
-              return resolve({
-                success: true,
-                message: 'User added/created successfully',
-                statusCode: 0,
-                data: {
-                  'token': token,
-                  'user': {
-                    'username': user.username
-                  }
-                }
-              });
-            });
-          }
-        })
+        let statusCode = 1014;
+        return reject({
+          success: false,
+          msg: statusCodeMessage[statusCode],
+          statusCode,
+        });
       }
     } else if (fromSocial == 'default') {
+      let dbModel = null;
+      if (userType == 'player') {
+        dbModel = Client;
+      } else if (userType == 'instructor') {
+        dbModel = Instructor;
+      }
 
+      findUser(dbModel, email).then((code, users) => {
+        //db error
+        if (code == 2000) {
+          let statusCode = 1010;
+          return reject({
+            success: false,
+            msg: statusCodeMessage[statusCode],
+            statusCode,
+          });
+          //user found using email
+        } else if (code == 2001) {
+          let statusCode = 1011;
+          return reject({
+            success: false,
+            msg: statusCodeMessage[statusCode],
+            statusCode,
+          });
+          //user not found
+        } else if (code == 2002) {
+          let user = null;
+          if (userType == 'player') {
+            user = new Client();
+          } else if (userType == 'instructor') {
+            user = new Instructor();
+          }
+
+          user.name = name;
+          user.password = password;
+          user.email = email;
+          user.gender = gender;
+          user.age = age;
+          user.age_range = 'J0';
+          user.languages = languages;
+          if (user.age <= 30 && user.age_range > 20) {
+            user.age_range = 'J1';
+          }
+
+          if (user.age < 40 && user.age_range > 30) {
+            user.age_range = 'J2';
+          }
+
+          user.save(function(err) {
+            if (err) {
+              let statusCode = 1010;
+              return reject({
+                success: false,
+                msg: statusCodeMessage[statusCode],
+                statusCode,
+              });
+            }
+
+            let payload = {
+              'name': user.name,
+              'email': user.email,
+              'type' : userType,
+              'expire': new Date().getTime() + 3600000 * 24 //one day
+            };
+            let token = jwt.sign(payload, config.jwt.secret);
+            req.session.token = token;
+
+            return resolve({
+              success: true,
+              message: 'User added/created successfully',
+              statusCode: 0,
+              data: {
+                'token': token,
+                'user': {
+                  name, email
+                }
+              }
+            });
+          });
+        }
+      })
     }
   });
 }

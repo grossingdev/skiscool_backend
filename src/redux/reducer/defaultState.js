@@ -11,6 +11,10 @@ const defaultValues = () => {
       auth: false,
       loading: false,
       token: ""
+    },
+    apiResult: {
+      error_code: 0,
+      msg: ""
     }
   };
 };

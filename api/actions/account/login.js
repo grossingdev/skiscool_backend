@@ -1,46 +1,26 @@
-import UserModel from '../../db/ClientsModel';
+import Client from '../../db/ClientsModel';
+import Instructor from '../../db/InstructorsModel';
 import bcrypt from 'bcrypt-nodejs';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
-
+import statusCodeMessage from '../statusCodeMessage';
+import {findUser} from './common';
 export default function login(req) {
   return new Promise((resolve, reject) => {
-    let {username, password, fromSocial, email, userType} = req.body;
+    let {password, fromSocial, email, userType} = req.body;
     if (fromSocial == 'default') {
       let error_msg = '';
       let statusCode = 0;
-      if (!username) {
-        error_msg = 'User name is required.';
-        statusCode = 1000;
-      }
 
       if (!email) {
-        error_msg = 'User Email is required.';
         statusCode = 1001;
       }
 
       if (!password) {
-        error_msg = 'User password is required.';
         statusCode = 1002;
       }
 
-      if (!age) {
-        error_msg = 'User age is required.';
-        statusCode = 1003;
-      }
-
-      if (!languages) {
-        error_msg = 'Language is required.';
-        statusCode = 1004;
-      }
-
-      if (!gender) {
-        error_msg = 'Gender is required.';
-        statusCode = 1005;
-      }
-
       if (!userType) {
-        error_msg = 'User type is required.';
         statusCode = 1006;
       }
 
@@ -48,38 +28,46 @@ export default function login(req) {
         // email address is absolutely necessary for user creation
         return reject({
           success: false,
-          error_msg,
+          msg: statusCodeMessage[statusCode],
           statusCode,
         });
       }
-
-      UserModel.findOne({email}, (err, user) => {
-        if (err) {
+      let dbModel = null;
+      if (userType == 'player') {
+        dbModel = Client;
+      } else if (userType == 'instructor') {
+        dbModel = Instructor;
+      }
+      findUser(dbModel, email).then((code, users) => {
+        //db error
+        if (code == 2000) {
+          let statusCode = 1010;
           return reject({
             success: false,
-            message: 'Mongodb error occured while checking if the user exists',
-            data: {
-              'error': err
-            }
+            msg: statusCodeMessage[statusCode],
+            statusCode,
           });
-        }
-        if (user) {
+          //user found using email
+        } else if (code == 2001) {
+          let user = users[0];
           bcrypt.compare( password, user.password, (err, isMatch) => {
-            if (err)  {
+            //password is not matching
+            if (err || !isMatch)  {
               console.log('error: ' + err );
-              reject({
+              let statusCode = 1013;
+              return reject({
                 success: false,
-                message: 'Password is not correct',
-                data: {
-                  'error': err
-                }
+                msg: statusCodeMessage[statusCode],
+                statusCode,
               });
             }
 
+            //login completed
             if (isMatch) {
               let token = jwt.sign({
                 "id": user._id,
-                "username": user.username,
+                "name": user.name,
+                'type' : userType,
                 'expire': new Date().getTime() + 3600000 * 24 //one day
               }, config.jwt.secret);
               req.session.token = token;
@@ -89,22 +77,31 @@ export default function login(req) {
                 data: {
                   'token': token,
                   user: {
-                    username: user.username
+                    name: user.name,
+                    email: user.email
                   }
                 }
               });
             }
           });
-        } else {
-          return reject({"message":"incorrect login"});
-
+          //user not found
+        } else if (code == 2002) {
+          let statusCode = 1012;
+          return reject({
+            success: false,
+            msg: statusCodeMessage[statusCode],
+            statusCode,
+          });
         }
-      });//end find
+      });
     } else if (fromSocial == 'fb') {
 
     } else {
+      let statusCode = 1014;
       return reject({
-        "message": "not implemented yet."
+        success: false,
+        msg: statusCodeMessage[statusCode],
+        statusCode,
       });
     }
   });

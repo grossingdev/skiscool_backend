@@ -15,9 +15,10 @@ const  statusCodeMessage = {
   1009 : '',
   1010 : 'Mongodb error occured while checking user existing status',
   1011 : 'User email has been already registered.',
-  1012 : '',
-  1013 : '',
-  1014 : '',
+  1012 : 'User has not been registered yet.',
+  1013 : 'Password is wrong.',
+  1014 : 'Login method has not been implemented yet',
+  1015 : 'User token is invalid.'
 };
 
 export default statusCodeMessage;

@@ -6,11 +6,13 @@ import socketClient from './SocketReducer';
 import user from './UserReducer';
 import { routerReducer } from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-async-connect';
+import apiResult from './ApiResultReducer';
 const rootReducer = combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   socketClient,
-  user
+  user,
+  apiResult
 });
 
 export default rootReducer;

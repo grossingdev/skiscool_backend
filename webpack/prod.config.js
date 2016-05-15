@@ -19,7 +19,7 @@ module.exports = {
   context: path.resolve(__dirname, '..'),
   entry: {
     'main': [
-      './src/client.js'
+      './webapp/client.js'
     ]
   },
   output: {
@@ -45,7 +45,8 @@ module.exports = {
   progress: true,
   resolve: {
     modulesDirectories: [
-      'src',
+      'webapp',
+      'common',
       'node_modules'
     ],
     extensions: ['', '.json', '.js', '.jsx']

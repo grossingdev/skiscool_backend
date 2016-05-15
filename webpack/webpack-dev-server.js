@@ -1,12 +1,12 @@
 var Express = require('express');
 var webpack = require('webpack');
 
-var config = require('../src/config');
+var config = require('../webapp/config');
 var webpackConfig = require('./dev.config');
 var compiler = webpack(webpackConfig);
 
 var host = config.host || 'localhost';
-var port = (Number(config.port) + 1) || 3001;
+var port = (Number(config.port) + 2) || 3001; //8081 is using on react-native
 var serverOptions = {
   contentBase: 'http://' + host + ':' + port,
   quiet: true,

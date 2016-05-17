@@ -15,7 +15,7 @@ import MapPageContainer from './ui/page/MapPage/PageContainer';
 const Router = connect()(RNRF.Router);
 
 import {isEqual} from 'lodash';
-import SocketClient from './utils/socket';
+import {SocketClient} from './utils/socket';
 
 import {checkToken} from './redux/actions/UserActions';
 import {updateLocation, initializeLocation, updateDeviceUUID} from './redux/actions/DeviceActions';

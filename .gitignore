@@ -1,8 +1,3 @@
-.idea/
-node_modules/
-dist/
-*.iml
-webpack-assets.json
-webpack-stats.json
-npm-debug.log
-android/.gradle
+mobileapp/ios/Pods
+mobileapp/node_modules
+mobileapp/android/.idea

@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0dbd6e20-75a4-4553-a872-437a1f5a4a1c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.babelrc_" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.babelrc__" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.editorconfig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.eslintignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.eslintrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/build.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/proguard-rules.pro" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/react.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/java/com/test/MainActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/icon_add.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/icon_back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/icon_clipboard.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/icon_menu.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/icon_next.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/icon_search.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/icon_verification.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/icon_add.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/icon_back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/icon_clipboard.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/icon_menu.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/icon_next.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/icon_search.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/icon_verification.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/build.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/compile.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/gradle.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/gradlew" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/gradlew.bat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/local.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/settings.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/test.jks" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_add.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_clipboard.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_menu.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_next.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_search.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_search@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_search@3x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/asset/icon_verification.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/api.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/server.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build_run.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/circle.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/AddingAPage.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/edit_app.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/edit_app2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/edit_index.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/edit_route1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/edit_route2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/ick_about.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/ick_alias.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/new_hello.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingAPage/show_hello.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingToHomePage/AddingToHomePage.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingToHomePage/add_home.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingToHomePage/find_home1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingToHomePage/find_home2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingToHomePage/find_home3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingToHomePage/find_home4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/AddingToHomePage/hello_rendered.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/ApiConfig.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/Ducks.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/ExploringTheDemoApp/ExploringTheDemoApp.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/ExploringTheDemoApp/about_markup.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/ExploringTheDemoApp/frontpage.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/ExploringTheDemoApp/frontpage_markup.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/ExploringTheDemoApp/survey_markup.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/ExploringTheDemoApp/widgets_markup.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InlineStyles.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InstallingTheKit/InstallingTheKit.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InstallingTheKit/dependencies.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InstallingTheKit/git_clone.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InstallingTheKit/npm_run.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InstallingTheKit/port3000.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InstallingTheKit/run_dev1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InstallingTheKit/run_dev2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/InstallingTheKit/start_npm.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index.android.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index.ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Compass.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Compass@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Compass@3x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAccountManager.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAnnotation.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAnnotationImage.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLCalloutView.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLGeometry.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapCamera.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapView+IBAdditions.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapView+MGLCustomStyleLayerAdditions.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapView.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMultiPoint.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflinePack.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflineRegion.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflineStorage.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOverlay.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPointAnnotation.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPolygon.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPolyline.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLShape.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLStyle.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLTilePyramidOfflineRegion.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLTypes.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLUserLocation.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/Mapbox.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Info.plist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Mapbox" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Modules/module.modulemap" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_com-digicert.der" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_com-geotrust.der" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/attribution-logo.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/default_marker.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/default_marker.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/default_marker@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/default_marker@3x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/mapbox-icon-large.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/mapbox.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/mapbox@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/mapbox@3x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/star_tilestream_net.der" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Mapbox.framework/strip-frameworks.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Podfile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/Podfile.lock" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcodeproj/project.pbxproj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcodeproj/project.xcworkspace/xcuserdata/baebae.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcodeproj/project.xcworkspace/xcuserdata/baebae.xcuserdatad/xcdebugger/Expressions.xcexplist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcodeproj/xcshareddata/xcschemes/test.xcscheme" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcodeproj/xcuserdata/baebae.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcodeproj/xcuserdata/baebae.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcworkspace/contents.xcworkspacedata" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcworkspace/xcuserdata/baebae.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test.xcworkspace/xcuserdata/baebae.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/AppDelegate.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/AppDelegate.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Base.lproj/LaunchScreen.xib" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/AppIcon.appiconset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_add.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_add.imageset/icon_add.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_back.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_back.imageset/icon_back-1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_back.imageset/icon_back-2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_back.imageset/icon_back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_clipboard.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_clipboard.imageset/icon_clipboard-1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_clipboard.imageset/icon_clipboard.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_menu.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_menu.imageset/icon_menu.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_next.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_next.imageset/icon_next.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_search.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_search.imageset/icon_search.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_search.imageset/icon_search@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_search.imageset/icon_search@3x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_verification.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Images.xcassets/icon_verification.imageset/icon_verification.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/Info.plist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/Material-Design-Iconic-Font.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/fontawesome.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/foundation-icons.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/foundation.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/ion.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/ionicons.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/material.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/octicons.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/octicons.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/typicons.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/typicons.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/zocial.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/fonts/zocial.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/test/main.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/testTests/Info.plist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ios/testTests/testTests.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/karma.conf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/script/run-web-api" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/script/run-web-app" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server.babel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/icons/default/add_button.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/icons/default/combo_arrow.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/icons/default/delete_button.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/icons/logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/icons/logo.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/icons/marker/marker.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/logo.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests.webpack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/checkAuth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/checkFacebookToken.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/checkToken.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/common.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/loadAuth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/loadInfo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/login.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/logout.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/account/signIn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/actions/statusCodeMessage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/api.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/db/ClientsModel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/db/InstructorsModel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/db/Schemas.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/routes/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/routes/tpl/index.pug" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/socket/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/utils/url.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapi/utils/utils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/client.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/LoginForm/AppPage/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/LoginForm/AppPage/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/LoginForm/container.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/LoginForm/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/LoginForm/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Map/MapCard/__tests__/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Map/MapCard/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Map/MapCard/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Map/__tests__/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Map/container.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Map/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Map/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Sidebar/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/Sidebar/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/button/Facebook/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/button/Facebook/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/button/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/button/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/AutoTextComplete/Autocomplete.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/AutoTextComplete/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/AutoTextComplete/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/TextArea/__tests__/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/TextArea/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/TextArea/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/TextInput/__tests__/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/TextInput/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/components/common/input/TextInput/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/Account/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/Account/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/Base/container.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/Base/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/Base/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/DevTools/DevTools.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/Home/container.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/Home/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/Home/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/NotFound/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/NotFound/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/TestDevice/container.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/TestDevice/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/containers/TestDevice/styles.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/helpers/ApiClient.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/helpers/Html.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/actions/APIResultActions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/actions/SocketActions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/actions/UIActions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/actions/UserActions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/create.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/middleware/clientMiddleware.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/reducer/ApiResultReducer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/reducer/SocketReducer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/reducer/UIReducer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/reducer/UserReducer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/reducer/defaultState.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/reducer/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/selectors/ApiResultSelector.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/selectors/SocketSelector.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/redux/selectors/UserSelector.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/routes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/server.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/utils/api.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/utils/copy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/utils/localStorage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/utils/log.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/utils/socket.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/utils/validation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpack/dev.config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpack/prod.config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpack/webpack-dev-server.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpack/webpack-isomorphic-tools.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/App.js" afterPath="$PROJECT_DIR$/mobileapp/app/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/redux/reducers/ApiResultReducer.js" afterPath="$PROJECT_DIR$/mobileapp/app/redux/reducers/ApiResultReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/redux/reducers/defaultState.js" afterPath="$PROJECT_DIR$/mobileapp/app/redux/reducers/defaultState.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/redux/reducers/index.js" afterPath="$PROJECT_DIR$/mobileapp/app/redux/reducers/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/LoginPage.js" afterPath="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/LoginPage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/ProfilePage.js" afterPath="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/ProfilePage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/container.js" afterPath="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/container.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/PageContainer.js" afterPath="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/PageContainer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/utils/api.js" afterPath="$PROJECT_DIR$/mobileapp/app/utils/api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/utils/log.js" afterPath="$PROJECT_DIR$/mobileapp/app/utils/log.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/utils/socket.js" afterPath="$PROJECT_DIR$/mobileapp/app/utils/socket.js" />
+    </list>
+    <ignored path="Backend.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Backend" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/containers/Base/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sidebar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Sidebar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="container.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/container.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="18" column="109" selection-start-line="18" selection-start-column="109" selection-end-line="18" selection-end-column="109" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/LoginPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="85" column="17" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/app/utils/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfilePage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/ProfilePage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/dist/api/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loadInfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/loadInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logout.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/logout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/mobileapp/app/App.js" />
+        <option value="$PROJECT_DIR$/mobileapp/package.json" />
+        <option value="$PROJECT_DIR$/mobileapp/app/utils/socket.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/utils/log.js" />
+        <option value="$PROJECT_DIR$/web/src/server.js" />
+        <option value="$PROJECT_DIR$/web/webpack/dev.config.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/ProfilePage.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/container.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/redux/selectors/ApiResultSelector.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/redux/reducers/ApiResultReducer.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/redux/reducers/index.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/redux/reducers/defaultState.js" />
+        <option value="events.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/PageContainer.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/utils/api.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/LoginPage.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="63" />
+    <option name="y" value="23" />
+    <option name="width" value="1810" />
+    <option name="height" value="1021" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sidebar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sidebar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Login" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobileapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/dist/api/api.js" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="editor.config.accepted" value="true" />
+  </component>
+  <component name="RunManager" selected="Node.js.api debug">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+    <configuration default="false" name="api debug" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="web/dist/api/api.js" working-dir="$PROJECT_DIR$">
+      <method />
+    </configuration>
+    <configuration default="false" name="run dev" type="js.build_tools.npm" factoryName="npm">
+      <package-json value="$PROJECT_DIR$/web/package.json" />
+      <command value="run-script" />
+      <scripts>
+        <script value="dev-webapp-watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="mobile" type="js.build_tools.npm" factoryName="npm">
+      <package-json value="$PROJECT_DIR$/mobileapp/package.json" />
+      <command value="run-script" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.api debug" />
+      <item index="1" class="java.lang.String" itemvalue="npm.run dev" />
+      <item index="2" class="java.lang.String" itemvalue="npm.mobile" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0dbd6e20-75a4-4553-a872-437a1f5a4a1c" name="Default" comment="" />
+      <created>1463484282321</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1463484282321</updated>
+      <workItem from="1463484405362" duration="2000" />
+      <workItem from="1463484410679" duration="78000" />
+      <workItem from="1463484934038" duration="4207000" />
+      <workItem from="1463490813256" duration="503000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4790000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="63" y="23" width="1810" height="1021" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25768587" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867885" sideWeight="0.4980436" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39849624" sideWeight="0.5064282" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35091496" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867885" sideWeight="0.4958077" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39849624" sideWeight="0.49357182" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="14" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/utils/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/dist/api/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/loadInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/logout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/utils/socket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1095">
+          <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/index.android.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/index.ios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/utils/socket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/stores/stores.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="79" selection-start-line="5" selection-start-column="79" selection-end-line="5" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/utils/log.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1632">
+          <caret line="32" column="84" selection-start-line="32" selection-start-column="84" selection-end-line="32" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/webpack/dev.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="86" selection-start-line="9" selection-start-column="86" selection-end-line="9" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/LoginForm/AppPage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/actions/UIActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/node_modules/react-native-fbsdk/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-176">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/utils/copy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="75" column="23" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/RegisterPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/containers/Base/container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/actions/UserActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/PageContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/LoginForm/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="71" column="3" selection-start-line="30" selection-start-column="2" selection-end-line="71" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/redux/reducer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/redux/reducer/ApiResultReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/selectors/UISelector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/redux/selectors/ApiResultSelector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/LoginForm/container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/selectors/UserSelector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/reducers/SocketReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/redux/reducer/defaultState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="5" selection-start-line="15" selection-start-column="4" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/actions/APIResultActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/reducers/defaultState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/reducers/ApiResultReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/reducers/DeviceInfoReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/reducers/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/redux/selectors/ApiResultSelector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="52" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="34" column="42" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/PageContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="62" column="2" selection-start-line="62" selection-start-column="2" selection-end-line="62" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/dist/api/socket/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/utils/socket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1095">
+          <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/containers/Base/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="18" column="109" selection-start-line="18" selection-start-column="109" selection-end-line="18" selection-end-column="109" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/loadInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/logout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/dist/api/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/utils/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/ProfilePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/Login/LoginPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="85" column="17" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/dist/api/actions/account/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

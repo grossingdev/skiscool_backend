@@ -7,7 +7,8 @@ import mapPackageInfo from './MapPackageReducer';
 import user from './UserReducer';
 import socketClient from './SocketReducer';
 import deviceInfo from './DeviceInfoReducer';
+import apiResult from './ApiResultReducer';
 
 export default combineReducers({
-  ui_status, mapPackageInfo, user, socketClient, deviceInfo
+  ui_status, mapPackageInfo, user, socketClient, deviceInfo, apiResult
 });

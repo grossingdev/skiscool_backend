@@ -45,21 +45,22 @@ var MapPageContainer = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (!isEqual(this.props.deviceInfo, nextProps.deviceInfo) || !isEqual(this.props.loginAccount, nextProps.loginAccount)) {
-      let userName = "Unknown user";
-      if (nextProps.loginAccount != null) {
-        userName = nextProps.loginAccount.username;
-      }
-      if (nextProps.deviceInfo.uuid != "" && nextProps.deviceInfo.initLoc.coords) {
-        this.props.socketClient.connect(this.props, {
-          deviceID: nextProps.deviceInfo.uuid,
-          userName: userName,
-          lat: nextProps.deviceInfo.initLoc.coords.latitude,
-          lon: nextProps.deviceInfo.initLoc.coords.longitude
-        })
+    let userToken = this.props.user.token || nextProps.user.token;
+    if (userToken) {
+      if (!isEqual(this.props.deviceInfo, nextProps.deviceInfo) || !isEqual(this.props.user, nextProps.user) ) {
+        if (nextProps.deviceInfo.uuid != "" && nextProps.deviceInfo.initLoc.coords) {
+          this.props.socketClient.connect(this.props, {
+            deviceID: nextProps.deviceInfo.uuid,
+            email: nextProps.user.profile.email,
+            lat: nextProps.deviceInfo.initLoc.coords.latitude,
+            lon: nextProps.deviceInfo.initLoc.coords.longitude,
+            token: userToken
+          })
+        }
       }
     }
   },
+  
   renderDialogs() {
     if (this.props.showPackageDialog) {
       let region = this.props.packageRegion;

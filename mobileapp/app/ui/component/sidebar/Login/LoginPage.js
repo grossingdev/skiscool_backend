@@ -14,6 +14,46 @@ export default class LoginPage extends Component {
     email: "",
     password: ""
   }
+
+  componentWillReceiveProps(nextProps) {
+    let {apiResult} = nextProps;
+    if (apiResult && apiResult.msg && apiResult.msg.length > 0) {
+      let stateName = '';
+      switch (apiResult.error_code) {
+        case 1000:
+        case 1010:
+        case 1014:
+          stateName = 'username_error_text';
+          break;
+        case 1004:
+          stateName = 'language_error_text';
+          break;
+        case 1001:
+        case 1011:
+        case 1012:
+          stateName = 'email_error_text';
+          break;
+        case 1002:
+        case 1013:
+          stateName = 'password_error_text';
+          break;
+        case 1003:
+          stateName = 'age_error_text';
+          break;
+      }
+      if (stateName.length > 0) {
+        let state = {};
+        state[stateName] = apiResult.msg;
+        alert(state[stateName]);
+      }
+      if (apiResult.error_code == 0) {
+        alert(apiResult.msg);
+      }
+      this.props.resetAPIResult();
+    }
+
+  }
+
   _getAccessToken() {
     let component = this;
     AccessToken.getCurrentAccessToken((tokenMap) => {
@@ -25,16 +65,29 @@ export default class LoginPage extends Component {
     });
   }
 
-  onFacebookLogin(token) {
+  onFacebookLogin(access_token) {
+    let userType = 'Player';
+    this.props.login({
+      access_token,
+      userType: userType.toLowerCase(),
+      fromSocial: 'fb'
+    });
   }
+  
 
   registerUser(flagRegister) {
+    let userType = 'Player';
     let {password, email} = this.state;
     if (password.length > 0 && email.length > 0) {
       if (flagRegister) {
         this.props.registerUser(this.state.email, this.state.password);
       } else {
-        this.props.loginUser(this.state.email, this.state.password);
+        this.props.login({
+          email: email.toLowerCase(),
+          password,
+          userType: userType.toLowerCase(),
+          fromSocial: 'default'
+        });
       }
 
     } else {
@@ -69,12 +122,6 @@ export default class LoginPage extends Component {
         ></TextInput>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={()=>this.registerUser(true)}
-          >
-            <Text>Sign up</Text>
-          </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.button}
@@ -87,8 +134,8 @@ export default class LoginPage extends Component {
     )
   }
   render() {
-    let {authenticateProgressing} = this.props;
-    if (authenticateProgressing) {
+    let {apiWaitingStatus} = this.props;
+    if (apiWaitingStatus) {
       return (
         <View style={styles.container}>
           <ActivityIndicatorIOS color="#FFFFFF"/>

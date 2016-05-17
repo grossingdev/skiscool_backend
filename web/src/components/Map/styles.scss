@@ -1,0 +1,15 @@
+/** @define Map; use strict */
+
+.Map {}
+
+.Map-child {}
+
+.Map-child.is-state {}
+.mapContainer {
+  display: flex;
+  flex:1
+}
+.map {
+  position: relative;
+  width: 100%;
+}

@@ -37,6 +37,10 @@ const defaultValues = () => {
       },
       running: false,
       message: "",
+    },
+    apiResult: {
+      error_code: 0,
+      msg: ''
     }
   };
 };

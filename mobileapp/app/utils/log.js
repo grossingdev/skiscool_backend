@@ -1,6 +1,6 @@
 /**
  * Created by baebae on 3/24/16.
  */
-export const log_console = (log) => {
+export const logConsole = (log) => {
   console.info(log);
 };

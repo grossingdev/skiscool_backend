@@ -9,11 +9,11 @@ const {
 
 export default class ProfilePage extends Component {
   renderUserAvatar() {
-    let user = this.props.loginAccount;
+    let user = this.props.user;
     if (user) {
       return (
         <View style={styles.imgContainer}>
-          <Text style={styles.labelUser}>{user.username.toUpperCase()}</Text>
+          <Text style={styles.labelUser}>{user.profile.name.toUpperCase()}</Text>
         </View>
       )
     } else {

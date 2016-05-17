@@ -11,8 +11,8 @@ import _ from 'lodash';
 import {apiResult$} from '../redux/actions/APIResultActions';
 
 
-let base = 'http://ns327841.ip-37-187-112.eu:3700'
-// let base = 'http://localhost:3700';
+// let base = 'http://ns327841.ip-37-187-112.eu:3700'
+let base = 'http://localhost:3700';
 
 export default {
   account: {
@@ -65,6 +65,7 @@ function _publicRequest(method, route, params, body, dispatch) {
               msg: res.body.msg
             }));
           }
+          resolve({});
         } else {
           console.info("result:" + route, res.body);
           if (dispatch) {

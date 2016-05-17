@@ -9,6 +9,7 @@ import _ from 'lodash';
 
 import MapCard from './MapCard';
 import container from './container';
+import Copy from 'utils/copy';
 
 let flagMapInitialized = false;
 class Map extends Component {
@@ -18,7 +19,8 @@ class Map extends Component {
   };
 
   mapView = null;
-  markers = [];
+  positionMarkers = [];
+  placeMarkers = [];
   flagUnmounted = false;
 
   state = {
@@ -36,16 +38,22 @@ class Map extends Component {
           this.mapView = L.mapbox.map('map', 'simonmap.023dca42', {zoomControl: false, attributionControl: false}).setView([45.3007, 6.5800], 15);
           flagMapInitialized = true;
           new L.Control.Zoom({ position: 'bottomright' }).addTo(this.mapView);
-          this.mapView.on('mousedown', (event)=>{
+          this.mapView.on('mousedown', (event)=> {
+            if (this.props.markerStyle > 0) {
+              this.props.addNewMarker({
+                type: this.props.markerStyle,
+                position: event.latlng
+              });
+            }
             this.setState({
               flagShowOverlay: false
             });
           });
 
-          this.removeOldMarkers();
+          this.removeOldPositionMarkers();
           if (this.props.socketMessage.data.devices) {
             _.forEach(this.props.socketMessage.data.devices, (item) => {
-              this.addMarker(item);
+              this.addPositionMarker(item);
             });
           }
 
@@ -54,15 +62,23 @@ class Map extends Component {
     }, 1000);
   }
 
-  removeOldMarkers() {
-    _.forEach(this.markers, (marker) => {
+  removeOldPositionMarkers() {
+    _.forEach(this.positionMarkers, (marker) => {
       marker.off('click');
       this.mapView.removeLayer(marker)
     });
-  }
+  };
+
+  removeOldPlaceMarkers() {
+    _.forEach(this.placeMarkers, (marker) => {
+      this.mapView.removeLayer(marker)
+    });
+  };
 
   componentWillUnmount() {
-    this.removeOldMarkers();
+    this.removeOldPositionMarkers();
+    this.removeOldPlaceMarkers();
+
     if (this.mapView != null) {
       this.mapView.remove();
       this.mapView = null;
@@ -89,7 +105,23 @@ class Map extends Component {
     })
   }
 
-  addMarker(item) {
+  addPlaceMarker(marker) {
+    const customMarker = L.Marker.extend({
+      options: {
+        item: null,
+      }
+    });
+
+    let icon = Copy.markerMenuItems[marker.type - 1].icon;
+    let mapIcon = L.icon({
+      iconUrl: icon + '.svg',
+      iconSize: [50, 60],
+      iconAnchor: [25, 60],
+    });
+    this.placeMarkers.push(new customMarker(marker.position, {icon: mapIcon}).addTo(this.mapView));
+  }
+
+  addPositionMarker(item) {
     let mapView = this.mapView;
     let component = this;
     if (__CLIENT__) {
@@ -107,7 +139,7 @@ class Map extends Component {
 
       let marker = new customMarker(item.location, {icon: mapIcon, item: item})
         .addTo(mapView);
-      this.markers.push(marker);
+      this.positionMarkers.push(marker);
 
       marker.on('click', (e) => {
         component.showMapOverlay(e.target);
@@ -118,7 +150,7 @@ class Map extends Component {
 
   getMarker(uuid) {
     let ret = null;
-    _.forEach(this.markers, (marker) => {
+    _.forEach(this.positionMarkers, (marker) => {
       if (marker.options.item.listing_uuid == uuid) {
         ret = marker;
       }
@@ -132,14 +164,26 @@ class Map extends Component {
 
     if (!isEqual(this.props.socketMessage, nextProps.socketMessage) && nextProps.socketMessage.type == 'show_devices') {
       if (mapView) {
-        this.removeOldMarkers();
+        this.removeOldPositionMarkers();
         if (nextProps.socketMessage.data.devices) {
           _.forEach(nextProps.socketMessage.data.devices, (item) => {
-            component.addMarker(item);
+            component.addPositionMarker(item);
           });
         }
       }
     }
+
+    if (!isEqual(this.props.placeMarkers, nextProps.placeMarkers) || this.props.markerStyle != nextProps.markerStyle) {
+      if (mapView) {
+        this.removeOldPlaceMarkers();
+        _.forEach(nextProps.placeMarkers, (marker) => {
+          if (marker.type == nextProps.markerStyle) {
+            component.addPlaceMarker(marker);
+          }
+        });
+      }
+    }
+
   }
 
   renderMapOverlay(styles) {

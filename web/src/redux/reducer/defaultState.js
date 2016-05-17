@@ -16,6 +16,10 @@ const defaultValues = () => {
     apiResult: {
       error_code: 0,
       msg: ''
+    },
+    map_status: {
+      markerStyle: 0,
+      placeMarkers: []
     }
   };
 };

@@ -1,10 +1,10 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {createSelector} from 'reselect';
 import * as MapActions from 'redux/actions/MapActions';
-import {mapStatusSelector$, placeMarkersSelector$} from 'redux/selectors/MapSelector';
+import {mapStatusSelector$} from 'redux/selectors/MapSelector';
+
 const mapStateToProps = (state) => {
-  return Object.assign({}, mapStatusSelector$(state), placeMarkersSelector$(state));
+  return Object.assign({}, mapStatusSelector$(state));
 };
 
 const mapDispatchToProps = (dispatch) => {

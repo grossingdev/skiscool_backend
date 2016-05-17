@@ -75,5 +75,23 @@ export default {
     genders: ['Man', 'Woman'],
     userTypes: ['Player', 'Instructor'],
     languages: ['En', 'Fr', 'Ru', 'GR']
-  }
+  },
+  markerMenuItems: [
+    {
+      icon: 'icons/marker/hotel',
+      label: 'Hotel'
+    },
+    {
+      icon: 'icons/marker/restaurant',
+      label: 'Restaurant'
+    },
+    {
+      icon: 'icons/marker/chalet',
+      label: 'Chalet'
+    },
+    {
+      icon: 'icons/marker/other',
+      label: 'Other'
+    }
+  ]
 };

@@ -1,7 +1,7 @@
 /** @flow */
 
 import React, { Component, PropTypes } from 'react';
-
+import Button from 'components/common/button';
 
 class MapCard extends Component {
   renderMarkerInfo(markerInfo, styles) {
@@ -27,7 +27,16 @@ class MapCard extends Component {
         </div>
       );
     } else {
-      return (<div></div>)
+      return (
+        <div {...this.props}>
+          <div className={styles.markerOverlay}>
+            <div className={styles.btnContainer}>
+              <Button type='label' className={styles.btnDelete} onClick={()=>{this.props.removeMarker()}}>{'Delete this marker'}</Button>
+            </div>
+          </div>
+          <div className={styles.closeIcon}></div>
+        </div>
+      )
     }
 
   }

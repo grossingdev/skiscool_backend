@@ -27,6 +27,7 @@ class Base extends Component {
   _childrenWithProps() {
     return cloneElement(Children.only(this.props.children), Object.assign({}, {
       socketClient: socketClient,
+      sidebar: this.refs['MainSidebar']
     }, this.props));
   }
 
@@ -64,7 +65,6 @@ class Base extends Component {
     if (profile.name && this.props.user.token.length > 0) {
       flagLogin = true;
     }
-
     return (
       <MainSideBar
         ref='MainSidebar'

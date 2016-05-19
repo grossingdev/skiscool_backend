@@ -10,6 +10,7 @@ import _ from 'lodash';
 import MapCard from './MapCard';
 import container from './container';
 import Copy from 'utils/copy';
+import generateUUID from 'utils/uuid';
 
 let flagMapInitialized = false;
 class Map extends Component {
@@ -26,6 +27,7 @@ class Map extends Component {
   state = {
     selectedDevice: null,
     flagShowOverlay: false,
+    marker_id: '',
     overlayX: 0,
     overlayY: 0
   };
@@ -39,10 +41,13 @@ class Map extends Component {
           flagMapInitialized = true;
           new L.Control.Zoom({ position: 'bottomright' }).addTo(this.mapView);
           this.mapView.on('mousedown', (event)=> {
+            // once marker style is selected, add new marker
+
             if (this.props.markerStyle > 0) {
-              this.props.addNewMarker({
+              this.props.addNewPlaceMarker({
                 type: this.props.markerStyle,
-                position: event.latlng
+                position: event.latlng,
+                uuid: generateUUID()
               });
             }
             this.setState({
@@ -88,7 +93,7 @@ class Map extends Component {
     flagMapInitialized = false;
   }
 
-  showMapOverlay(marker) {
+  showMapOverlay(marker, type) {
     const transformMarker = marker._icon.style.transform;
     const transformMap = this.mapView._mapPane.style.transform;
 
@@ -97,14 +102,25 @@ class Map extends Component {
 
     const translateValue = results1.slice(1, 3);
     const translateValue1 = results2.slice(1, 3);
-    this.setState({
-      selectedDevice: marker.options.item,
-      overlayX: parseInt(translateValue[0]) + parseInt(translateValue1[0]) ,
-      overlayY: parseInt(translateValue[1]) + parseInt(translateValue1[1]) ,
-      flagShowOverlay: true
-    })
+    if (type == 'position_marker') {
+      this.setState({
+        selectedDevice: marker.options.item,
+        overlayX: parseInt(translateValue[0]) + parseInt(translateValue1[0]) ,
+        overlayY: parseInt(translateValue[1]) + parseInt(translateValue1[1]) ,
+        flagShowOverlay: true
+      })
+    } else if (type == 'place_marker') {
+      this.setState({
+        selectedDevice: null,
+        marker_id: marker.options.item.uuid,
+        overlayX: parseInt(translateValue[0]) + parseInt(translateValue1[0]) ,
+        overlayY: parseInt(translateValue[1]) + parseInt(translateValue1[1]) ,
+        flagShowOverlay: true
+      })
+    }
   }
 
+  // add marker when user tap position on map during marker type is selected
   addPlaceMarker(marker) {
     const customMarker = L.Marker.extend({
       options: {
@@ -118,7 +134,16 @@ class Map extends Component {
       iconSize: [50, 60],
       iconAnchor: [25, 60],
     });
-    this.placeMarkers.push(new customMarker(marker.position, {icon: mapIcon}).addTo(this.mapView));
+
+    let newMarker = new customMarker(marker.position, {icon: mapIcon, item: {
+      uuid: marker.uuid
+    }}).addTo(this.mapView);
+    newMarker.on('click', (e) => {
+      if (this.props.markerStyle == 0) {
+        this.showMapOverlay(e.target, 'place_marker');
+      }
+    });
+    this.placeMarkers.push(newMarker);
   }
 
   addPositionMarker(item) {
@@ -142,7 +167,7 @@ class Map extends Component {
       this.positionMarkers.push(marker);
 
       marker.on('click', (e) => {
-        component.showMapOverlay(e.target);
+        component.showMapOverlay(e.target, 'position_marker');
       });
       return marker;
     }
@@ -177,7 +202,7 @@ class Map extends Component {
       if (mapView) {
         this.removeOldPlaceMarkers();
         _.forEach(nextProps.placeMarkers, (marker) => {
-          if (marker.type == nextProps.markerStyle) {
+          if (nextProps.markerStyle == 0 || marker.type == nextProps.markerStyle) {
             component.addPlaceMarker(marker);
           }
         });
@@ -185,29 +210,40 @@ class Map extends Component {
     }
 
   }
+  removeMarker() {
+    if (this.state.marker_id != '') {
+      this.props.removePlaceMarker(this.state.marker_id);
+    }
 
+    this.setState({
+      marker_id: '',
+      flagShowOverlay: false
+    });
+  }
   renderMapOverlay(styles) {
     let width = 400;
     let height = 300;
     let sidebarWidth = 0;
-    if (this.props.sidebar) {
-      sidebarWidth = this.props.sidebar.getWidth();
+    if (this.props.sidebarStatus == 0) {
+      sidebarWidth = 60;
+    } else {
+      sidebarWidth = 200;
     }
     const markerOverlayStyle = {
       position: 'absolute',
       top: this.state.overlayY - height - 60,
       left: this.state.overlayX - width / 2 + sidebarWidth - 12.5,
     };
-    if (this.state.selectedDevice) {
-      if (this.state.flagShowOverlay ) {
-        return (
-          <MapCard
-            className={styles.markerOverlay}
-            style={markerOverlayStyle}
-            markerInfo={this.state.selectedDevice}
-          />
-        )
-      }
+
+    if (this.state.flagShowOverlay ) {
+      return (
+        <MapCard
+          className={styles.markerOverlay}
+          style={markerOverlayStyle}
+          markerInfo={this.state.selectedDevice}
+          removeMarker={()=>{this.removeMarker()}}
+        />
+      )
     }
   }
 

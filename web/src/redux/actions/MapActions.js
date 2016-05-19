@@ -22,8 +22,21 @@ const addNewPlaceMarker$ = (marker) => ({
 });
 
 // add new marker
-export const addNewMarker = (marker) => {
+export const addNewPlaceMarker = (marker) => {
   return (dispatch) => {
     dispatch(addNewPlaceMarker$(marker));
   }
 };
+
+// remove marker
+export const removePlaceMarker = (uuid) => {
+  return (dispatch) => {
+    dispatch(removePlaceMarker$(uuid));
+  }
+};
+
+export const REMOVE_PLACE_MARKER = 'REMOVE_PLACE_MARKER';
+const removePlaceMarker$ = (uuid) => ({
+  type: REMOVE_PLACE_MARKER,
+  uuid
+});

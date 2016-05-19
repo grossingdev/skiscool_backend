@@ -20,7 +20,13 @@ const defaultValues = () => {
     map_status: {
       markerStyle: 0,
       placeMarkers: []
-    }
+    },
+    ui_status: {
+      sidebar: 0,
+      pageIndex: 0,
+      showPackageDialog: false,
+      apiWaitingStatus: false
+    },
   };
 };
 

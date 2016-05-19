@@ -36,6 +36,13 @@ class Sidebar extends Component {
 
   showHideMenuBar() {
     this.setState({ lockOpen: !this.state.lockOpen });
+
+    if (this.state.lockOpen || this.state.flagOpen) {
+      this.props.updateShowSidebar(0)
+    } else {
+      this.props.updateShowSidebar(1);
+    }
+
     this.props.gotoHomeView();
   };
 

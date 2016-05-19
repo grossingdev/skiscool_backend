@@ -4,9 +4,10 @@
 
 import {
   SET_MAP_MAKER_STYLE,
-  ADD_PLACE_MARKER
+  ADD_PLACE_MARKER,
+  REMOVE_PLACE_MARKER
 } from '../actions/MapActions';
-
+import _ from 'lodash';
 import defaultState from './defaultState';
 export default function mapReducer (state = defaultState.map_status, action) {
   switch (action.type) {
@@ -22,6 +23,22 @@ export default function mapReducer (state = defaultState.map_status, action) {
       return Object.assign({}, state, {
         placeMarkers: placeMarkers
       });
+
+    case REMOVE_PLACE_MARKER:
+      let index = 0;
+      let findIndex = 0;
+      let rPlaceMarkers = state.placeMarkers.slice();
+      _.forEach(state.placeMarkers, (item)=>{
+        if (item.uuid == action.uuid) {
+          findIndex = index;
+        }
+        index ++;
+      });
+      rPlaceMarkers.splice(findIndex, 1);
+      return Object.assign({}, state, {
+        placeMarkers: rPlaceMarkers
+      });
+      break;
     default:
       return state;
   }

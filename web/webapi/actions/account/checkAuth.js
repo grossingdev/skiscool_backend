@@ -8,7 +8,6 @@ import config from '../../config'; // get our config file
 import {findUser} from './common';
 //check token from api, socket request.
 export default (req, flagToken) => {
-  console.info('req', req);
   return new Promise((resolve, reject) => {
 
     let token = "";
@@ -16,7 +15,7 @@ export default (req, flagToken) => {
       token = req;
     } else {
       //get token from cookie, session or api request body parameters, url query parameters, from headers.
-      token = req.cookies['accessToken'] || req.body.token || req.query.token || req.headers['x-access-token'] ||req.session.token;
+      token = req.body.token || req.query.token || req.headers['x-access-token'] ||req.session.token;
     }
 
     if (token && token.length > 0) {

@@ -92,6 +92,6 @@ export const signIn = (param) => {
         }
       }).catch((err) => {
       dispatch(updateAPILoadingStatus(false));
-    });;
+    });
   };
 }

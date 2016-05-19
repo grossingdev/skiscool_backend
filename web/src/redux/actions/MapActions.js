@@ -1,6 +1,7 @@
 /**
  * Created by baebae on 5/17/16.
  */
+import API from 'utils/api';
 
 export const SET_MAP_MAKER_STYLE = 'SET_MAP_MAKER_STYLE';
 const setMarkerStyle$ = (style) => ({
@@ -24,14 +25,26 @@ const addNewPlaceMarker$ = (marker) => ({
 // add new marker
 export const addNewPlaceMarker = (marker) => {
   return (dispatch) => {
-    dispatch(addNewPlaceMarker$(marker));
+    API.overlay.addPlaceMarker(null, {marker}, dispatch)
+      .then((res) => {
+        if (res.success == true) {
+          dispatch(addNewPlaceMarker$(marker));
+        }
+        console.info('addNewPlaceMarker result', res);
+      });
   }
 };
 
 // remove marker
 export const removePlaceMarker = (uuid) => {
   return (dispatch) => {
-    dispatch(removePlaceMarker$(uuid));
+    API.overlay.removePlaceMarker(null, {uuid}, dispatch)
+      .then((res) => {
+        if (res.success == true) {
+          dispatch(removePlaceMarker$(uuid));
+        }
+        console.info('removePlaceMarker result', res);
+      });
   }
 };
 

@@ -46,7 +46,7 @@ class Map extends Component {
             if (this.props.markerStyle > 0) {
               this.props.addNewPlaceMarker({
                 type: this.props.markerStyle,
-                position: event.latlng,
+                position: [event.latlng.lat, event.latlng.lng],
                 uuid: generateUUID()
               });
             }
@@ -135,7 +135,7 @@ class Map extends Component {
       iconAnchor: [25, 60],
     });
 
-    let newMarker = new customMarker(marker.position, {icon: mapIcon, item: {
+    let newMarker = new customMarker({lat: marker.position[0], lng: marker.position[1]}, {icon: mapIcon, item: {
       uuid: marker.uuid
     }}).addTo(this.mapView);
     newMarker.on('click', (e) => {

@@ -26,7 +26,6 @@ const commonUserSchema = {
 };
 
 const Schemas = {
-
   Client: new Schema(
     Object.assign({}, commonUserSchema)
   ),
@@ -39,12 +38,11 @@ const Schemas = {
     })
   ),
 
-  Hotel: new Schema({
+  Overlay: new Schema({
     id: Number,
-    hotel_name: { type: String, required: true},
-    hotel_icon: String,
-    hotel_price: {type: Number, required: true},
-    hotel_type: String, //should be hotel/chalet
+    overlay_uuid: {type: String, required: true},
+    overlay_type: Number, //should be hotel: 0, chalet: 2, restaurant: 3, ...
+    location: [Number], //will contains [lat, lon]
   })
 };
 export default Schemas;

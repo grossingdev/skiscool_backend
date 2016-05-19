@@ -9,6 +9,7 @@
 import request from 'superagent'
 import _ from 'lodash';
 import {apiResult$} from 'redux/actions/APIResultActions';
+import LocalStorage from './localStorage';
 
 let config = require('../config');
 
@@ -22,22 +23,38 @@ if (config.isProduction) {
 export default {
   account: {
     login: _generateRequest({
+      token: false,
       method: 'POST',
       route: '/account/login',
     }),
     logout: _generateRequest({
+      token: false,
       method: 'GET',
       route: '/account/logout',
     }),
     signIn: _generateRequest({
+      token: false,
       method: 'POST',
       route: '/account/signIn',
     }),
     checkToken: _generateRequest({
+      token: false,
       method: 'POST',
       route: '/account/checkToken',
     }),
   },
+  overlay: {
+    addPlaceMarker: _generateRequest({
+      token: true,
+      method: 'POST',
+      route: '/overlay/addPlaceMarker',
+    }),
+    removePlaceMarker: _generateRequest({
+      token: true,
+      method: 'POST',
+      route: '/overlay/removePlaceMarker',
+    }),
+  }
 };
 
 function _parameterizeRoute(route, params) {
@@ -48,43 +65,52 @@ function _parameterizeRoute(route, params) {
   });
   return parameterized;
 }
-function _publicRequest(method, route, params, body, dispatch) {
+
+function _requestWithToken(accessToken, method, route, params, body, dispatch) {
   if (!body) body = {};
   if (params) route = _parameterizeRoute(route, params);
   return new Promise((resolve, reject) => {
-    request(method, base + route)
-      .accept('application/json')
-      .send(body)
-      .end((err, res) => {
-        if (!res) {
-          console.info("Network error");
-          return dispatch(apiResult$({
-            err_code: -1,
-            err_msg: "Network Error."
-          }))
-        } else if (err) {
-          console.info("API error:" + route, res.body);
-          if (dispatch) {
-            dispatch(apiResult$({
-              error_code: res.body.statusCode,
-              msg: res.body.msg
-            }));
-          }
-        } else {
-          console.info("result:" + route, res.body);
-          if (dispatch) {
-            dispatch(apiResult$({
-              error_code: 0,
-              msg: res.body.message
-            }));
-          }
-          resolve(res.body);
+    LocalStorage.get('token')
+      .then((token) => {
+        let backendRequerst = request(method, base + route);
+        backendRequerst.accept('application/json');
+
+        if (accessToken) {
+          body.token = token;
         }
-      });
+
+        backendRequerst.send(body)
+          .end((err, res) => {
+            if (!res) {
+              console.info("Network error");
+              return dispatch(apiResult$({
+                err_code: -1,
+                err_msg: "Network Error."
+              }))
+            } else if (err) {
+              console.info("API error:" + route, res.body);
+              if (dispatch) {
+                dispatch(apiResult$({
+                  error_code: res.body.statusCode,
+                  msg: res.body.msg
+                }));
+              }
+            } else {
+              console.info("result:" + route, res.body);
+              if (dispatch) {
+                dispatch(apiResult$({
+                  error_code: 0,
+                  msg: res.body.message
+                }));
+              }
+              resolve(res.body);
+            }
+        });
+      })
   });
 }
 
 function _generateRequest(options) {
-   return  _publicRequest.bind(this, options.method, options.route);
+  return  _requestWithToken.bind(this, options.token, options.method, options.route);
 }
 

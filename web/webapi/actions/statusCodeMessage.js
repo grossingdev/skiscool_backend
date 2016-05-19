@@ -18,7 +18,8 @@ const  statusCodeMessage = {
   1012 : 'User has not been registered yet.',
   1013 : 'Password is wrong.',
   1014 : 'Login method has not been implemented yet',
-  1015 : 'User token is invalid.'
+  1015 : 'User token is invalid.',
+  1020: 'Mongodb error occured while adding/removing overlay information',
 };
 
 export default statusCodeMessage;

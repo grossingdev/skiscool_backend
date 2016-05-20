@@ -1,7 +1,37 @@
 {
   "development": {
     "scripts": [
-      
+      {
+        "file": "./node_modules/react/dist/react.js",
+        "identifier": "React",
+        "import": "react"
+      },
+      {
+        "file": "./node_modules/leaflet/dist/leaflet.js",
+        "identifier": "L",
+        "import": "leaflet/dist/leaflet-src"
+      },
+      {
+        "file": "./node_modules/react-dom/dist/react-dom.js",
+        "identifier": "ReactDOM",
+        "import": "react-dom"
+      },
+      {
+        "file": "./node_modules/redux/dist/redux.js",
+        "identifier": "Redux",
+        "import": "redux"
+      },
+      {
+        "file": "https://cdn.socket.io/socket.io-1.4.5.js",
+        "identifier": "io",
+        "import": "socket.io-client"
+      },
+
+      {
+        "file": "./node_modules/react-redux/dist/react-redux.js",
+        "identifier": "ReactRedux",
+        "import": "react-redux"
+      }
     ],
     "styles": [
       "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css",
@@ -19,16 +49,38 @@
   "production": {
     "scripts": [
       {
-        "file": "./",
+        "file": "./node_modules/react/dist/react.min.js",
         "identifier": "React",
         "import": "react"
+      },
+      {
+        "file": "https://cdn.socket.io/socket.io-1.4.5.js",
+        "identifier": "io",
+        "import": "socket.io-client"
+      },
+      {
+        "file": "./node_modules/leaflet/dist/leaflet.js",
+        "identifier": "L",
+        "import": "leaflet/dist/leaflet-src"
+      },
+      {
+        "file": "./node_modules/redux/dist/redux.js",
+        "identifier": "Redux",
+        "import": "redux"
+      },
+      {
+        "file": "./node_modules/react-redux/dist/react-redux.js",
+        "identifier": "ReactRedux",
+        "import": "react-redux"
+      },
+      {
+        "file": "./node_modules/react-dom/dist/react-dom.min.js",
+        "identifier": "ReactDOM",
+        "import": "react-dom"
       }
     ],
     "styles": [
       "./dist/styles.min.css"
     ]
-  },
-  "subDirectoryNodeModules": [
-    "react-dom-stream/server"
-  ]
+  }
 }

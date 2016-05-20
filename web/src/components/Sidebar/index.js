@@ -66,28 +66,31 @@ class Sidebar extends Component {
   }
 
   renderButton(styles, flagShowLabel) {
+    if (this.props.flagLogin) {
+      let buttons = Copy.markerMenuItems.map((itemInfo, index) => {
+        let icon = itemInfo.icon + '.svg';
+        let active_style = '';
+        if (index + 1 == this.props.markerStyle) {
+          icon = itemInfo.icon + '_active.svg';
+          active_style = styles.active;
+        }
+        return (
+          <Button key={index} type="label" className={styles.markerButton}
+                  onClick={()=>{this.updateMarkerStyle(index + 1);}}>
+            <img src={icon}/>
+            {flagShowLabel && <div className={styles.item_label + ' ' + active_style}>{itemInfo.label}</div>}
+          </Button>
+        )
+      });
 
-    let buttons = Copy.markerMenuItems.map((itemInfo, index) => {
-      let icon = itemInfo.icon + '.svg';
-      let active_style = '';
-      if (index + 1 == this.props.markerStyle) {
-        icon = itemInfo.icon + '_active.svg';
-        active_style = styles.active;
-      }
       return (
-        <Button key={index} type="label" className={styles.markerButton} onClick={()=>{this.updateMarkerStyle(index + 1);}}>
-          <img src={icon}/>
-          {flagShowLabel && <div className={styles.item_label + ' ' + active_style}>{itemInfo.label}</div>}
-        </Button>
+        <div className={styles.markerStyleContainer}>
+          {buttons}
+        </div>
       )
-    });
-
-    return (
-      <div className={styles.markerStyleContainer}>
-        {buttons}
-      </div>
-    )
+    }
   }
+  
   renderButtonArea(styles) {
     if (this.props.flagLogin) {
       return (

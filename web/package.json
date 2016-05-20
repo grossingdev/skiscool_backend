@@ -24,10 +24,18 @@
   ],
   "main": "bin/server.js",
   "scripts": {
+    "build": "npm run build:dev",
+    "build:dev": "npm run build:dev:server && npm run build:dev:client",
+    "build:dev:client": "webpack --config ./webpack/dev/client.babel.js && cp -f dist/*.js static/dist/ && cp -f dist/*.css static/css/",
+    "build:dev:server": "webpack --config ./webpack/dev/server.babel.js && cp -f dist/*.js static/dist/ && cp -f dist/*.css static/css/",
+    "build:pro": "npm run build:pro:server && npm run build:pro:client",
+    "build:pro:client": "webpack --config ./webpack/pro/client.babel.js && cp -f dist/*.js static/dist/ && cp -f dist/*.css static/css/",
+    "build:pro:server": "webpack --config ./webpack/pro/server.babel.js && cp -f dist/*.js static/dist/ && cp -f dist/*.css static/css/",
+    "createStaticJs:dev": "mkdir -p ./static/js  && cat ./src/config_head/index.json | json development.scripts | json -ga file | xargs -I % cp % ./static/js/",
+    "createStaticJs:pro": "mkdir -p ./static/js && cat ./src/config_head/index.json | json production.scripts | json -ga file | xargs -I % cp % ./static/js/",
     "start": "concurrent --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
     "start-prod": "better-npm-run start-prod",
     "start-prod-api": "better-npm-run start-prod-api",
-    "build": "better-npm-run build",
     "build-api": "babel webapi -d dist/api",
     "postinstall": "npm run build",
     "lint": "eslint -c .eslintrc src api",
@@ -41,6 +49,15 @@
     "test-node-watch": "./node_modules/mocha/bin/mocha $(find api -name '*-test.js') --compilers js:babel-core/register --watch"
   },
   "betterScripts": {
+    "start-dev": {
+      "command": "node ./bin/server.js",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "development",
+        "PORT": 8080,
+        "APIPORT": 3700
+      }
+    },
     "start-prod": {
       "command": "node ./bin/server.js",
       "env": {
@@ -58,36 +75,12 @@
         "APIPORT": 3700
       }
     },
-    "start-dev": {
-      "command": "node ./bin/server.js",
-      "env": {
-        "NODE_PATH": "./src",
-        "NODE_ENV": "development",
-        "PORT": 8080,
-        "APIPORT": 3700
-      }
-    },
     "start-dev-api": {
       "command": "node ./bin/api.js",
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "development",
         "APIPORT": 3700
-      }
-    },
-    "watch-client": {
-      "command": "node webpack/webpack-dev-server.js",
-      "env": {
-        "UV_THREADPOOL_SIZE": 100,
-        "NODE_PATH": "./src",
-        "PORT": 8080,
-        "APIPORT": 3700
-      }
-    },
-    "build": {
-      "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
-      "env": {
-        "NODE_ENV": "production"
       }
     }
   },
@@ -189,6 +182,11 @@
     "node-sass": "^3.4.2",
     "phantomjs": "^1.9.18",
     "phantomjs-polyfill": "0.0.1",
+    "postcss-calc-function": "^1.1.0",
+    "postcss-color-function": "^2.0.1",
+    "postcss-custom-props": "^1.1.2",
+    "postcss-import": "^8.1.2",
+    "postcss-loader": "^0.9.1",
     "react-a11y": "^0.2.6",
     "react-addons-test-utils": "^0.14.0",
     "redux-devtools": "^3.0.0-beta-3",
@@ -196,10 +194,11 @@
     "redux-devtools-log-monitor": "^1.0.0-beta-3",
     "sass-loader": "^3.1.2",
     "sinon": "^1.17.2",
-    "strip-loader": "^0.1.0",
+    "strip-loader": "^0.1.2",
     "style-loader": "^0.13.0",
     "timekeeper": "0.0.5",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "webpack-node-externals": "^1.2.0"
   },
   "engines": {
     "node": "5.6.0"

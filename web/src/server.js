@@ -1,5 +1,4 @@
-require ('react-hot-loader/patch');
-
+require('babel-polyfill');
 import config from './config';
 import Express from 'express';
 import React from 'react';
@@ -24,58 +23,11 @@ import getRoutes from './routes';
 import Root from './containers/Root.dev';
 import config_head from './config_head';
 
-/*** init hotload ***/
-var webpack = require('webpack');
-var webpackConfig = require('../webpack/dev.config');
-var WebpackDevServer = require('webpack-dev-server');
-var compiler = webpack(webpackConfig);
-var host = config.host || 'localhost';
-var port = (Number(config.port) + 2) || 8082; //8081 is using for react-native debug
-
-  // First we fire up Webpack an pass in the configuration we
-  // created
-  var bundleStart = null;
-  // We give notice in the terminal when it starts bundling and
-  // set the time it started
-  compiler.plugin('compile', function() {
-
-    console.log('Bundling...');
-    bundleStart = Date.now();
-  });
-
-  // We also give notice when it is done compiling, including the
-  // time it took.
-  compiler.plugin('done', function() {
-    console.log('Bundled in ' + (Date.now() - bundleStart) + 'ms!');
-  });
-  var bundler = new WebpackDevServer(compiler, {
-    hot:true,
-    headers: { 'Access-Control-Allow-Origin': '*' },
-  historyApiFallback: true,
-  contentBase: 'http://localhost:' + port,
-  publicPath: webpackConfig.output.publicPath,
-    quiet: true,
-    lazy: false,
-    noInfo: false,
-    stats: {
-      colors: true
-    }
-  });
-  // We fire up the development server and give notice in the terminal
-  // that we are starting the initial bundle
-  bundler.listen(port, 'localhost',  function onAppListening(err) {
-  if (err) {
-    console.error(err);
-  } else {
-    console.info('==> 🚧  Webpack development server listening on port %s', port);
-  }
-
-
-/*** init hotload ***/
 
 
 const scripts = config_head[ __DEVELOPMENT__ ? 'development' : 'production' ].scripts
-  .map( script => `/${((script.file.indexOf("http") > -1)?script.file:""+config_head.dir.js+"/"+script.file.split( '/' ).pop()) }` );
+  .map( script => (script.file?(`${(script.file.indexOf("http") > -1)?script.file:""+config_head.dir.js+"/"+script.file.split( '/' ).pop() }`):null));
+//  .map( script => `/${((script.file.indexOf("http") > -1)?script.file:""+config_head.dir.js+"/"+script.file.split( '/' ).pop()) }` );
 
 const styles = config_head[ __DEVELOPMENT__ ? 'development' : 'production' ].styles
   .map( style => `${((style.indexOf("http") > -1)?style:""+config_head.dir.css+"/"+style.split( '/' ).pop()) }` );
@@ -91,8 +43,10 @@ app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 
 app.use(Express.static(path.join(__dirname, '..', 'static')));
+var host = config.host || 'localhost';
+var port = (Number(config.port) + 2) || 8082;
 
-
+function callbackmain(){
 const proxy = httpProxy.createProxyServer({
   target: targetUrl,
   ws: true
@@ -109,7 +63,7 @@ app.use((req, res) => {
   if (__DEVELOPMENT__) {
     // Do not cache webpack stats: the script file would change since
     // hot module replacement is enabled in the development env
-   // webpackIsomorphicTools.refresh();
+    webpackIsomorphicTools.refresh();
   }
   const client = new ApiClient(req);
   const memoryHistory = createHistory(req.originalUrl);
@@ -191,7 +145,63 @@ if (config.port) {
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');
 }
+}
 
 
+  if (__DEVELOPMENT__) {
+var webpack = require('webpack');
+var webpackConfig = require( '../webpack/dev/client.babel' );
+var WebpackDevServer = require('webpack-dev-server');
+var compiler = webpack(webpackConfig);
+
+  // First we fire up Webpack an pass in the configuration we
+  // created
+  var bundleStart = null;
+  // We give notice in the terminal when it starts bundling and
+  // set the time it started
+  compiler.plugin('compile', function() {
+
+    console.log('Bundling...');
+    bundleStart = Date.now();
+  });
+
+  // We also give notice when it is done compiling, including the
+  // time it took. Nice to have
+  compiler.plugin('done', function() {
+    console.log('Bundled in ' + (Date.now() - bundleStart) + 'ms!');
+  });
+  var bundler = new WebpackDevServer(compiler, {
+    // We need to tell Webpack to serve our bundled application
+    // from the build path. When proxying:
+    // http://localhost:3000/build -> http://localhost:8080/build
+    hot:true,
+    headers: { 'Access-Control-Allow-Origin': '*' },
+  historyApiFallback: true,
+  contentBase: 'http://localhost:' + port,
+  publicPath: webpackConfig.output.publicPath,
+
+    quiet: true,
+    lazy: false,
+    noInfo: false,
+    stats: {
+      colors: true
+    }
+  });
+
+  // We fire up the development server and give notice in the terminal
+  // that we are starting the initial bundle
+  bundler.listen(port, 'localhost',  function onAppListening(err) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.info('==> 🚧  Webpack development server listening on port %s', port);
+  }
+callbackmain();
 
   });
+}else{
+callbackmain();
+}
+
+
+

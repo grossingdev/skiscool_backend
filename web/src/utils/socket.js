@@ -14,6 +14,7 @@ if (config.isProduction) {
 
 const options = {
   transports: ['websocket'],
+  path: '/ws',
   'force new connection': true
 };
 
@@ -33,9 +34,23 @@ export class SocketClient {
     if (!window.navigator.userAgent) {
       window.navigator.userAgent = 'skiscool';
     }
-    let io = require('socket.io-client/socket.io');
+    if (!__CLIENT__){
+    console.log('server');
+    let io = require('socket.io-client');
     this.socketClient = io.connect(SERVER, options);
     this.registerEvent();
+   } else{
+    console.log('client');
+   if (typeof(io)!=='undefined'){
+    console.log('yes');
+     this.socketClient = io.connect(SERVER, options);
+    this.registerEvent();
+    }else{console.log('no');
+   // var io = require('socket.io-client');
+   // this.socketClient = io.connect(SERVER, options);
+   // this.registerEvent();
+    }
+  }
   }
 
   registerEvent() {

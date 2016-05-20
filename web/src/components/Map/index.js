@@ -34,8 +34,11 @@ class Map extends Component {
 
   componentDidMount() {
     setTimeout(()=> {
+    console.log(__CLIENT__);
+    console.log(this.flagUnmounted);
       if (__CLIENT__ && this.mapView == null && !this.flagUnmounted) {
         if (flagMapInitialized === false) {
+        console.log(this.flagUnmounted);
           L.mapbox.accessToken = 'pk.eyJ1Ijoic2ltb25tYXAiLCJhIjoiY2luNHcwaGhyMDBydXdlbTJwZTdza2NkbSJ9.GZGPRYUc8yeYNOFEaQfM0A';
           this.mapView = L.mapbox.map('map', 'simonmap.023dca42', {zoomControl: false, attributionControl: false}).setView([45.3007, 6.5800], 15);
           flagMapInitialized = true;

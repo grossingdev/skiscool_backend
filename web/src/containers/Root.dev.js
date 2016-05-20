@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import DevTools from './DevTools';
+import { AppContainer } from "react-hot-loader";
+
+let devTools;
+
+if ( __DEVELOPMENT__ && __DEVTOOLS__) {
+  const DevTools = require( './DevTools' );
+  devTools = <DevTools />;
+}
 
 export default class Root extends Component {
 static propTypes = {
@@ -12,7 +19,7 @@ static propTypes = {
     return (
       <Provider store={store} key="provider">
         <div>
-           {comp}
+        <AppContainer>{comp}</AppContainer>
           <DevTools />
         </div>
       </Provider>

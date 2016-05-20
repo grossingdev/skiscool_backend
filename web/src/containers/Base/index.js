@@ -3,6 +3,8 @@ import React, { Component, PropTypes, cloneElement, Children} from 'react';
 import container from './container';
 import {SocketClient} from 'utils/socket';
 import MainSideBar from 'components/Sidebar';
+import Nav from 'components/Nav';
+import Home from 'containers/Home';
 
 let socketClient = null;
 class Base extends Component {
@@ -31,17 +33,7 @@ class Base extends Component {
     }, this.props));
   }
 
-  render() {
-    const styles = require('./styles.scss');
-    return (
-      <div className={styles.Base}>
-        {this.renderMainSideBar()}
-        <div className={styles.Base_Content}>
-          {this._childrenWithProps()}
-        </div>
-      </div>
-    );
-  }
+
   gotoSignUp() {
     this.context.router.push('/signup');
     this.refs.MainSidebar.hide();
@@ -78,6 +70,18 @@ class Base extends Component {
         profile={profile}
       >
       </MainSideBar>
+    );
+  }
+  render() {
+    const styles = require('./styles.scss');
+    return (
+      <div className={styles.Base}>
+        {this.renderMainSideBar()}
+        <div className={styles.Base_Content}>
+          {this._childrenWithProps()}
+          <Nav />
+        </div>
+      </div>
     );
   }
 }

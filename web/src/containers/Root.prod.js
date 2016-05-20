@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { AppContainer } from "react-hot-loader";
 
 export default class Root extends Component {
 static propTypes = {
@@ -10,7 +11,7 @@ static propTypes = {
     const { store, comp } = this.props;
     return (
       <Provider store={store} key="provider">
-        {comp}
+        <AppContainer>{comp}</AppContainer>
       </Provider>
     );
   }

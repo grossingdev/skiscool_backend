@@ -82,7 +82,7 @@ export const createUser = (name, password, fromSocial, age, languages, gender, e
           data: {
             'token': token,
             'user': {
-              name, email
+              name, email, userType
             }
           }
         });

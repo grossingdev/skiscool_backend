@@ -34,6 +34,7 @@ const Schemas = {
     Object.assign({}, commonUserSchema, {
       schedule: Schema.Types.Mixed, //will contains array of [date, date]
       rate: Number,
+      flagAdmin: Boolean,
       season_status: Schema.Types.Mixed, //will contains {lower: [weeknum, weeknum,...], medium: [weeknum], highest: [weeknum]}
     })
   ),

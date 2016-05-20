@@ -7,27 +7,37 @@ import Overlay from '../../db/OverlayModel';
 export default function addPlaceMarker(req) {
   return new Promise((resolve, reject) => {
     checkAuth(req).then((user) => {
-      let newOverlay = new Overlay();
-      newOverlay.overlay_uuid = req.body.marker.uuid;
-      newOverlay.overlay_type = req.body.marker.type;
-      newOverlay.location = req.body.marker.position;
+      if (user.userType == 'instructor' && user.flagAdmin == true) {
+        let newOverlay = new Overlay();
+        newOverlay.overlay_uuid = req.body.marker.overlay_uuid;
+        newOverlay.overlay_type = req.body.marker.overlay_type;
+        newOverlay.location = req.body.marker.location;
 
-      newOverlay.save(function(err) {
-        if (err) {
-          let statusCode = 1020;
-          return reject({
-            success: false,
-            msg: statusCodeMessage[statusCode],
-            statusCode,
+        newOverlay.save(function(err) {
+          if (err) {
+            let statusCode = 1020;
+            return reject({
+              success: false,
+              msg: statusCodeMessage[statusCode],
+              statusCode,
+            });
+          }
+
+          return resolve({
+            success: true,
+            statusCode: 0,
+            message: 'add marker successfully',
           });
-        }
-
-        return resolve({
-          success: true,
-          statusCode: 0,
-          message: 'add marker successfully',
         });
-      });
+      } else {
+        let statusCode = 1022;
+        return reject({
+          success: false,
+          msg: statusCodeMessage[statusCode],
+          statusCode,
+        });
+      }
+
     }, () => {
       let statusCode = 1015;
       return reject({

@@ -29,8 +29,9 @@ export const addNewPlaceMarker = (marker) => {
       .then((res) => {
         if (res.success == true) {
           dispatch(addNewPlaceMarker$(marker));
+        } else if (res.msg) {
+          alert(res.msg)
         }
-        console.info('addNewPlaceMarker result', res);
       });
   }
 };
@@ -42,14 +43,36 @@ export const removePlaceMarker = (uuid) => {
       .then((res) => {
         if (res.success == true) {
           dispatch(removePlaceMarker$(uuid));
+        } else if (res.msg) {
+          alert(res.msg)
         }
-        console.info('removePlaceMarker result', res);
+      });
+  }
+};
+
+// get place markers
+export const getPlaceMarkers = (range) => {
+  return (dispatch) => {
+    API.overlay.getPlaceMarkers(null, {range}, dispatch)
+      .then((res) => {
+        if (res.success == true) {
+          dispatch(getPlaceMarkers$(res.data));
+        } else if (res.msg) {
+          alert(res.msg)
+        }
       });
   }
 };
 
 export const REMOVE_PLACE_MARKER = 'REMOVE_PLACE_MARKER';
-const removePlaceMarker$ = (uuid) => ({
+const removePlaceMarker$ = (overlay_uuid) => ({
   type: REMOVE_PLACE_MARKER,
-  uuid
+  overlay_uuid
+});
+
+
+export const GET_PLACE_MARKERS = 'GET_PLACE_MARKERS';
+const getPlaceMarkers$ = (placeMarkers) => ({
+  type: GET_PLACE_MARKERS,
+  placeMarkers
 });

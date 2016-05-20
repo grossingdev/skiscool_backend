@@ -54,14 +54,17 @@ class Base extends Component {
   renderMainSideBar () {
     let flagLogin = false;
     let {profile} = this.props.user;
+    let userType = '';
     if (profile.name && this.props.user.token.length > 0) {
       flagLogin = true;
+      userType = profile.userType;
     }
     return (
       <MainSideBar
         ref='MainSidebar'
         alignment='left'
         flagLogin={flagLogin}
+        userType={userType}
         gotoSignUp={()=>{this.gotoSignUp()}}
         gotoLogin={()=>{this.gotoLogin()}}
         gotoTestView={()=>{this.gotoTestView()}}

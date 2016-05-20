@@ -27,11 +27,16 @@ class MapCard extends Component {
         </div>
       );
     } else {
+      let {user} = this.props;
+      let flagShowRemoveButton = false;
+      if (user && user.profile && user.profile.userType == 'instructor') {
+        flagShowRemoveButton = true;
+      }
       return (
         <div {...this.props}>
           <div className={styles.markerOverlay}>
             <div className={styles.btnContainer}>
-              <Button type='label' className={styles.btnDelete} onClick={()=>{this.props.removeMarker()}}>{'Delete this marker'}</Button>
+              {flagShowRemoveButton && <Button type='label' className={styles.btnDelete} onClick={()=>{this.props.removeMarker()}}>{'Delete this marker'}</Button>}
             </div>
           </div>
           <div className={styles.closeIcon}></div>

@@ -82,7 +82,8 @@ export default function login(req) {
                   'token': token,
                   user: {
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    userType
                   }
                 }
               });
@@ -129,7 +130,7 @@ export default function login(req) {
                 'expire': new Date().getTime() + 3600000 * 24 //one day
               }, config.jwt.secret);
               req.session.token = token;
-              
+
               return resolve({
                 success: true,
                 message: 'login success',
@@ -137,7 +138,8 @@ export default function login(req) {
                   'token': token,
                   user: {
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    userType
                   }
                 }
               });

@@ -13,7 +13,8 @@ export default function checkToken(req) {
           'token': token,
           user: {
             'name': user.name,
-            'email': user.email
+            'email': user.email,
+            'userType': user.userType
           }
         }
       });

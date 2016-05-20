@@ -54,6 +54,11 @@ export default {
       method: 'POST',
       route: '/overlay/removePlaceMarker',
     }),
+    getPlaceMarkers: _generateRequest({
+      token: false,
+      method: 'GET',
+      route: '/overlay/getPlaceMarkers',
+    }),
   }
 };
 
@@ -94,6 +99,7 @@ function _requestWithToken(accessToken, method, route, params, body, dispatch) {
                   error_code: res.body.statusCode,
                   msg: res.body.msg
                 }));
+                resolve(res.body);
               }
             } else {
               console.info("result:" + route, res.body);

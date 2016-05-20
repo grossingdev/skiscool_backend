@@ -42,7 +42,9 @@ export default (req, flagToken) => {
         }
         findUser(dbModel, decodedToken.email).then((res) => {
           if (res.status == 2001) {
-            return resolve(res.users[0], decodedToken);
+            let user = res.users[0];
+            user.userType = userType;
+            return resolve(user, decodedToken);
           } else {
             return reject();
           }

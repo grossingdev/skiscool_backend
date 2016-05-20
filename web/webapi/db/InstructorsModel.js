@@ -16,6 +16,7 @@ Schemas.Instructor.pre('save', function(next) {
   let component = this;
   // change the updated_at field to current date
   this.updated = currentDate;
+  this.flagAdmin = false;
   // if created_at doesn't exist, add to that field
   if (!this.created_at) {
     this.created_at = currentDate;

@@ -66,31 +66,31 @@ class Sidebar extends Component {
   }
 
   renderButton(styles, flagShowLabel) {
-    if (this.props.flagLogin) {
-      let buttons = Copy.markerMenuItems.map((itemInfo, index) => {
-        let icon = itemInfo.icon + '.svg';
-        let active_style = '';
-        if (index + 1 == this.props.markerStyle) {
-          icon = itemInfo.icon + '_active.svg';
-          active_style = styles.active;
-        }
-        return (
-          <Button key={index} type="label" className={styles.markerButton}
-                  onClick={()=>{this.updateMarkerStyle(index + 1);}}>
-            <img src={icon}/>
-            {flagShowLabel && <div className={styles.item_label + ' ' + active_style}>{itemInfo.label}</div>}
-          </Button>
-        )
-      });
-
+    // if (this.props.flagLogin && this.props.userType == 'instructor') {
+    let buttons = Copy.markerMenuItems.map((itemInfo, index) => {
+      let icon = itemInfo.icon + '.svg';
+      let active_style = '';
+      if (index + 1 == this.props.markerStyle) {
+        icon = itemInfo.icon + '_active.svg';
+        active_style = styles.active;
+      }
       return (
-        <div className={styles.markerStyleContainer}>
-          {buttons}
-        </div>
+        <Button key={index} type="label" className={styles.markerButton}
+                onClick={()=>{this.updateMarkerStyle(index + 1);}}>
+          <img src={icon}/>
+          {flagShowLabel && <div className={styles.item_label + ' ' + active_style}>{itemInfo.label}</div>}
+        </Button>
       )
-    }
+    });
+
+    return (
+      <div className={styles.markerStyleContainer}>
+        {buttons}
+      </div>
+    )
+    // }
   }
-  
+
   renderButtonArea(styles) {
     if (this.props.flagLogin) {
       return (
@@ -102,8 +102,6 @@ class Sidebar extends Component {
           <Button type='label' className={styles.login} onClick={()=>this.props.gotoTestView()}>
             {'Emulate Device Location'}
           </Button>
-
-          {this.renderButton(styles, true)}
         </div>
       )
     } else {
@@ -136,6 +134,7 @@ class Sidebar extends Component {
         <div className={styles['opened'] + ' ' + styles[openVisible]}>
           {this.renderTopArea(styles, true)}
           {this.renderButtonArea(styles)}
+          {this.renderButton(styles, true)}
         </div>
         <div className={styles['closed'] + ' ' + styles[closeVisible]}>
           {this.renderTopArea(styles, false)}

@@ -19,7 +19,9 @@ const  statusCodeMessage = {
   1013 : 'Password is wrong.',
   1014 : 'Login method has not been implemented yet',
   1015 : 'User token is invalid.',
-  1020: 'Mongodb error occured while adding/removing overlay information',
+  1020 : 'Mongodb error occured while adding/removing overlay information',
+  1021 : 'There\'s no place markers on server.',
+  1022 : 'Current user is not Instructor & Admin user.'
 };
 
 export default statusCodeMessage;

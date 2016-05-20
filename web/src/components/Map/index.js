@@ -37,20 +37,23 @@ class Map extends Component {
     console.log(__CLIENT__);
     console.log(this.flagUnmounted);
       if (__CLIENT__ && this.mapView == null && !this.flagUnmounted) {
+        this.props.getPlaceMarkers();
+
         if (flagMapInitialized === false) {
         console.log(this.flagUnmounted);
           L.mapbox.accessToken = 'pk.eyJ1Ijoic2ltb25tYXAiLCJhIjoiY2luNHcwaGhyMDBydXdlbTJwZTdza2NkbSJ9.GZGPRYUc8yeYNOFEaQfM0A';
           this.mapView = L.mapbox.map('map', 'simonmap.023dca42', {zoomControl: false, attributionControl: false}).setView([45.3007, 6.5800], 15);
           flagMapInitialized = true;
           new L.Control.Zoom({ position: 'bottomright' }).addTo(this.mapView);
-          this.mapView.on('mousedown', (event)=> {
-            // once marker style is selected, add new marker
+          this.mapView.on('mouseup', (event)=> {
+            // once marker style is selected, admin instructor could add new marker
+            let {user} = this.props;
 
-            if (this.props.markerStyle > 0) {
+            if (this.props.markerStyle > 0 && user && user.profile && user.profile.userType == 'instructor') {
               this.props.addNewPlaceMarker({
-                type: this.props.markerStyle,
-                position: [event.latlng.lat, event.latlng.lng],
-                uuid: generateUUID()
+                overlay_type: this.props.markerStyle,
+                location: [event.latlng.lat.toFixed(4), event.latlng.lng.toFixed(4)],
+                overlay_uuid: generateUUID()
               });
             }
             this.setState({
@@ -131,15 +134,15 @@ class Map extends Component {
       }
     });
 
-    let icon = Copy.markerMenuItems[marker.type - 1].icon;
+    let icon = Copy.markerMenuItems[marker.overlay_type - 1].icon;
     let mapIcon = L.icon({
       iconUrl: icon + '.svg',
       iconSize: [50, 60],
       iconAnchor: [25, 60],
     });
 
-    let newMarker = new customMarker({lat: marker.position[0], lng: marker.position[1]}, {icon: mapIcon, item: {
-      uuid: marker.uuid
+    let newMarker = new customMarker({lat: marker.location[0], lng: marker.location[1]}, {icon: mapIcon, item: {
+      uuid: marker.overlay_uuid
     }}).addTo(this.mapView);
     newMarker.on('click', (e) => {
       if (this.props.markerStyle == 0) {
@@ -205,7 +208,7 @@ class Map extends Component {
       if (mapView) {
         this.removeOldPlaceMarkers();
         _.forEach(nextProps.placeMarkers, (marker) => {
-          if (nextProps.markerStyle == 0 || marker.type == nextProps.markerStyle) {
+          if (nextProps.markerStyle == 0 || marker.overlay_type == nextProps.markerStyle) {
             component.addPlaceMarker(marker);
           }
         });
@@ -245,6 +248,7 @@ class Map extends Component {
           style={markerOverlayStyle}
           markerInfo={this.state.selectedDevice}
           removeMarker={()=>{this.removeMarker()}}
+          user={this.props.user}
         />
       )
     }

@@ -16,7 +16,7 @@ export default function getPlaceMarkers(req) {
       }
 
       if (foundMarkers && foundMarkers.length > 0) {
-        console.log('foundMarkers: '+ foundMarkers);
+        // console.log('foundMarkers: '+ foundMarkers);
         return resolve({
           success: true,
           statusCode: 0,

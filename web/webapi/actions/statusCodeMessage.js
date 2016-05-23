@@ -21,7 +21,8 @@ const  statusCodeMessage = {
   1015 : 'User token is invalid.',
   1020 : 'Mongodb error occured while adding/removing overlay information',
   1021 : 'There\'s no place markers on server.',
-  1022 : 'Current user is not Instructor & Admin user.'
+  1022 : 'Current user is not Instructor & Admin user.',
+  1023 : 'Failed create verification email'
 };
 
 export default statusCodeMessage;

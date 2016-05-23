@@ -6,9 +6,45 @@ import jwt from 'jsonwebtoken';
 import {findUser} from './common';
 import checkFacebookToken from './checkFacebookToken';
 import statusCodeMessage from '../statusCodeMessage';
+import nodemailer from 'nodemailer';
+import stringFormater from 'string-template';
+
+
+const sendEmail = (toUser, token) => {
+  return new Promise((resolve, reject) => {
+    let html = require('../../template/verification');
+    let url = 'http://localhost:3700/account/verify/' + token;
+
+    let emailHTML = stringFormater(html, {
+      appName: config.app_name,
+      url: url
+    });
+
+    let smtpTransport = nodemailer.createTransport(config.mailer.options);
+    let mailOptions = {
+      to: toUser,
+      from: config.mailer.from,
+      subject: 'Email Verification',
+      html: emailHTML
+    };
+    smtpTransport.sendMail(mailOptions, (err) => {
+      if (!err) {
+        resolve();
+      } else {
+        reject();
+      }
+    });
+  });
+};
+
 
 export const createUser = (name, password, fromSocial, age, languages, gender, email, userType, resolve, reject, req) => {
   let dbModel = null;
+  let flagVerified = true;
+
+  if (fromSocial == 'default') {
+    flagVerified = false;
+  }
   if (userType == 'player') {
     dbModel = Client;
   } else if (userType == 'instructor') {
@@ -48,6 +84,8 @@ export const createUser = (name, password, fromSocial, age, languages, gender, e
       user.age = age;
       user.age_range = 'J0';
       user.languages = languages;
+      user.verified = flagVerified;
+
       if (user.age <= 30 && user.age_range > 20) {
         user.age_range = 'J1';
       }
@@ -73,25 +111,45 @@ export const createUser = (name, password, fromSocial, age, languages, gender, e
           'expire': new Date().getTime() + 3600000 * 24 //one day
         };
         let token = jwt.sign(payload, config.jwt.secret);
-        req.session.token = token;
 
-        return resolve({
-          success: true,
-          message: 'User added/created successfully',
-          statusCode: 0,
-          data: {
-            'token': token,
-            'user': {
-              name, email, userType
+        if (!flagVerified) {
+          sendEmail(email, token)
+            .then(()=>{
+              return resolve({
+                success: true,
+                message: 'User added/created successfully. Please check your email for verification',
+                statusCode: 0,
+                data: {
+                }
+              });
+            }, () => {
+              let statusCode = 1023;
+              return reject({
+                success: false,
+                msg: statusCodeMessage[statusCode],
+                statusCode,
+              });
+            });
+        } else {
+          req.session.token = token;
+          return resolve({
+            success: true,
+            message: 'User added/created successfully',
+            statusCode: 0,
+            data: {
+              'token': token,
+              'user': {
+                name, email, userType
+              }
             }
-          }
-        });
+          });
+        }
       });
     }
   })
 }
 
-export default function signIn(req) {
+export default function signIn(req, params, res) {
   return new Promise((resolve, reject) => {
     let {fromSocial, userType} = req.body;
     let dbModel = null;

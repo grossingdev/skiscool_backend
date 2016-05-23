@@ -44,12 +44,12 @@ app.use((req, res) => {
   if (req.method === 'OPTIONS') {
     res.sendStatus(200);
   } else if (action && (req.method === 'POST') || req.method === 'GET') {
-    action(req, params)
+    action(req, params, res)
       .then((result) => {
         if (result instanceof Function) {
           result(res);
         } else {
-          console.info("api result:" + req.url, result);
+          // console.info("api result:" + req.url, result);
           res.json(result);
         }
       }, (reason) => {

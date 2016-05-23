@@ -23,8 +23,6 @@ import getRoutes from './routes';
 import Root from './containers/Root.dev';
 import config_head from './config_head';
 
-
-
 const scripts = config_head[ __DEVELOPMENT__ ? 'development' : 'production' ].scripts
   .map( script => (script.file?(`${(script.file.indexOf("http") > -1)?script.file:""+config_head.dir.js+"/"+script.file.split( '/' ).pop() }`):null));
 //  .map( script => `/${((script.file.indexOf("http") > -1)?script.file:""+config_head.dir.js+"/"+script.file.split( '/' ).pop()) }` );

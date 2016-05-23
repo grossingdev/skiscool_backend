@@ -22,9 +22,9 @@
         "import": "redux"
       },
       {
-        "file": "https://cdn.socket.io/socket.io-1.4.5.js",
-        "identifier": "io",
-        "import": "socket.io-client"
+        "file": "./node_modules/sockjs-client/lib/entry.js",
+        "identifier": "sockJS",
+        "import": "socket-client"
       },
 
       {

@@ -11,6 +11,8 @@ import FacebookButton from 'components/common/button/Facebook';
 import Copy from 'utils/copy';
 import {has, isEqual} from 'lodash';
 import Api from 'utils/api';
+import ReCAPTCHA from 'react-google-recaptcha';
+
 class LoginForm extends Component {
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -148,6 +150,7 @@ class LoginForm extends Component {
 
 
   renderLoginPage(styles) {
+
     let loginWithFacebook = (result) => {
       let access_token = result.accessToken;
       this.props.login({
@@ -191,6 +194,14 @@ class LoginForm extends Component {
             size="medium"
             textButton="Log in with Facebook"
             callback={loginWithFacebook} />
+
+          <ReCAPTCHA
+            className={styles.recaptcha}
+            ref="recaptcha"
+            sitekey="6LcnsSATAAAAAF5x-03wfIFUH93bZi3St2DyX6yX"
+            grecaptcha={()=>{console.info('grecaptcha')}}
+            onChange={()=>{console.info('change')}}
+          />
         </div>
 
       </div>
@@ -234,6 +245,8 @@ class LoginForm extends Component {
     );
   }
   renderSignupPage(styles) {
+    var Recaptcha = require('react-recaptcha');
+
     let signupWithFacebook = (result) => {
       let access_token = result.accessToken;
       this.props.signIn({
@@ -312,6 +325,14 @@ class LoginForm extends Component {
             size="medium"
             textButton="Sign Up with Facebook"
             callback={signupWithFacebook} />
+
+          <ReCAPTCHA
+            className={styles.recaptcha}
+            ref="recaptcha"
+            sitekey="6LcnsSATAAAAAF5x-03wfIFUH93bZi3St2DyX6yX"
+            grecaptcha={()=>{console.info('grecaptcha')}}
+            onChange={()=>{console.info('change')}}
+          />
         </div>
       </div>
     );

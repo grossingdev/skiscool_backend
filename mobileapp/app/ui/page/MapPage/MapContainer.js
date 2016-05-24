@@ -24,7 +24,10 @@ import MapPage from './MapPage';
 import {isEqual} from 'lodash';
 
 var MapContainer = React.createClass({
-
+  componentDidMount() {
+    this.props.getPlaceMarkers();
+  },
+  
   removeAllPackage() {
     this.refs['mapPage'].removeAllMapPackages();
   },
@@ -87,9 +90,8 @@ var MapContainer = React.createClass({
       )
     }
   },
-
   render() {
-  console.log('PageContainer_render'); 
+    console.log('PageContainer_render');
     return (
       <View style={styles.pageContainer}>
         <NavigationBar

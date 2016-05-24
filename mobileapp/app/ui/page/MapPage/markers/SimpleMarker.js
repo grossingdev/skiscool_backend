@@ -57,10 +57,10 @@ export const simpleMarkerHOC = compose(
     source: 'mapIcon-hotel.png',
     style: {},
     stylechild: {
-      width: 49,
-      height: 64,
-      top: -64,
-      left: -25,
+      width: 33,
+      height: 33,
+      top: -30,
+      left: -17,
       transform:[]
     },
     initialScale: 0.3,

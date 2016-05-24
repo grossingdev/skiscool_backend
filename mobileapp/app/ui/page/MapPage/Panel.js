@@ -70,11 +70,11 @@ export default class Panel extends Component{
         <Animated.View
           style={[styles.container,{height: this.state.animation}]}>
 
-          <View style={styles.titleContainer} onLayout={this._setMinHeight}>
+          <View style={styles.titleContainer} onLayout={(event)=> this._setMinHeight(event)}>
             <Text style={styles.title}>{this.state.title}</Text>
             <TouchableHighlight
               style={styles.button}
-              onPress={this.toggle}
+              onPress={()=>this.toggle()}
               underlayColor="#f1f1f1">
               <Image
                 style={styles.buttonImage}
@@ -83,7 +83,7 @@ export default class Panel extends Component{
             </TouchableHighlight>
           </View>
                 
-          <View style={styles.body} onLayout={this._setMaxHeight}>
+          <View style={styles.body} onLayout={(event) => this._setMaxHeight(event)}>
             {this.props.children}
           </View>
         </Animated.View>

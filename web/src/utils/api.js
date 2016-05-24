@@ -77,30 +77,31 @@ function _requestWithToken(accessToken, method, route, params, body, dispatch) {
   return new Promise((resolve, reject) => {
     LocalStorage.get('token')
       .then((token) => {
-        let backendRequerst = request(method, base + route);
-        backendRequerst.accept('application/json');
+        let backendRequest = request(method, base + route);
+        backendRequest.accept('application/json');
 
         if (accessToken) {
           body.token = token;
         }
 
-        backendRequerst.send(body)
+        backendRequest.send(body)
           .end((err, res) => {
             if (!res) {
               console.info("Network error");
-              return dispatch(apiResult$({
+              dispatch(apiResult$({
                 err_code: -1,
                 err_msg: "Network Error."
               }))
+              resolve({});
             } else if (err) {
               console.info("API error:" + route, res.body);
               if (dispatch) {
                 dispatch(apiResult$({
                   error_code: res.body.statusCode,
                   msg: res.body.msg
-                }));
-                resolve(res.body);
-              }
+                }))
+              };
+              resolve(res.body);
             } else {
               console.info("result:" + route, res.body);
               if (dispatch) {

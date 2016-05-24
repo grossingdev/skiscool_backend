@@ -53,7 +53,7 @@ export default class CreatePackageConfirm extends Component {
             onChangeText={(text)=>this._onChangeText(text)}
             placeholder={this.props.placeholder}
             style={styles.input}
-          ></TextInput>
+          />
 
           <View style={styles.buttonArea}>
             {this.renderButtons()}

@@ -106,7 +106,7 @@ var MapPage = React.createClass({
   _previousTop: 0,
   _LayerStyles: {},
   Layermarker: (null : ?{ setNativeProps(props: Object): void }),
-  
+
   getInitialState() {
     return {
     index:0,
@@ -142,7 +142,7 @@ var MapPage = React.createClass({
     }
   }, 
 
-   insertMarker: function(posx, posy, type) {
+   insertMarker(posx, posy, type) {
          Item = createMarker({
              x: posx,
              y: posy

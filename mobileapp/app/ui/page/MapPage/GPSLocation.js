@@ -13,7 +13,7 @@ exports.description = 'Examples of using the GPSLocation API.';
 export default class GPSLocation extends Component{
   render() {
     return (
- 	<Panel style={styles.title} title="DeviceInfo:" expanded="false">
+ 	    <Panel style={styles.title} title="DeviceInfo:" expanded="false">
         <Text>
           <Text style={styles.title}>Initial position: </Text>
           {JSON.stringify(this.props.deviceInfo.initLoc)}
@@ -22,7 +22,7 @@ export default class GPSLocation extends Component{
           <Text style={styles.title}>Current position: </Text>
           {JSON.stringify(this.props.deviceInfo.lastLoc)}
         </Text>
-    </Panel>
+      </Panel>
     );
   }
 }

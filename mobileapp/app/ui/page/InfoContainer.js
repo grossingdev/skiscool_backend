@@ -16,35 +16,33 @@ import Page3 from './Page3';
 import NavigationBar from '../component/NavigationBar';
 import constant from '../styles/constant';
 
-var InfoContainer = React.createClass({
-
+export default class InfoContainer extends Component {
   render() {
-  console.log('Info_render'); 
+    console.log('Info_render');
     return (
       <View style={styles.pageContainer}>
-    <NavigationBar
+        <NavigationBar
           leftIcon={require('image!icon_menu')}
           centerIcon={require('image!icon_clipboard')}
           rightIcon={require('image!icon_verification')}
           onLeftPress={()=>{this.props.updateShowSidebar(2)}}
           onCenterPress={()=>{
-          //previous page
-          
+            //previous page
            }}
           onRightPress={()=>{
-          //next page
+            //next page
           }}
         />
         <Swiper style={styles.wrapper}>
-			<Page1/>
+          <Page1/>
           <Page2/>
           <Page3/>
         </Swiper>
-     </View>
-        )}
-        
-        });
-        
+      </View>
+    )
+  }
+}
+
 const styles = StyleSheet.create({
   pageContainer: {
     flex: 1,
@@ -57,6 +55,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#797676',
   },
 });
-
-
-export default InfoContainer; 

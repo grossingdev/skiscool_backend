@@ -2,7 +2,7 @@
  * Created by baebae on 4/5/16.
  */
  
-import React, {AppRegistry, Component, NativeModules,StyleSheet, View, Navigator, Text, InteractionManager} from 'react-native';
+import React, {AppRegistry, Component, NativeModules, View, Navigator, Text, InteractionManager} from 'react-native';
 import Drawer from "react-native-drawer"
 import {DefaultRenderer} from "react-native-router-flux";
 import SidebarContent from './SidebarContent';
@@ -41,24 +41,22 @@ class SideDrawer extends React.Component {
 
   render() {
     const children = this.props.navigationState.children;
-    const drawerStyles = StyleSheet.create({
-  drawer: { shadowColor: '#af0ff0', shadowOpacity: 0.8, shadowRadius: 3},
-  main: {paddingLeft: 0},
-})
-console.log('rendersidebar');
+
     return (
       <Drawer
         ref={(ref) => this.sideBar = ref}
         type="displace"
-        content={<SidebarContent
-        {...this.props}
-        />} 
+        content={<SidebarContent {...this.props} />}
         tapToClose={true}
         initializeOpen={false}
         openDrawerOffset={0.5}
         negotiatePan={true}
-		tweenHandler={Drawer.tweenPresets.parallax}>
-        <DefaultRenderer navigationState={children[0]} onNavigate={this.props.onNavigate}/>
+		    tweenHandler={Drawer.tweenPresets.parallax}>
+
+        <DefaultRenderer
+          navigationState={children[0]}
+          onNavigate={this.props.onNavigate}
+        />
       </Drawer>
     )
   }

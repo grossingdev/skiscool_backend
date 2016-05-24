@@ -1,3 +1,5 @@
+
+
 /**
  * Created by baebae on 3/24/16.
  */
@@ -8,29 +10,40 @@ var RNRF = require('react-native-router-flux');
 import {Actions, Scene, Schema} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 import DeviceInfo  from 'react-native-device-info';
-
-
-import SidebarDrawer from './ui/component/sidebar/Sidebar';
-import MapPageContainer from './ui/page/MapPage/PageContainer';
-const Router = connect()(RNRF.Router);
-
 import {isEqual} from 'lodash';
+import request from 'superagent';
+import {Switch} from 'react-native-router-flux';
+import SidebarDrawer from './ui/component/sidebar/SidebarContainer';
+import MapContainer from './ui/page/MapPage/MapContainer';
+import Account from './ui/component/Login/Account';
+import Info from './ui/page/InfoContainer';
+import MapPicture from './ui/page/MapPicture';
 import {SocketClient} from './utils/socket';
 
-import {checkToken} from './redux/actions/UserActions';
-import {updateLocation, initializeLocation, updateDeviceUUID} from './redux/actions/DeviceActions';
-import request from 'superagent';
+const Router = connect()(RNRF.Router);
+const NOSWITCHER = true;
+
+ class TabIcon extends React.Component {
+    render(){
+      return (
+        <Text style={{color: this.props.selected ? "red" :"black"}}>{this.props.title}</Text>
+      );
+    }
+}
 
 class App extends Component {
   watchID = -1;
   socketClient = null;
 
   constructor() {
-    super();
+    super(); 
+  }
+
+  state = {
   }
 
   componentWillMount() {
-    this.props.dispatch(checkToken());
+    this.props.checkToken();
     if (this.socketClient == null) {
       this.socketClient = new SocketClient();
     }
@@ -49,7 +62,7 @@ class App extends Component {
               longitude: locs[1]
             }
           }
-          this.props.dispatch(initializeLocation(location));
+          this.props.initializeLocation(location);
         }
       });
   };
@@ -63,10 +76,10 @@ class App extends Component {
       setTimeout(() => StatusBar.setBarStyle('light-content'));
     }
 
-    this.props.dispatch(updateDeviceUUID(DeviceInfo.getUniqueID()));
+    this.props.updateDeviceUUID(DeviceInfo.getUniqueID());
 
     navigator.geolocation.getCurrentPosition((initialPosition) => {
-      this.props.dispatch(initializeLocation(initialPosition));
+      this.props.initializeLocation(initialPosition);
       }, (error) => {
         alert("Problem on get location from gps, will use ip location instead");
         this.getIPLocation();
@@ -77,7 +90,7 @@ class App extends Component {
       }
     );
     this.watchID = navigator.geolocation.watchPosition((lastPosition) => {
-      this.props.dispatch(updateLocation(lastPosition));
+      this.props.updateLocation(lastPosition);
     });
   }
 
@@ -85,16 +98,40 @@ class App extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-  renderContent() {
+  renderContent() { 
+    let image_resort="http://ns327841.ip-37-187-112.eu:8080/images/Val_Thorens.jpg";
+    console.log(...this.props);
     return (
       <Router sceneStyle={{backgroundColor:'#F7F7F7'}}>
-        <Scene key="root" hideNavBar={true} >
+        <Scene
+          key="root" hideNavBar={true} component={connect(state=>({user:state.user}))(Switch)} tabs={true}
+          selector={(props) => ((NOSWITCHER)||(props.user.accessToken)) ? "sidebar" : "signUp"}>
+
+          <Scene key="signUp" component={Account} {...this.props}/>
+
           <Scene key="sidebar" component={SidebarDrawer} >
-              <Scene key="testPageRouter">
-                <Scene key="mapPage" component={MapPageContainer} title="Test Page" hideNavBar={true} pageIndex={0} socketClient={this.socketClient}/>
+            <Scene key="tabs" tabs={true} hideNavBar={true}>
+
+              <Scene
+                key="tab1" initial={true}  title="Tab #1" icon={TabIcon}
+                navigationBarStyle={{backgroundColor:"red"}} titleStyle={{color:"white"}}>
+                <Scene
+                  key="mapPage" component={MapContainer}  title="Test Page"
+                  hideNavBar={true} pageIndex={0} socketClient={this.socketClient} {...this.props}/>
               </Scene>
+
+              <Scene key="tab2"  title="Plan" icon={TabIcon} navigationBarStyle={{backgroundColor:"blue"}} >
+                <Scene
+                  key="mapPage2" component={MapPicture} minimumZoomScale={0.4} maximumZoomScale={2}
+                  source={{uri:image_resort}} title="MapPicture" hideNavBar={true} pageIndex={0}/>
+              </Scene>
+
+              <Scene key="tab3" title="Info" icon={TabIcon} navigationBarStyle={{backgroundColor:"green"}} >
+                <Scene key="Info" component={Info}  title="Info" hideNavBar={true} pageIndex={0} {...this.props}/>
+              </Scene>
+            </Scene>
           </Scene>
-        </Scene>
+          </Scene>
       </Router>
     );
   }
@@ -108,4 +145,5 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+import container from './container';
+export default container(App);

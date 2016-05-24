@@ -1,11 +1,12 @@
 /**
  * Created by baebae on 4/21/16.
  */
+ //parent sidebarcontent
 import React, {Component, Image, View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import LoginPage from './LoginPage';
 import ProfilePage from './ProfilePage';
-import WaitingProgress from '../../../component/modal/Progressing';
-class PageContainer extends Component {
+import WaitingProgress from '../modal/Progressing';
+class AccountContainer extends Component {
 
   renderAccountPage() {
     let flagLogin = false;
@@ -43,4 +44,4 @@ let styles = StyleSheet.create({
   }
 });
 
-export default PageContainer;
+export default AccountContainer;

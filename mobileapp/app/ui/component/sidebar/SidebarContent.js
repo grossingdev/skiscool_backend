@@ -1,6 +1,7 @@
 /**
  * Created by baebae on 4/5/16.
  */
+ //parent sidebar
 import React, {
   StyleSheet,
   ScrollView,
@@ -13,17 +14,16 @@ import React, {
   Dimensions,
   TouchableOpacity
 } from 'react-native';
-
-const window = Dimensions.get('window');
+ 
 import constant from '../../styles/constant';
-import AccountPageContainer from './Login/PageContainer';
+import Account from '../Login/Account';
 class SidebarContent extends Component {
   state = {
   };
   renderAvatarContainer() {
     return (
       <ScrollView style={styles.container}>
-        <AccountPageContainer
+        <Account
           {...this.props}
         />
       </ScrollView>
@@ -42,8 +42,6 @@ class SidebarContent extends Component {
 const styles = StyleSheet.create({
   menu: {
     flex: 1,
-    width: window.width * 0.6,
-    height: window.height,
     paddingLeft: 10,
     paddingTop: 20,
     backgroundColor: '#2C3E50',

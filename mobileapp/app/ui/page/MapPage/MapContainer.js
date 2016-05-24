@@ -8,23 +8,22 @@ import React, {
   Component,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import Button from 'react-native-button';
-import Swiper from 'react-native-page-swiper';
+
 import {Actions} from 'react-native-router-flux';
 
 import constant from '../../styles/constant';
 import CreatePackageConfirm from './Dialogs/CreatePackageConfirm';
 import WaitingProgress from '../../component/modal/Progressing';
+import NavigationBar from '../../component/NavigationBar';
 
-import NavigationBar from './NavigationBar';
 import MapPage from './MapPage';
-import Page2 from './Page2';
-import Page3 from './Page3';
+
 import {isEqual} from 'lodash';
 
-var MapPageContainer = React.createClass({
+var MapContainer = React.createClass({
 
   removeAllPackage() {
     this.refs['mapPage'].removeAllMapPackages();
@@ -90,6 +89,7 @@ var MapPageContainer = React.createClass({
   },
 
   render() {
+  console.log('PageContainer_render'); 
     return (
       <View style={styles.pageContainer}>
         <NavigationBar
@@ -100,16 +100,10 @@ var MapPageContainer = React.createClass({
           onCenterPress={()=>{this.prepareMapPackage()}}
           onRightPress={()=>{this.removeAllPackage()}}
         />
-
-        <Swiper style={styles.wrapper}>
           <MapPage
             {...this.props}
             ref="mapPage"
           />
-          <Page2></Page2>
-          <Page3></Page3>
-        </Swiper>
-
         {this.renderDialogs()}
         {this.renderWaitingDialog()}
 
@@ -124,12 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: constant.colors.navBackColor,
     paddingTop:20
   },
-  wrapper: {
-    flex: 1,
-    marginTop: 5,
-    backgroundColor: '#797676',
-  },
 });
 
 import container from './container';
-export default container(MapPageContainer);
+export default container(MapContainer); 

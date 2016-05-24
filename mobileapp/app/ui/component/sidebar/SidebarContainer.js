@@ -1,8 +1,8 @@
 /**
  * Created by baebae on 4/5/16.
  */
-
-import React, {AppRegistry, Component, NativeModules, View, Navigator, Text, InteractionManager} from 'react-native';
+ 
+import React, {AppRegistry, Component, NativeModules,StyleSheet, View, Navigator, Text, InteractionManager} from 'react-native';
 import Drawer from "react-native-drawer"
 import {DefaultRenderer} from "react-native-router-flux";
 import SidebarContent from './SidebarContent';
@@ -26,6 +26,7 @@ class SideDrawer extends React.Component {
         this.flagOpen = !this.flagOpen ;
       }
       let component = this;
+      console.log(this.flagOpen);
       InteractionManager.runAfterInteractions(() => {
         component.props.updateShowSidebar(0);
       });
@@ -40,26 +41,28 @@ class SideDrawer extends React.Component {
 
   render() {
     const children = this.props.navigationState.children;
+    const drawerStyles = StyleSheet.create({
+  drawer: { shadowColor: '#af0ff0', shadowOpacity: 0.8, shadowRadius: 3},
+  main: {paddingLeft: 0},
+})
+console.log('rendersidebar');
     return (
       <Drawer
         ref={(ref) => this.sideBar = ref}
         type="displace"
         content={<SidebarContent
         {...this.props}
-        />}
+        />} 
         tapToClose={true}
-        openDrawerOffset={0.4}
-        panCloseMask={0.4}
+        initializeOpen={false}
+        openDrawerOffset={0.5}
         negotiatePan={true}
-        tweenHandler={(ratio) => ({
-                   main: { opacity:Math.max(0.54,1 - ratio) }
-        })}>
-        <DefaultRenderer navigationState={children[0]} />
+		tweenHandler={Drawer.tweenPresets.parallax}>
+        <DefaultRenderer navigationState={children[0]} onNavigate={this.props.onNavigate}/>
       </Drawer>
     )
   }
 }
 
 import container from './container';
-
 export default container(SideDrawer);

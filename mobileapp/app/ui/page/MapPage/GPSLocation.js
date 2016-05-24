@@ -4,7 +4,7 @@ import React,{
   Text,
   View,
 } from 'react-native';
-
+import Panel from './Panel';
 exports.framework = 'React';
 exports.title = 'GPSLocation';
 exports.description = 'Examples of using the GPSLocation API.';
@@ -13,7 +13,7 @@ exports.description = 'Examples of using the GPSLocation API.';
 export default class GPSLocation extends Component{
   render() {
     return (
-      <View>
+ 	<Panel style={styles.title} title="DeviceInfo:" expanded="false">
         <Text>
           <Text style={styles.title}>Initial position: </Text>
           {JSON.stringify(this.props.deviceInfo.initLoc)}
@@ -22,7 +22,7 @@ export default class GPSLocation extends Component{
           <Text style={styles.title}>Current position: </Text>
           {JSON.stringify(this.props.deviceInfo.lastLoc)}
         </Text>
-      </View>
+    </Panel>
     );
   }
 }

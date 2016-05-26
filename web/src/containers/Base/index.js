@@ -36,12 +36,12 @@ class Base extends Component {
 
   gotoSignUp() {
     this.context.router.push('/signup');
-    this.refs.MainSidebar.hide();
+    // this.refs.MainSidebar.hide();
   }
 
   gotoLogin() {
     this.context.router.push('/login');
-    this.refs.MainSidebar.hide();
+    // this.refs.MainSidebar.hide();
   }
 
   gotoTestView() {

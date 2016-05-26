@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import config from '../../config';
 import statusCodeMessage from '../statusCodeMessage';
 import checkFacebookToken from './checkFacebookToken';
-import {findUser} from './common';
+import {findUser, createUserToken} from './common';
 
 export default function login(req) {
   return new Promise((resolve, reject) => {
@@ -68,12 +68,7 @@ export default function login(req) {
 
             //login completed
             if (isMatch) {
-              let token = jwt.sign({
-                'name': user.name,
-                'email': user.email,
-                'userType' : userType,
-                'expire': new Date().getTime() + 3600000 * 24 //one day
-              }, config.jwt.secret);
+              let token = createUserToken(user, userType);
               req.session.token = token;
               return resolve({
                 success: true,

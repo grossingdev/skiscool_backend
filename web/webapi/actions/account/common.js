@@ -9,6 +9,9 @@
  2001: user found, return user list,
  2002: user not found, return null
  */
+import config from '../../config';
+import jwt from 'jsonwebtoken';
+
 export const findUser = (UserModel, email) => {
   return new Promise((resolve, reject) => {
     UserModel.find({email}, (err, foundUsers) => {
@@ -32,4 +35,14 @@ export const findUser = (UserModel, email) => {
       }
     });
   });
-}
+};
+
+export const createUserToken = (user, userType) => {
+  let token = jwt.sign({
+    'name': user.name,
+    'email': user.email,
+    'userType' : userType,
+    'expire': new Date().getTime() + 3600000 * 24 //one day
+  }, config.jwt.secret);
+  return token;
+};

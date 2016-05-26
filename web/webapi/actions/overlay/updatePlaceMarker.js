@@ -4,16 +4,14 @@
 import checkAuth from '../account/checkAuth';
 import statusCodeMessage from '../statusCodeMessage';
 import Overlay from '../../db/OverlayModel';
-export default function addPlaceMarker(req) {
+export default function updatePlaceMarker(req) {
   return new Promise((resolve, reject) => {
     checkAuth(req).then((user) => {
       if (user.userType == 'instructor' && user.flagAdmin == true) {
-        let newOverlay = new Overlay();
-        newOverlay.overlay_uuid = req.body.marker.overlay_uuid;
-        newOverlay.overlay_type = req.body.marker.overlay_type;
-        newOverlay.location = req.body.marker.location;
+        let overlay_uuid = req.body.overlay_uuid;
+        let location = req.body.location;
 
-        newOverlay.save(function(err) {
+        Overlay.update({overlay_uuid}, {location}, function(err, overlay) {
           if (err) {
             let statusCode = 1020;
             return reject({
@@ -22,12 +20,13 @@ export default function addPlaceMarker(req) {
               statusCode,
             });
           }
-
-          return resolve({
-            success: true,
-            statusCode: 0,
-            msg: 'add marker successfully',
-          });
+          if (!err && overlay) {
+            return resolve({
+              success: true,
+              statusCode: 0,
+              msg: 'update marker successfully',
+            });
+          }
         });
       } else {
         let statusCode = 1022;
@@ -37,7 +36,6 @@ export default function addPlaceMarker(req) {
           statusCode,
         });
       }
-
     }, () => {
       let statusCode = 1015;
       return reject({

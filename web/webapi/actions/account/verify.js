@@ -9,7 +9,7 @@ export default function checkToken(req, param) {
         return resolve({
           success: true,
           statusCode: 0,
-          message: 'User verified successfully'
+          msg: 'User verified successfully'
         });
       }, () => {
         let statusCode = 1015;

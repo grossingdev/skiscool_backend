@@ -57,7 +57,6 @@ export class SocketClient {
       let sockjs_url = SERVER + '/device';
       let sockJS = require('sockjs-client');
       this.socketClient = new sockJS(sockjs_url);
-      debugger;
       this.registerEventSockJS();
     } else if (this.socketClient !== null) {
       this.registerDevice();
@@ -97,7 +96,6 @@ export class SocketClient {
     };
 
     this.socketClient.onmessage = (message) => {
-      debugger;
       let e = JSON.parse(message.data);
 
       if (e.method == 'error') {

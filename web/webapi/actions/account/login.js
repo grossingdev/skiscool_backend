@@ -77,7 +77,7 @@ export default function login(req) {
               req.session.token = token;
               return resolve({
                 success: true,
-                message: 'login success',
+                msg: 'login success',
                 data: {
                   'token': token,
                   user: {
@@ -133,7 +133,7 @@ export default function login(req) {
 
               return resolve({
                 success: true,
-                message: 'login success',
+                msg: 'login success',
                 data: {
                   'token': token,
                   user: {

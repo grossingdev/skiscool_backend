@@ -8,7 +8,7 @@ export default function checkToken(req) {
       return resolve({
         success: true,
         statusCode: 0,
-        message: 'valid token',
+        msg: 'valid token',
         data: {
           'token': token,
           user: {

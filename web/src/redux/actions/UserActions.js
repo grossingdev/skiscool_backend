@@ -76,7 +76,7 @@ export const logout = () => {
 
 export const signIn = (param) => {
   return (dispatch) => {
-    dispatch(updateAPILoadingStatus(false));
+    dispatch(updateAPILoadingStatus(true));
     dispatch(resetAPIResult());
 
     API.account.signIn(null, param, dispatch)

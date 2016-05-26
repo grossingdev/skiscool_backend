@@ -3,14 +3,12 @@
 
 import React, { Component, PropTypes } from 'react';
 
-import container from './container';
 import Button from 'components/common/button';
 import TextInput from 'components/common/input/TextInput';
 import AutoTextComplete from 'components/common/input/AutoTextComplete';
 import FacebookButton from 'components/common/button/Facebook';
 import Copy from 'utils/copy';
 import {has, isEqual} from 'lodash';
-import Api from 'utils/api';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 class LoginForm extends Component {
@@ -27,7 +25,8 @@ class LoginForm extends Component {
     languages: [],
     gender: Copy.values.genders[0],
     userType: Copy.values.userTypes[0],
-    selectedLanguage: ''
+    selectedLanguage: '',
+    flagRobotChecked: false
   };
 
   componentWillReceiveProps(nextProps) {
@@ -65,6 +64,9 @@ class LoginForm extends Component {
         alert(apiResult.msg);
         this.props.resetAPIResult();
         this.clearFormViews();
+      } else if (stateName.length == 0) {
+        alert(apiResult.msg);
+        this.props.resetAPIResult();
       }
     }
 
@@ -84,10 +86,12 @@ class LoginForm extends Component {
       email_error_text: email ? '' : Copy.common.required,
       password_error_text: password ? '' : Copy.common.required,
       age_error_text: age ? '' : Copy.common.required,
-      language_error_text: this.getLanguages() ? '': Copy.common.required
+      language_error_text: this.getLanguages() ? '': Copy.common.required,
     });
-
-    if (name && email && password && age ) {
+    if (!this.state.flagRobotChecked) {
+      alert('Please do robot check');
+    }
+    if (name && email && password && age && this.state.flagRobotChecked) {
       this.props.signIn({
         name,
         email,
@@ -107,10 +111,14 @@ class LoginForm extends Component {
 
     this.setState({
       email_error_text: email ? '' : Copy.common.required,
-      password_error_text: password ? '' : Copy.common.required
+      password_error_text: password ? '' : Copy.common.required,
     });
 
-    if (email && password) {
+    if (!this.state.flagRobotChecked) {
+      alert('Please do robot check');
+    }
+    
+    if (email && password && this.state.flagRobotChecked) {
       this.props.login({
         email,
         password,
@@ -200,7 +208,7 @@ class LoginForm extends Component {
             ref="recaptcha"
             sitekey="6LcnsSATAAAAAF5x-03wfIFUH93bZi3St2DyX6yX"
             grecaptcha={()=>{console.info('grecaptcha')}}
-            onChange={()=>{console.info('change')}}
+            onChange={()=>this.setState({flagRobotChecked: true})}
           />
         </div>
 
@@ -331,7 +339,7 @@ class LoginForm extends Component {
             ref="recaptcha"
             sitekey="6LcnsSATAAAAAF5x-03wfIFUH93bZi3St2DyX6yX"
             grecaptcha={()=>{console.info('grecaptcha')}}
-            onChange={()=>{console.info('change')}}
+            onChange={()=>this.setState({flagRobotChecked: true})}
           />
         </div>
       </div>
@@ -355,4 +363,4 @@ class LoginForm extends Component {
 
 }
 
-export default container(LoginForm);
+export default LoginForm;

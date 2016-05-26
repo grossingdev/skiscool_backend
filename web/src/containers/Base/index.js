@@ -82,7 +82,6 @@ class Base extends Component {
         {this.renderMainSideBar()}
         <div className={styles.Base_Content}>
           {this._childrenWithProps()}
-          <Nav />
         </div>
       </div>
     );

@@ -13,7 +13,16 @@ class MapCard extends Component {
       </div>
     )
   }
-
+  renderAdminButtons(styles, flagShowRemoveButton) {
+    if (flagShowRemoveButton) {
+      return (
+        <div className={styles.btnContainer}>
+          <Button type='label' className={styles.btnDelete} onClick={()=>{this.props.removeMarker()}}>{'Delete this marker'}</Button>
+          <Button type='label' className={styles.btnDelete} onClick={()=>{this.props.moveMarker()}}>{'Move this marker'}</Button>
+        </div>
+      )
+    }
+  }
   render() {
     const styles = require('./styles.scss');
     let {markerInfo} = this.props;
@@ -35,9 +44,7 @@ class MapCard extends Component {
       return (
         <div {...this.props}>
           <div className={styles.markerOverlay}>
-            <div className={styles.btnContainer}>
-              {flagShowRemoveButton && <Button type='label' className={styles.btnDelete} onClick={()=>{this.props.removeMarker()}}>{'Delete this marker'}</Button>}
-            </div>
+            {this.renderAdminButtons(styles, flagShowRemoveButton)}
           </div>
           <div className={styles.closeIcon}></div>
         </div>

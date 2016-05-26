@@ -21,7 +21,7 @@ export default function removePlaceMarker(req) {
           return resolve({
             success: true,
             statusCode: 0,
-            message: 'remove marker successfully',
+            msg: 'remove marker successfully',
           });
         });
       } else {

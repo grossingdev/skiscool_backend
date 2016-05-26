@@ -117,7 +117,7 @@ export const createUser = (name, password, fromSocial, age, languages, gender, e
             .then(()=>{
               return resolve({
                 success: true,
-                message: 'User added/created successfully. Please check your email for verification',
+                msg: 'User added/created successfully. Please check your email for verification',
                 statusCode: 0,
                 data: {
                 }
@@ -134,7 +134,7 @@ export const createUser = (name, password, fromSocial, age, languages, gender, e
           req.session.token = token;
           return resolve({
             success: true,
-            message: 'User added/created successfully',
+            msg: 'User added/created successfully',
             statusCode: 0,
             data: {
               'token': token,

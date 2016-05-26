@@ -19,7 +19,15 @@ class AccountView extends Component {
       this.context.router.goBack();
     }
   }
-
+  renderWaitingPage(styles) {
+    if (this.props.apiWaitingStatus == true) {
+      return (
+        <div className={styles['waiting_area']}>
+          <span>Waiting....</span>
+        </div>
+      );
+    }
+  }
   render() {
     let styles = require('./styles.scss');
     let pageType = "loginPage";
@@ -37,9 +45,11 @@ class AccountView extends Component {
         <div className={styles['app_area']}>
           <AppPage></AppPage>
         </div>
+        {this.renderWaitingPage(styles)}
       </div>
     );
   }
 }
 
-export default AccountView;
+import container from './container';
+export default container(AccountView);

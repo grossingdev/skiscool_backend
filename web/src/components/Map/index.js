@@ -27,6 +27,7 @@ class Map extends Component {
   state = {
     selectedDevice: null,
     flagShowOverlay: false,
+    flagMoveStatus: false,
     marker_id: '',
     overlayX: 0,
     overlayY: 0
@@ -49,7 +50,20 @@ class Map extends Component {
             // once marker style is selected, admin instructor could add new marker
             let {user} = this.props;
 
-            if (this.props.markerStyle > 0 && user && user.profile && user.profile.userType == 'instructor') {
+            //check moving mode
+            if (this.state.flagMoveStatus == true) {
+              this.props.updatePlaceMarker({
+                overlay_uuid: this.state.marker_id,
+                location: [event.latlng.lat.toFixed(4), event.latlng.lng.toFixed(4)],
+              });
+
+              this.setState({
+                marker_id: '',
+                flagMoveStatus: false
+              })
+            }
+            //check adding mode
+            else if (this.props.markerStyle > 0 && user && user.profile && user.profile.userType == 'instructor') {
               this.props.addNewPlaceMarker({
                 overlay_type: this.props.markerStyle,
                 location: [event.latlng.lat.toFixed(4), event.latlng.lng.toFixed(4)],
@@ -226,6 +240,14 @@ class Map extends Component {
       flagShowOverlay: false
     });
   }
+
+  moveMarker() {
+    this.setState({
+      flagMoveStatus: true,
+      flagShowOverlay: false
+    });
+  }
+
   renderMapOverlay(styles) {
     let width = 400;
     let height = 300;
@@ -248,6 +270,7 @@ class Map extends Component {
           style={markerOverlayStyle}
           markerInfo={this.state.selectedDevice}
           removeMarker={()=>{this.removeMarker()}}
+          moveMarker={()=>{this.moveMarker()}}
           user={this.props.user}
         />
       )

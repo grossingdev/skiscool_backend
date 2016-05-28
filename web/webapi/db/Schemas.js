@@ -42,7 +42,7 @@ const Schemas = {
   Overlay: new Schema({
     id: Number,
     overlay_uuid: {type: String, required: true},
-    overlay_type: Number, //should be hotel: 0, chalet: 2, restaurant: 3, ...
+    overlay_type: Number, //should be hotel: 1, chalet: 2, restaurant: 3, ...
     location: [Number], //will contains [lat, lon]
   })
 };

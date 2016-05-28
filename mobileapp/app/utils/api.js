@@ -48,6 +48,11 @@ export default {
       method: 'POST',
       route: '/overlay/removePlaceMarker',
     }),
+    updatePlaceMarker: _generateRequest({
+      token: true,
+      method: 'POST',
+      route: '/overlay/updatePlaceMarker',
+    }),
     getPlaceMarkers: _generateRequest({
       token: false,
       method: 'GET',

@@ -3,7 +3,7 @@
  */
  //parent sidebarcontent
 import React, {Component, Image, View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import LoginPage from './LoginPage';
+import LoginRegisterPage from './LoginRegisterPage';
 import ProfilePage from './ProfilePage';
 import WaitingProgress from '../modal/Progressing';
 class AccountContainer extends Component {
@@ -16,7 +16,7 @@ class AccountContainer extends Component {
     }
     if (flagLogin == false) {
       return (
-        <LoginPage
+        <LoginRegisterPage
           {...this.props}
         />
       )

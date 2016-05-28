@@ -10,6 +10,8 @@ import SimpleMarker from './markers/SimpleMarker';
 import GPSLocation from './GPSLocation'; 
 import compose from 'recompose/compose';
 import {MapboxUtils, convertXYLatLng} from './mapboxUtils';
+import generateUUID from '../../../utils/uuid';
+
 var RCTUIManager = require('NativeModules').UIManager;
 const MAP_REF = 'map';
 const STYLE_URL = 'http://ns327841.ip-37-187-112.eu:8080/1.json';
@@ -40,17 +42,17 @@ const createMarker = (coord, type, key) => {
   key = nbmarker;
   let Composed = null;
 
-  if (type == "resto") {
+  if (type == 3) {
     Composed = compose(defaultProps({
       coord: coord,
       index: key
     }), Marker_resto)(Marker);
-  } else if (type == "chalet") {
+  } else if (type == 2) {
     Composed = compose(defaultProps({
       coord: coord,
       index: key
     }), Marker_chalet)(Marker);
-  } else {
+  } else if (type == 1) {
     Composed = compose(defaultProps({
       coord: coord,
       index: key
@@ -72,7 +74,9 @@ var MapPage = React.createClass({
   _previousTop: 0,
   _LayerStyles: {},
   Layermarker: null,
-
+  startTouchTime: 0,
+  releaseTouchTime: 0,
+  flagDoubleTouch: false,
 
   mapBounds: {},
   flagAddMarkerProgressing : false,
@@ -83,7 +87,7 @@ var MapPage = React.createClass({
       py: 0,
       index:0,
       layerMarkers: [ ],
-      TypeMarker:'resto',
+      markerStyle: 1, //hotel: 1, chalet: 2, restaurant: 3, ...
       mapLocation: {
         latitude: 0,
         longitude: 0
@@ -126,8 +130,8 @@ var MapPage = React.createClass({
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: this._handleStartShouldSetPanResponder,
       onMoveShouldSetPanResponder: this._handleMoveShouldSetPanResponder,
-      onPanResponderGrant: this._handlePanResponderGrant,
       onPanResponderMove: this._handlePanResponderMove,
+      onPanResponderGrant: this._handlePanResponderGrant,
       onPanResponderRelease: this._handlePanResponderEnd,
       onPanResponderTerminate: this._handlePanResponderEnd,
     });
@@ -156,6 +160,7 @@ var MapPage = React.createClass({
         this.flagAddMarkerProgressing = false;
       })
   },
+  
   getMapViewSize() {
     return new Promise((resolve, reject) => {
         this.getBounds(MAP_REF, (bounds) => {
@@ -195,12 +200,6 @@ var MapPage = React.createClass({
     return convertXYLatLng(position, this.mapWidth, this.mapHeight, this.mapBounds);
   },
 
-  putTypeMarker(typ) {
-    this.setState({
-      TypeMarker: typ
-    })
-  },
-
   MyLayoutofMarkers(layerMarkers) {
     return(
       <View
@@ -210,7 +209,31 @@ var MapPage = React.createClass({
         }}
         {...this._panResponder.panHandlers}
       >
-      {layerMarkers}
+        <MapboxGG
+          order={2}
+          style={styles.map}
+          direction={0}
+          rotateEnabled={false}
+          scrollEnabled={true}
+          zoomEnabled={true}
+          showsUserLocation={true}
+          followUserLocation={true}
+          logoIsHidden={true}
+          ref={MAP_REF}
+          accessToken={'pk.eyJ1Ijoic2ltb25tYXAiLCJhIjoiY2luNHcyMjhnMDBzMnZxbTI5NGNjN3hxbyJ9.OQmEh5-9T3Og_0qE9dRlQg'}
+          styleURL={STYLE_URL}
+          centerCoordinate={this.state.center}
+          zoomLevel={this.state.zoom}
+          direction={this.state.direction}
+          annotations={this.state.annotations}
+          onRegionChange={this.onChange}
+          onOpenAnnotation={this.onOpenAnnotation}
+          onUpdateUserLocation={this.onUpdateUserLocation}
+          onOfflineProgressDidChange={(res)=>this.onSavePackageOfflineProgress(res)}
+          onOfflineMaxAllowedMapboxTiles={(res)=>this.onSavePackageOfflineError(res)}
+          attributionButtonIsHidden
+        />
+        {layerMarkers}
       </View>
     )
   },
@@ -223,22 +246,28 @@ var MapPage = React.createClass({
         let x = e.pageX;
         let y = e.pageY - this.state.py;
 
-        if (typeof(e) !== 'undefined') {
-          this.addLayerMarker(x, y, this.state.TypeMarker);
-        } else {
-          console.log('prob_insertion out of view maybe?');
-        }
+        // if (typeof(e) !== 'undefined') {
+        //   this.addLayerMarker(x, y, this.state.TypeMarker);
+        // } else {
+        //   console.log('prob_insertion out of view maybe?');
+        // }
 
 
         //below to check my function convert work good (no need)
         let res = this.getLatLngFromPoint({x, y});
-        let newMarker = {
-          coordinates: [res.lat,res.lon],
-          type: 'point',
-          title: 'This is a new marker',
-          id: 'foo'
-        };
-        this.addAnnotations(MAP_REF, [newMarker]);
+
+        this.props.addNewPlaceMarker({
+          overlay_type: this.state.markerStyle,
+          location: [res.lat,res.lon],
+          overlay_uuid: generateUUID()
+        });
+        // let newMarker = {
+        //   coordinates: [res.lat,res.lon],
+        //   type: 'point',
+        //   title: 'This is a new marker',
+        //   id: 'foo'
+        // };
+        // this.addAnnotations(MAP_REF, [newMarker]);
     });
   },
 
@@ -255,15 +284,7 @@ var MapPage = React.createClass({
     this.addAnnotations(MAP_REF, [newMarker]);
 
     let res = this.getLatLngFromPoint({lat, lon});
-    let type = '';
-    if (marker.overlay_type == 1) {
-      type = 'hotel';
-    } else if (marker.overlay_type == 2) {
-      type = 'resto';
-    } else if (marker.overlay_type == 3) {
-      type = 'chalet';
-    }
-    this.addLayerMarker(res.x, res.y, type);
+    this.addLayerMarker(res.x, res.y, marker.overlay_type);
   },
 
   setMapZoom(targetZoom) {
@@ -316,7 +337,6 @@ var MapPage = React.createClass({
 
   _handleStartShouldSetPanResponder: function(e: Object, gestureState: Object): boolean {
     // Should we become active when the user presses down on the circle?
-    this.addNewMarkerFromPosition(e.nativeEvent,this.state.typeselected);
     return true;
   },
   _handleMoveShouldSetPanResponder: function(e: Object, gestureState: Object): boolean {
@@ -325,14 +345,27 @@ var MapPage = React.createClass({
   },
 
   _handlePanResponderGrant: function(e: Object, gestureState: Object) {
+    console.info('start', new Date().toString());
+    this.startTouchTime = new Date().getTime();
+    if (this.startTouchTime - this.releaseTouchTime < 500) {
+      this.flagDoubleTouch = true;
+    } else {
+      this.flagDoubleTouch = false;
+    }
     this._highlight();
     return true;
   },
-  _handlePanResponderMove: function(e: Object, gestureState: Object) { 
-   // this._updateNativeStyles();
-  },
+
   _handlePanResponderEnd: function(e: Object, gestureState: Object) {
-    this._unHighlight(); 
+    this.releaseTouchTime = new Date().getTime();
+    this._unHighlight();
+
+    let delta = this.releaseTouchTime - this.startTouchTime;
+    console.info('delta', delta + ' ' + this.flagDoubleTouch);
+    if (delta < 300 && !this.flagDoubleTouch) {
+      this.startTouchTime = this.releaseTouchTime;
+      this.addNewMarkerFromPosition(e.nativeEvent,this.state.typeselected);
+    }
   },
   
   render() {
@@ -348,13 +381,13 @@ var MapPage = React.createClass({
 
 			  <View style={{flexDirection:'row'}}>
           <View style={{flexDirection:'column'}}>
-            <Text onPress={()=>this.putTypeMarker('resto')} style={{width:50,backgroundColor:'green'}}>
+            <Text onPress={()=>this.setState({markerStyle: 3})} style={{width:50,backgroundColor:'green'}}>
               Do resto marker
             </Text>
-            <Text onPress={()=>this.putTypeMarker('chalet')} style={{width:50,backgroundColor:'blue'}}>
+            <Text onPress={()=>this.setState({markerStyle: 2})} style={{width:50,backgroundColor:'blue'}}>
               Do chalet marker
             </Text>
-            <Text onPress={()=>this.putTypeMarker('hotel')} style={{width:50,backgroundColor:'red'}}>
+            <Text onPress={()=>this.setState({markerStyle: 1})}style={{width:50,backgroundColor:'red'}}>
               Do hotel marker
             </Text>
           </View>
@@ -405,31 +438,7 @@ var MapPage = React.createClass({
             <Text>zoom level: {this.state.mapLocation.zoom}</Text>
           </View>
 		 
-          <MapboxGG
-            order={1}
-            style={styles.map}
-            direction={0}
-            rotateEnabled={false}
-            scrollEnabled={true}
-            zoomEnabled={true}
-            showsUserLocation={true}
-            followUserLocation={true}
-            logoIsHidden={true}
-            ref={MAP_REF}
-            accessToken={'pk.eyJ1Ijoic2ltb25tYXAiLCJhIjoiY2luNHcyMjhnMDBzMnZxbTI5NGNjN3hxbyJ9.OQmEh5-9T3Og_0qE9dRlQg'}
-            styleURL={STYLE_URL}
-            centerCoordinate={this.state.center}
-            zoomLevel={this.state.zoom}
-            direction={this.state.direction}
-            annotations={this.state.annotations}
-            onRegionChange={this.onChange}
-            onOpenAnnotation={this.onOpenAnnotation}
-            onUpdateUserLocation={this.onUpdateUserLocation}
-            onOfflineProgressDidChange={(res)=>this.onSavePackageOfflineProgress(res)}
-            onOfflineMaxAllowedMapboxTiles={(res)=>this.onSavePackageOfflineError(res)}
-            attributionButtonIsHidden
-          >  
-          </MapboxGG>
+
         </Order>
       </View>
     )

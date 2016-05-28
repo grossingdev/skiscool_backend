@@ -50,6 +50,19 @@ export const removePlaceMarker = (uuid) => {
   }
 };
 
+export const updatePlaceMarker = (marker) => {
+  return (dispatch) => {
+    API.overlay.updatePlaceMarker(null, marker, dispatch)
+      .then((res) => {
+        if (res.success == true) {
+          dispatch(updatePlaceMarker$(marker));
+        } else if (res.msg) {
+          alert(res.msg)
+        }
+      });
+  }
+}
+
 // get place markers
 export const getPlaceMarkers = (range) => {
   return (dispatch) => {
@@ -70,7 +83,11 @@ const removePlaceMarker$ = (overlay_uuid) => ({
   overlay_uuid
 });
 
-
+export const UPDATE_PLACE_MARKER = 'UPDATE_PLACE_MARKER';
+const updatePlaceMarker$ = (marker) => ({
+  type: UPDATE_PLACE_MARKER,
+  marker
+});
 export const GET_PLACE_MARKERS = 'GET_PLACE_MARKERS';
 const getPlaceMarkers$ = (placeMarkers) => ({
   type: GET_PLACE_MARKERS,

@@ -30,27 +30,29 @@ const jewelStyle = (scale,styles) => {
   return obj.marker;
 }
  
-export const simpleMarker = ({source, style, stylechild, defaultMotionStyle, motionStyle}) => (
-  <Motion
-    defaultStyle={defaultMotionStyle}
-    style={motionStyle}>
-  {  
-    ({ scale }) => {
-      if (source == 'mapIcon-hotel.png')
-        src = srchot;
-      else if (source == 'mapIcon-chalet.png')
-        src = srcchal;
-      else
-        src = srcresto;
-      return (
-        <View style={style}>
-          <Image source={src} style={jewelStyle(scale, stylechild)}/>
-        </View>
-      )
-    }
-  }
-  </Motion>
-);
+export const simpleMarker = ({source, style, onPress, stylechild, defaultMotionStyle, motionStyle}) => {
+  return (
+    <Motion
+      defaultStyle={defaultMotionStyle}
+      style={motionStyle}>
+      {
+        ({ scale }) => {
+          if (source == 'mapIcon-hotel.png')
+            src = srchot;
+          else if (source == 'mapIcon-chalet.png')
+            src = srcchal;
+          else
+            src = srcresto;
+          return (
+            <TouchableOpacity style={style} onPress={()=>onPress()}>
+              <Image source={src} style={jewelStyle(scale, stylechild)}/>
+            </TouchableOpacity>
+          )
+        }
+      }
+    </Motion>
+  )
+}
 
 export const simpleMarkerHOC = compose(
   defaultProps({
@@ -67,7 +69,6 @@ export const simpleMarkerHOC = compose(
     defaultScale: 0.6,
     hoveredScale: 0.7,
   }),
-  // resuse HOC
   clusterMarkerHOC
 );
 

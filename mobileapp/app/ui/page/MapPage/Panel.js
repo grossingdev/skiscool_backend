@@ -63,8 +63,8 @@ export default class Panel extends Component{
         icon = this.icons['up'];
       }
 
-      console.log('etat:');
-      console.log(this.state.expanded);
+      // console.log('etat:');
+      // console.log(this.state.expanded);
 
       return (
         <Animated.View

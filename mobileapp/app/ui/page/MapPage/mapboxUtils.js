@@ -262,7 +262,7 @@ export const convertXYLatLng = (coord, mapWidth, mapHeight, mapBounds) => {
    pixel position (height_map,width_map) -> (sw_lat,ne_lon) == (45.2961,6.58401)
    */
   //BOUNDS is our map bounds
-  console.log(mapBounds);
+  // console.log(mapBounds);
   ne_lon = mapBounds[3];
   ne_lat = mapBounds[2];
   sw_lat = mapBounds[0];

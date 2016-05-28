@@ -11,6 +11,7 @@ import GPSLocation from './GPSLocation';
 import compose from 'recompose/compose';
 import {MapboxUtils, convertXYLatLng} from './mapboxUtils';
 import generateUUID from '../../../utils/uuid';
+import Triangle from 'react-native-triangle';
 
 var RCTUIManager = require('NativeModules').UIManager;
 const MAP_REF = 'map';
@@ -24,6 +25,7 @@ const Marker = (props) => {
     <SimpleMarker
       key={props.index} source={props.src}
       style={{position:'absolute', left:props.coord.x, top:props.coord.y}}
+      onPress={props.onPress}
     />
   )
 };
@@ -37,7 +39,7 @@ let nbmarker = 0;
   
 // yes compose is hard to understand (he allow to merge properties together and apply this props to a 'template' Marker
 //createMarker take object (x,y) ; type (ex chalet) string 
-const createMarker = (coord, type, key) => {
+const createMarker = (coord, type, key, onPress) => {
   nbmarker++;
   key = nbmarker;
   let Composed = null;
@@ -45,17 +47,20 @@ const createMarker = (coord, type, key) => {
   if (type == 3) {
     Composed = compose(defaultProps({
       coord: coord,
-      index: key
+      index: key,
+      onPress
     }), Marker_resto)(Marker);
   } else if (type == 2) {
     Composed = compose(defaultProps({
       coord: coord,
-      index: key
+      index: key,
+      onPress
     }), Marker_chalet)(Marker);
   } else if (type == 1) {
     Composed = compose(defaultProps({
       coord: coord,
-      index: key
+      index: key,
+      onPress
     }), Marker_hotel)(Marker);
   }
   return Composed;
@@ -95,7 +100,14 @@ var MapPage = React.createClass({
       initMap:false,
       center: {
         latitude: 45.3007, longitude: 6.5800
-      }, 
+      },
+      activeMarker: {
+        overlay_uuid: '',
+        left: 0,
+        top: 0,
+        flagUpdate: false,
+        flagShow: false,
+      },
       annotations: [{
         coordinates: [45.3007, 6.5800],
         'type': 'point',
@@ -116,11 +128,24 @@ var MapPage = React.createClass({
       zoom: 15,
       direction: 0,
     }
-  }, 
+  },
 
-  addLayerMarker(x, y, type) {
-    let Item = createMarker({x, y}, type);
+  showMarkerOverlay(overlay_uuid, left, top) {
+    this.setState({
+      activeMarker: {overlay_uuid, left, top, flagShow: true, flagUpdate: false}
+    })
+  },
+
+  hideMarkerOverlay() {
+    let {activeMarker} = this.state;
+    activeMarker.flagShow = false;
+    this.setState({activeMarker});
+  },
+
+  addLayerMarker(x, y, type, overlay_uuid) {
     let {layerMarkers, index} = this.state;
+    let onPress = ()=>{this.showMarkerOverlay(overlay_uuid, x, y)};
+    let Item = createMarker({x, y}, type, index, onPress);
     layerMarkers.push(<Item key = {this.state.index} />);
     index ++;
     this.setState({index, layerMarkers});
@@ -173,12 +198,12 @@ var MapPage = React.createClass({
             this.setState({
               mapWidth, mapHeight, py
             });
-            console.log("ox: " + ox);
-            console.log("oy: " + oy);
-            console.log("width: " + mapWidth);
-            console.log("height: " + mapHeight);
-            console.log("px: " + px);
-            console.log("py: " + py);
+            // console.log("ox: " + ox);
+            // console.log("oy: " + oy);
+            // console.log("width: " + mapWidth);
+            // console.log("height: " + mapHeight);
+            // console.log("px: " + px);
+            // console.log("py: " + py);
             resolve();
             //Do stuff with the values
           });
@@ -200,6 +225,33 @@ var MapPage = React.createClass({
     return convertXYLatLng(position, this.mapWidth, this.mapHeight, this.mapBounds);
   },
 
+  renderMarkerOverlay() {
+    let {overlay_uuid, left, top, flagShow} = this.state.activeMarker;
+    let width = 200;
+    let height = 60;
+    left = left - width / 2;
+    top = top - height - 30;
+    if (flagShow == true) {
+      return (
+        <View style={{position:'absolute', left, top, width, height, flexDirection: 'column', alignItems: 'center'}}>
+          <View style={styles.markerOverlayContainer}>
+            <TouchableOpacity style={styles.markerOverlayButton} onPress={()=>{this.removeMarker()}}>
+              <Text>Remove</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.markerOverlayButton} onPress={()=>{this.updateMarker()}}>
+              <Text>Update</Text>
+            </TouchableOpacity>
+          </View>
+          <Triangle
+            width={12}
+            height={10}
+            color={'white'}
+            direction={'down'}
+          />
+        </View>
+      )
+    }
+  },
   MyLayoutofMarkers(layerMarkers) {
     return(
       <View
@@ -234,6 +286,7 @@ var MapPage = React.createClass({
           attributionButtonIsHidden
         />
         {layerMarkers}
+        {this.renderMarkerOverlay()}
       </View>
     )
   },
@@ -246,29 +299,37 @@ var MapPage = React.createClass({
         let x = e.pageX;
         let y = e.pageY - this.state.py;
 
-        // if (typeof(e) !== 'undefined') {
-        //   this.addLayerMarker(x, y, this.state.TypeMarker);
-        // } else {
-        //   console.log('prob_insertion out of view maybe?');
-        // }
-
-
-        //below to check my function convert work good (no need)
         let res = this.getLatLngFromPoint({x, y});
 
-        this.props.addNewPlaceMarker({
-          overlay_type: this.state.markerStyle,
-          location: [res.lat,res.lon],
-          overlay_uuid: generateUUID()
-        });
-        // let newMarker = {
-        //   coordinates: [res.lat,res.lon],
-        //   type: 'point',
-        //   title: 'This is a new marker',
-        //   id: 'foo'
-        // };
-        // this.addAnnotations(MAP_REF, [newMarker]);
+        if (this.state.activeMarker.flagUpdate == false) {
+          this.props.addNewPlaceMarker({
+            overlay_type: this.state.markerStyle,
+            location: [res.lat,res.lon],
+            overlay_uuid: generateUUID()
+          });
+        } else {
+          this.props.updatePlaceMarker({
+            overlay_uuid: this.state.activeMarker.overlay_uuid,
+            location: [res.lat,res.lon],
+          });
+          this.setState({activeMarker: {flagUpdate: false}})
+        }
+
     });
+  },
+
+  removeMarker() {
+    if (this.state.activeMarker.overlay_uuid != '') {
+      this.props.removePlaceMarker(this.state.activeMarker.overlay_uuid);
+    }
+    this.hideMarkerOverlay();
+  },
+
+  updateMarker() {
+    let {activeMarker} = this.state;
+    activeMarker.flagShow = false;
+    activeMarker.flagUpdate = true;
+    this.setState({activeMarker});
   },
 
   addNewMarkerFromLocation(marker) {
@@ -284,7 +345,9 @@ var MapPage = React.createClass({
     this.addAnnotations(MAP_REF, [newMarker]);
 
     let res = this.getLatLngFromPoint({lat, lon});
-    this.addLayerMarker(res.x, res.y, marker.overlay_type);
+    if (res.y > 30) {
+      this.addLayerMarker(res.x, res.y, marker.overlay_type, marker.overlay_uuid);
+    }
   },
 
   setMapZoom(targetZoom) {
@@ -310,12 +373,8 @@ var MapPage = React.createClass({
     this.addPlaceMarkers(this.props);
   },
 
-  onOpenAnnotation(annotation) {
-    console.log(annotation)
-  },
-
   onUpdateUserLocation(location) {
-    console.log(location)
+    // console.log(location)
   },
 
   onOpenAnnotation(annotation) {
@@ -347,6 +406,9 @@ var MapPage = React.createClass({
   _handlePanResponderGrant: function(e: Object, gestureState: Object) {
     console.info('start', new Date().toString());
     this.startTouchTime = new Date().getTime();
+
+    this.hideMarkerOverlay();
+
     if (this.startTouchTime - this.releaseTouchTime < 500) {
       this.flagDoubleTouch = true;
     } else {
@@ -479,6 +541,20 @@ let styles = StyleSheet.create({
     left:0,
     width:200,
     backgroundColor:'white'
+  },
+  markerOverlayContainer: {
+    flex: 1,
+    padding: 10,
+    alignSelf: 'stretch',
+    backgroundColor:'white',
+    flexDirection: 'row',
+    borderRadius: 10,
+    height: 40
+  },
+  markerOverlayButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 

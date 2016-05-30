@@ -3,3 +3,4 @@ mobileapp/node_modules
 mobileapp/android/.idea
 Archive.zip
 *.db
+web/static/tiles

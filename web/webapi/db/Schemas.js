@@ -51,6 +51,14 @@ const Schemas = {
     fileName: String,
     base64Data: String,
     boundary: [Number], //will contains [start lat, start lon, end lat, end lon]
+  }),
+
+  Tiles: new Schema({
+    _id: Number,
+    x: Number,
+    y: Number,
+    z: Number,
+    url_template: String
   })
 };
 export default Schemas;

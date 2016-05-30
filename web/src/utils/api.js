@@ -43,28 +43,33 @@ export default {
       route: '/account/checkToken',
     }),
   },
-  overlay: {
+  map: {
     addPlaceMarker: _generateRequest({
       token: true,
       method: 'POST',
-      route: '/overlay/addPlaceMarker',
+      route: '/map/addPlaceMarker',
     }),
     removePlaceMarker: _generateRequest({
       token: true,
       method: 'POST',
-      route: '/overlay/removePlaceMarker',
+      route: '/map/removePlaceMarker',
     }),
     updatePlaceMarker: _generateRequest({
       token: true,
       method: 'POST',
-      route: '/overlay/updatePlaceMarker',
+      route: '/map/updatePlaceMarker',
     }),
     getPlaceMarkers: _generateRequest({
       token: false,
       method: 'GET',
-      route: '/overlay/getPlaceMarkers',
+      route: '/map/getPlaceMarkers',
     }),
-  }
+    saveBoundary: _generateRequest({
+      token: true,
+      method: 'POST',
+      route: '/map/saveBoundary',
+    }),
+  },
 };
 
 function _parameterizeRoute(route, params) {

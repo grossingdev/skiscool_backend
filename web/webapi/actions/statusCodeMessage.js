@@ -22,7 +22,8 @@ const  statusCodeMessage = {
   1020 : 'Mongodb error occured while adding/removing/updating overlay information',
   1021 : 'There\'s no place markers on server.',
   1022 : 'Current user is not Instructor & Admin user.',
-  1023 : 'Failed create verification email'
+  1023 : 'Failed create verification email',
+  1024 : 'Mongodb error occured while save boundary information',
 };
 
 export default statusCodeMessage;

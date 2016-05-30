@@ -1,3 +1,4 @@
+import RNFS from 'react-native-fs';
 const IS_ADMIN = true;
 const MAP_REF = 'map';
 const STYLE_URL = 'http://ns327841.ip-37-187-112.eu:8080/1.json';
@@ -17,6 +18,9 @@ const PACKAGE_MERIBEL = {
 };
 
 export const MapboxUtils = {
+  savePackageInfo: null,
+  flagCompleted: true,
+
   addResortBoundPackage(package_obj, name_region) {
     /*
       NIKO
@@ -134,7 +138,7 @@ export const MapboxUtils = {
 
   saveMapPackage(packageName, region) {
     let _self = this;
-    let savePackageInformation = {
+    this.savePackageInformation = {
       name: packageName,
       bounds: [region.ne_lat, region.ne_lon, region.sw_lat, region.sw_lon],
       minZoomLevel: 1,
@@ -143,8 +147,9 @@ export const MapboxUtils = {
       styleURL: STYLE_URL,
       metadata: {}
     };
-
-    this.addPackForRegion('map', savePackageInformation, (err, res1) => {
+    console.info('test');
+    this.flagCompleted = false;
+    this.addPackForRegion('map', this.savePackageInformation, (err, res1) => {
       console.info("package saved in device:", res1);
       console.info(region);
       if (err) {
@@ -163,7 +168,7 @@ export const MapboxUtils = {
       console.info("remove pack", res1);
     });
 
-    let savePackageInfo = {
+    this.savePackageInformation = {
       name: packageName,
       bounds: [region.ne_lat, region.ne_lon, region.sw_lat, region.sw_lon],
       minZoomLevel: 1,
@@ -172,8 +177,10 @@ export const MapboxUtils = {
       styleURL: STYLE_URL,
       metadata: {}
     };
-    this.addPackForRegion('map', savePackageInfo, (err, res1) => {
+    this.flagCompleted = false;
+    this.addPackForRegion('map', this.savePackageInformation, (err, res1) => {
       //callback after save in device to save bounds and name in database.
+
       console.info("package saved in device:", res1);
       console.info(region);
       if (err) {
@@ -191,12 +198,27 @@ export const MapboxUtils = {
     let totalSize = res.countOfBytesCompleted / 1024.0 / 1024.0;
 
     let message = "Package map files: " + completedCount + "/" + totalCount + "\nSize:" + totalSize.toFixed(2) + "MB";
-    let flagDownloadingPackage = true;
-    if (totalCount == completedCount) {
-      flagDownloadingPackage = false;
+    if (totalCount == completedCount && this.flagCompleted == false) {
+      this.flagCompleted = true;
+
+      let path = RNFS.ApplicationSupportDirectory + '/Skiscool.myapp/cache.db';
+      RNFS.readFile(path, 'base64')
+        .then((content) => {
+          let requestInfo = Object.assign({}, this.savePackageInformation);
+          console.info('saveBoundary', path + ' ' + JSON.stringify(this.savePackageInformation));
+          requestInfo.base64Data = content;
+          this.props.saveBoundary(requestInfo);
+          this.props.updatePackageRunningStatus(false);
+        })
+        .catch((err) => {
+          console.info('FILE READEN ', err.message);
+        });
+      this.props.updatePackageRunningStatus(false);
+    } else {
+      this.props.updatePackageRunningStatus(true);
+      this.props.updatePackageStatusMessage(message);
     }
-    this.props.updatePackageRunningStatus(flagDownloadingPackage);
-    this.props.updatePackageStatusMessage(message);
+
   },
 
   onSavePackageOfflineError(res) {

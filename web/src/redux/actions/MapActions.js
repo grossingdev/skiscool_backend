@@ -25,7 +25,7 @@ const addNewPlaceMarker$ = (marker) => ({
 // add new marker
 export const addNewPlaceMarker = (marker) => {
   return (dispatch) => {
-    API.overlay.addPlaceMarker(null, {marker}, dispatch)
+    API.map.addPlaceMarker(null, {marker}, dispatch)
       .then((res) => {
         if (res.success == true) {
           dispatch(addNewPlaceMarker$(marker));
@@ -39,7 +39,7 @@ export const addNewPlaceMarker = (marker) => {
 // remove marker
 export const removePlaceMarker = (uuid) => {
   return (dispatch) => {
-    API.overlay.removePlaceMarker(null, {uuid}, dispatch)
+    API.map.removePlaceMarker(null, {uuid}, dispatch)
       .then((res) => {
         if (res.success == true) {
           dispatch(removePlaceMarker$(uuid));
@@ -52,7 +52,7 @@ export const removePlaceMarker = (uuid) => {
 
 export const updatePlaceMarker = (marker) => {
   return (dispatch) => {
-    API.overlay.updatePlaceMarker(null, marker, dispatch)
+    API.map.updatePlaceMarker(null, marker, dispatch)
       .then((res) => {
         if (res.success == true) {
           dispatch(updatePlaceMarker$(marker));
@@ -66,7 +66,7 @@ export const updatePlaceMarker = (marker) => {
 // get place markers
 export const getPlaceMarkers = (range) => {
   return (dispatch) => {
-    API.overlay.getPlaceMarkers(null, {range}, dispatch)
+    API.map.getPlaceMarkers(null, {range}, dispatch)
       .then((res) => {
         if (res.success == true) {
           dispatch(getPlaceMarkers$(res.data));

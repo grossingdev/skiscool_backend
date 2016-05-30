@@ -37,26 +37,31 @@ export default {
       route: '/account/checkToken',
     }),
   },
-  overlay: {
+  map: {
     addPlaceMarker: _generateRequest({
       token: true,
       method: 'POST',
-      route: '/overlay/addPlaceMarker',
+      route: '/map/addPlaceMarker',
     }),
     removePlaceMarker: _generateRequest({
       token: true,
       method: 'POST',
-      route: '/overlay/removePlaceMarker',
+      route: '/map/removePlaceMarker',
     }),
     updatePlaceMarker: _generateRequest({
       token: true,
       method: 'POST',
-      route: '/overlay/updatePlaceMarker',
+      route: '/map/updatePlaceMarker',
     }),
     getPlaceMarkers: _generateRequest({
       token: false,
       method: 'GET',
-      route: '/overlay/getPlaceMarkers',
+      route: '/map/getPlaceMarkers',
+    }),
+    saveBoundary: _generateRequest({
+      token: true,
+      method: 'POST',
+      route: '/map/saveBoundary',
     }),
   }
 };
@@ -87,10 +92,12 @@ function _requestWithToken(accessToken, method, route, params, body, dispatch) {
           .end((err, res) => {
             if (!res) {
               console.info("Network error");
-              dispatch(apiResult$({
-                err_code: -1,
-                err_msg: "Network Error."
-              }))
+              if (dispatch) {
+                dispatch(apiResult$({
+                  err_code: -1,
+                  err_msg: "Network Error."
+                }));
+              }
               resolve({});
             } else if (err) {
               console.info("API error:" + route, res.body);

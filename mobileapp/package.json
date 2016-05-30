@@ -19,6 +19,7 @@
     "react-native-drawer": "^1.16.7",
     "react-native-fbsdk": "^0.1.0",
     "react-native-fm-picker": "0.0.5",
+    "react-native-fs": "git://github.com/nickhagenov/react-native-fs.git#ce7e19a9b66df452ca40c181604f3f9b3c15b784",
     "react-native-mapbox-gl": "^4.1.0",
     "react-native-order-children": "^1.1.2",
     "react-native-page-swiper": "^0.1.0",

@@ -31,6 +31,7 @@
 		993667E61CA441DB003979B5 /* zocial.json in Resources */ = {isa = PBXBuildFile; fileRef = 993667D81CA441DB003979B5 /* zocial.json */; };
 		993667E71CA441DB003979B5 /* zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 993667D91CA441DB003979B5 /* zocial.ttf */; };
 		994A5ABB1CC503C60096FA36 /* 1.json in Resources */ = {isa = PBXBuildFile; fileRef = 994A5ABA1CC503C60096FA36 /* 1.json */; };
+		995438DC1CFC84BB00DCB0D6 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 995438DB1CFC84B200DCB0D6 /* libRNFS.a */; };
 		998D61301CC4C57C002D69A8 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 998D60FB1CC4BB0A002D69A8 /* libRCTMapboxGL.a */; };
 		99CCCB611CCA417C00D367AC /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CCCB601CCA417C00D367AC /* Mapbox.framework */; };
 		99CCCB621CCA417C00D367AC /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99CCCB601CCA417C00D367AC /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -57,6 +58,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
 			remoteInfo = RNDeviceInfo;
+		};
+		995438DA1CFC84B200DCB0D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 995438D61CFC84B200DCB0D6 /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNFS;
 		};
 		998D60FA1CC4BB0A002D69A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -123,6 +131,7 @@
 		993667D81CA441DB003979B5 /* zocial.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = zocial.json; path = test/fonts/zocial.json; sourceTree = "<group>"; };
 		993667D91CA441DB003979B5 /* zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = zocial.ttf; path = test/fonts/zocial.ttf; sourceTree = "<group>"; };
 		994A5ABA1CC503C60096FA36 /* 1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 1.json; path = test/1.json; sourceTree = "<group>"; };
+		995438D61CFC84B200DCB0D6 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		998D60EF1CC4BB0A002D69A8 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		99CCCB601CCA417C00D367AC /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				995438DC1CFC84BB00DCB0D6 /* libRNFS.a in Frameworks */,
 				9904EA171CD4B82400D74A8C /* libRNDeviceInfo.a in Frameworks */,
 				998D61301CC4C57C002D69A8 /* libRCTMapboxGL.a in Frameworks */,
 				9904EA101CD4B05000D74A8C /* libRCTGeolocation.a in Frameworks */,
@@ -194,6 +204,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				995438D61CFC84B200DCB0D6 /* RNFS.xcodeproj */,
 				9904EA111CD4B81C00D74A8C /* RNDeviceInfo.xcodeproj */,
 				9904EA081CD4B04500D74A8C /* RCTGeolocation.xcodeproj */,
 				998D60EF1CC4BB0A002D69A8 /* RCTMapboxGL.xcodeproj */,
@@ -252,6 +263,14 @@
 			isa = PBXGroup;
 			children = (
 				9904EA161CD4B81C00D74A8C /* libRNDeviceInfo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		995438D71CFC84B200DCB0D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				995438DB1CFC84B200DCB0D6 /* libRNFS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -362,6 +381,10 @@
 					ProductGroup = 9904EA121CD4B81C00D74A8C /* Products */;
 					ProjectRef = 9904EA111CD4B81C00D74A8C /* RNDeviceInfo.xcodeproj */;
 				},
+				{
+					ProductGroup = 995438D71CFC84B200DCB0D6 /* Products */;
+					ProjectRef = 995438D61CFC84B200DCB0D6 /* RNFS.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -384,6 +407,13 @@
 			fileType = archive.ar;
 			path = libRNDeviceInfo.a;
 			remoteRef = 9904EA151CD4B81C00D74A8C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		995438DB1CFC84B200DCB0D6 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = 995438DA1CFC84B200DCB0D6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		998D60FB1CC4BB0A002D69A8 /* libRCTMapboxGL.a */ = {

@@ -1,5 +1,4 @@
 import RNFS from 'react-native-fs';
-const STYLE_URL = 'http://ns327841.ip-37-187-112.eu:8080/1.json';
 
 export const MapboxUtils = {
   savePackageInfo: null,
@@ -46,7 +45,7 @@ export const MapboxUtils = {
     });
   },
 
-  saveMapBoxPackage(packageName, region) {
+  saveMapBoxPackage(packageName, region, styleURL) {
     this.removeAllPackage(-1, ()=> {
       console.info("saveMapPackage", packageName);
       this.removePack('map', packageName, (res, res1) => {
@@ -59,7 +58,7 @@ export const MapboxUtils = {
         minZoomLevel: 13,
         maxZoomLevel: 15,
         type: 'bbox',
-        styleURL: STYLE_URL,
+        styleURL: styleURL,
         metadata: {}
       };
       this.flagCompleted = false;

@@ -30,10 +30,10 @@ const parseMapBoxOfflinePackage = (fileName) => {
 
   db.serialize(function() {
     db.each("select * from tiles", function(err, row) {
-      let tilePath = './web/static/tiles/' + row.z + '/' + row.x + '/' + row.y ;
+      let tilePath = './web/static/tiles/' + row.z + '/' + row.x ;
 
       mkdirp(tilePath, (err) => {
-        let fileName = tilePath + '/' + row.x + '-' + row.y + '.png';
+        let fileName = tilePath + '/' + row.y + '.png';
         if (err) {
           console.error(err)
         } else {

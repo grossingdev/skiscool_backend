@@ -15,8 +15,6 @@ import Triangle from 'react-native-triangle';
 
 var RCTUIManager = require('NativeModules').UIManager;
 const MAP_REF = 'map';
-const STYLE_URL = 'http://ns327841.ip-37-187-112.eu:8080/1.json';
-
 import defaultProps from 'recompose/defaultProps';
 
 //our custom Marker
@@ -267,13 +265,13 @@ var MapPage = React.createClass({
           direction={0}
           rotateEnabled={false}
           scrollEnabled={true}
-          zoomEnabled={true}
+          zoomEnabled={false}
           showsUserLocation={true}
           followUserLocation={true}
           logoIsHidden={true}
           ref={MAP_REF}
           accessToken={'pk.eyJ1Ijoic2ltb25tYXAiLCJhIjoiY2luNHcyMjhnMDBzMnZxbTI5NGNjN3hxbyJ9.OQmEh5-9T3Og_0qE9dRlQg'}
-          styleURL={STYLE_URL}
+          styleURL={this.props.styleURL}
           centerCoordinate={this.state.center}
           zoomLevel={this.state.zoom}
           direction={this.state.direction}
@@ -355,6 +353,11 @@ var MapPage = React.createClass({
   },
 
   zoomIn() {
+    if (this.props.user.profile.flagAdmin != true) {
+      if (this.state.zoom < 12) {
+        return;
+      }
+    }
     this.setState({
       zoom: this.state.zoom - 1
     });
@@ -362,6 +365,11 @@ var MapPage = React.createClass({
   },
 
   zoomOut() {
+    if (this.props.user.profile.flagAdmin != true) {
+      if (this.state.zoom > 15) {
+        return;
+      }
+    }
     this.setState({
       zoom: this.state.zoom + 1
     });

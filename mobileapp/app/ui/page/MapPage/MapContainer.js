@@ -25,7 +25,8 @@ import {isEqual} from 'lodash';
 
 class MapContainer extends Component {
   state = {
-    flagAdmin : false
+    flagAdmin : false,
+    styleURL: ''
   }
   componentDidMount() {
     setTimeout(()=> {
@@ -53,12 +54,20 @@ class MapContainer extends Component {
 
   onConfirmDialog(title, region) {
     this.onCloseDialog();
-    this.refs['mapPage'].saveMapBoxPackage(title, region);
+    this.refs['mapPage'].saveMapBoxPackage(title, region, this.state.styleURL);
   }
 
   componentWillReceiveProps(nextProps) {
     let userToken = this.props.user.token || nextProps.user.token;
     if (userToken) {
+      let styleURL = '';
+      if (nextProps.user.profile.flagAdmin == true) {
+        styleURL = 'http://ns327841.ip-37-187-112.eu:8080/2.json';
+      } else {
+        styleURL = 'http://ns327841.ip-37-187-112.eu:8080/1.json';
+      }
+
+      this.setState({styleURL});
       if (!isEqual(this.props.deviceInfo, nextProps.deviceInfo) || !isEqual(this.props.user, nextProps.user) ) {
         if (nextProps.deviceInfo.uuid != "" && nextProps.deviceInfo.initLoc.coords) {
           this.props.socketClient.connect(this.props, {
@@ -111,10 +120,12 @@ class MapContainer extends Component {
           onCenterPress={()=>{this.prepareMapPackage(false)}}
           onRightPress={()=>{this.prepareMapPackage(true)}}
         />
-          <MapPage
-            {...this.props}
-            ref="mapPage"
-          />
+        {this.state.styleURL.length > 0 && <MapPage
+          {...this.props}
+          styleURL={this.state.styleURL}
+          ref="mapPage"
+        />}
+
         {this.renderDialogs()}
         {this.renderWaitingDialog()}
 

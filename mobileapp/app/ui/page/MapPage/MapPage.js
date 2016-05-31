@@ -354,7 +354,11 @@ var MapPage = React.createClass({
 
   zoomIn() {
     if (this.props.user.profile.flagAdmin != true) {
-      if (this.state.zoom < 12) {
+      if (this.state.zoom < 14) {
+        return;
+      }
+    } else {
+      if (this.state.zoom < 13) {
         return;
       }
     }
@@ -365,10 +369,8 @@ var MapPage = React.createClass({
   },
 
   zoomOut() {
-    if (this.props.user.profile.flagAdmin != true) {
-      if (this.state.zoom > 15) {
-        return;
-      }
+    if (this.state.zoom > 16) {
+      return;
     }
     this.setState({
       zoom: this.state.zoom + 1

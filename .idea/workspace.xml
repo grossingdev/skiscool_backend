@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dbd6e20-75a4-4553-a872-437a1f5a4a1c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/static/tiles.zip" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/ios/test.xcworkspace/xcuserdata/baebae.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/mobileapp/ios/test.xcworkspace/xcuserdata/baebae.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapContainer.js" afterPath="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapContainer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapPage.js" afterPath="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapPage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/mapboxUtils.js" afterPath="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/mapboxUtils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/webapi/actions/map/saveBoundary.js" afterPath="$PROJECT_DIR$/web/webapi/actions/map/saveBoundary.js" />
     </list>
     <ignored path="Backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +28,8 @@
       <file leaf-file-name="MapContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="124" column="17" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
+            <state relative-caret-position="296">
+              <caret line="61" column="37" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="37" />
               <folding>
                 <element signature="e#40#164#0" expanded="true" />
               </folding>
@@ -40,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mapboxUtils.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mapboxUtils.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/mapboxUtils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="422">
+              <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -62,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapPage.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MapPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="267" column="28" selection-start-line="267" selection-start-column="28" selection-end-line="267" selection-end-column="28" />
+            <state relative-caret-position="85">
+              <caret line="355" column="52" selection-start-line="355" selection-start-column="4" selection-end-line="355" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -201,9 +198,9 @@
         <option value="$PROJECT_DIR$/mobileapp/app/ui/component/sidebar/SidebarContainer.js" />
         <option value="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/Dialogs/CreatePackageConfirm.js" />
         <option value="$PROJECT_DIR$/web/webapi/actions/map/saveBoundary.js" />
-        <option value="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/mapboxUtils.js" />
-        <option value="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapContainer.js" />
         <option value="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapPage.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapContainer.js" />
+        <option value="$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/mapboxUtils.js" />
       </list>
     </option>
   </component>
@@ -654,12 +651,12 @@
       <workItem from="1464610679417" duration="14484000" />
       <workItem from="1464678197183" duration="5425000" />
       <workItem from="1464694907592" duration="11671000" />
-      <workItem from="1464707791572" duration="3635000" />
+      <workItem from="1464707791572" duration="4205000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148885000" />
+    <option name="totallyTimeSpent" value="149455000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -677,13 +674,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28586897" sideWeight="0.6352459" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32678387" sideWeight="0.49349946" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5729059" sideWeight="0.5086674" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34818652" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34818652" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988626" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3316062" sideWeight="0.49133262" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959394" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34611398" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28478613" sideWeight="0.3647541" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2849741" sideWeight="0.49357182" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2849741" sideWeight="0.49357182" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1092,28 +1089,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/mapboxUtils.js">
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="355" column="52" selection-start-line="355" selection-start-column="4" selection-end-line="355" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="124" column="17" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
+        <state relative-caret-position="296">
+          <caret line="61" column="37" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="37" />
           <folding>
             <element signature="e#40#164#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/MapPage.js">
+    <entry file="file://$PROJECT_DIR$/mobileapp/app/ui/page/MapPage/mapboxUtils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="267" column="28" selection-start-line="267" selection-start-column="28" selection-end-line="267" selection-end-column="28" />
+        <state relative-caret-position="422">
+          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
           <folding />
         </state>
       </provider>

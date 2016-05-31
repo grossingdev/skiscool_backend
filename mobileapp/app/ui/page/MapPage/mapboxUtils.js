@@ -45,7 +45,7 @@ export const MapboxUtils = {
     });
   },
 
-  saveMapBoxPackage(packageName, region, styleURL) {
+  saveMapBoxPackage(packageName, region, styleURL, minZoom, maxZoom) {
     this.removeAllPackage(-1, ()=> {
       console.info("saveMapPackage", packageName);
       this.removePack('map', packageName, (res, res1) => {
@@ -55,8 +55,8 @@ export const MapboxUtils = {
       this.savePackageInformation = {
         name: packageName,
         bounds: [region.ne_lat, region.ne_lon, region.sw_lat, region.sw_lon],
-        minZoomLevel: 13,
-        maxZoomLevel: 15,
+        minZoomLevel: minZoom,
+        maxZoomLevel: maxZoom,
         type: 'bbox',
         styleURL: styleURL,
         metadata: {}

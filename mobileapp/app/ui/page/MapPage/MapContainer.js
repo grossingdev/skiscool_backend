@@ -54,7 +54,12 @@ class MapContainer extends Component {
 
   onConfirmDialog(title, region) {
     this.onCloseDialog();
-    this.refs['mapPage'].saveMapBoxPackage(title, region, this.state.styleURL);
+    let minZoomLevel = 13;
+    if (this.props.user.profile.flagAdmin != true) {
+      minZoomLevel = 14;
+    }
+    let maxZoomLevel = 16;
+    this.refs['mapPage'].saveMapBoxPackage(title, region, this.state.styleURL, minZoomLevel, maxZoomLevel);
   }
 
   componentWillReceiveProps(nextProps) {

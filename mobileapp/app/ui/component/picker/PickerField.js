@@ -4,13 +4,13 @@
 import React, {Component, Image, Text, TouchableWithoutFeedback, View, StyleSheet} from 'react-native';
 
 import Picker from 'react-native-fm-picker';
+import constant from '../../styles/constant';
 
 export default class PickerField extends Component {
 
   static propTypes = {
     value: React.PropTypes.any.isRequired,
     icon: React.PropTypes.object,  // packager asset object
-    containerStyle: React.PropTypes.object, // styles for the container,
     placeholder: React.PropTypes.string,
     errorText: React.PropTypes.string
   };
@@ -102,11 +102,11 @@ let styles = StyleSheet.create({
   },
   valueText: {
     fontSize: 15,
-    color: 'white',
+    color: constant.colors.darkGrey,
     paddingBottom: 3
   },
   valueTextLight: {
-    color: 'white'
+    color: constant.colors.darkGrey
   },
   placeholderText: {
     opacity: 0.7
@@ -130,7 +130,7 @@ let styles = StyleSheet.create({
     backgroundColor: 'red'
   },
   underlineFocus: {
-    backgroundColor: 'white'
+    backgroundColor: constant.colors.grey
   },
   underlineFocusLight: {
   },
@@ -144,7 +144,7 @@ let styles = StyleSheet.create({
     fontSize: 12,
   },
   underlineLight:{
-    backgroundColor: 'white'
+    backgroundColor: constant.colors.grey
   },
   dropdownIcon: {
     width: 14,

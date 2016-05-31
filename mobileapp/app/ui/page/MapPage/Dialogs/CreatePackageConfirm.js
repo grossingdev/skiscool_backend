@@ -1,24 +1,69 @@
 import React, {Component, Image, Text, TouchableOpacity, View, StyleSheet, TextInput} from 'react-native';
 import Modal from '../../../component/modal/Modal';
+import PickerField from '../../../component/picker/PickerField';
+import SkiResorts from '../constant';
 
+const states = ['Instructor', 'Player'];
 export default class CreatePackageConfirm extends Component {
   state = {
-    value: ""
+    boundary: null,
+    regionName: '',
+    regionError: ''
   };
 
-  _onChangeText(value) {
-    this.setState({value});
+  componentDidMount() {
+    if (this.props.isAdmin == false) {
+      this.setState({
+        boundary: this.props.boundary,
+        regionName: this.props.userProfile.email + '_package'
+      })
+    }
   }
 
-  getTextValue() {
-    return this.state.value;
+  updateSkiResortBounds(name) {
+    let ret = null;
+    _.forEach(SkiResorts, (item) => {
+      if (item.name == name) {
+        ret = item.boundary;
+      }
+    });
+    if (ret != null) {
+      this.setState({
+        boundary: {
+          ne_lat: ret[0],
+          ne_lon: ret[1],
+          sw_lat: ret[2],
+          sw_lon: ret[3]
+        }
+      })
+    } else {
+      this.setState({
+        boundary: null
+      })
+    }
   }
 
+  getSkiResortName() {
+    let ret = [];
+    _.forEach(SkiResorts, (item) => {
+      ret.push(item.name)
+    });
+    return ret;
+  }
+  onConfirm() {
+    if (this.state.regionName.length > 0 && this.state.boundary != null) {
+      this.props.onConfirm(this.state.regionName, this.state.boundary)
+    } else {
+      this.setState({
+        regionError: 'Select Region'
+      })
+    }
+  }
   renderButtons() {
     let component = this;
     let buttons = [
       {label: 'Cancel', onPress: () => {component.props.onCancel()}},
-      {label: 'Save', theme: 'info', onPress: () => {component.props.onConfirm(this.state.value)}}
+      {label: 'Save', theme: 'info', onPress: () => {component.onConfirm()}}
     ];
 
     return buttons.map((button) => {
@@ -27,7 +72,7 @@ export default class CreatePackageConfirm extends Component {
         text: null
       };
       if (button.theme === 'danger') {
-        theme.button = {backgroundColor: 'rgb(252,110,110)'};
+        theme.button = {backgroundColor: 'rgb(252, 110, 110)'};
       } else if (button.theme === 'info') {
         theme.button = {backgroundColor: 'rgb(23, 153, 204)'};
       }
@@ -41,20 +86,42 @@ export default class CreatePackageConfirm extends Component {
     })
   }
 
+  renderRegionArea() {
+    if (this.props.isAdmin == false) {
+      return (
+        <Text style={styles.confirmMessage}>{'Save current map area into offline package'}</Text>
+      )
+    } else {
+      return (
+        <PickerField
+          containerStyle={styles.userTypeSelect}
+          placeholder="              "
+          value={this.state.regionName}
+          onValueChange={(regionName) => {this.setState({regionName, regionError: ''}); this.updateSkiResortBounds(regionName)}}
+          errorText={this.state.regionError}
+          options={this.getSkiResortName()}/>
+      )
+    }
+  }
   render() {
+    let region = null;
+    let message = '';
+    let title = '';
+    if (this.props.isAdmin == false) {
+      title = 'Save user offline package';
+    } else {
+      title = 'Save ski resorts offline package';
+    }
+    if (this.state.boundary != null) {
+      region = this.state.boundary;
+      message = 'region ' + region.sw_lat.toFixed(4) + ", " + region.sw_lon.toFixed(4) + ", " + region.ne_lat.toFixed(4) + ", " + region.ne_lon.toFixed(4);
+    }
     return (
       <Modal>
         <View style={styles.confirmDialogContainer}>
-          <Text style={styles.confirmTitle}>{this.props.title}</Text>
-          <Text style={styles.confirmMessage}>{this.props.message}</Text>
-          <Text style={styles.confirmMessage1}>{this.props.message1}</Text>
-          <TextInput
-            value={this.state.value}
-            onChangeText={(text)=>this._onChangeText(text)}
-            placeholder={this.props.placeholder}
-            style={styles.input}
-          />
-
+          <Text style={styles.confirmTitle}>{title}</Text>
+          {this.renderRegionArea()}
+          <Text style={styles.confirmMessage1}>{message}</Text>
           <View style={styles.buttonArea}>
             {this.renderButtons()}
           </View>
@@ -82,18 +149,13 @@ let styles = StyleSheet.create({
   },
   confirmMessage1: {
     fontSize: 12,
+    marginTop: 5,
     color: '#AAAAAA',
     textAlign: 'center'
   },
-  input: {
-    height: 30,
-    fontSize: 14,
-    padding: 3,
-    marginHorizontal: 20,
-    paddingHorizontal: 10,
-  },
+
   buttonArea: {
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 10,
     height: 30,
     alignSelf: 'stretch',

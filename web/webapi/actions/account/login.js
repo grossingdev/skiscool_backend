@@ -68,6 +68,11 @@ export default function login(req) {
 
             //login completed
             if (isMatch) {
+              let flagAdmin = false;
+              if (user.flagAdmin) {
+                flagAdmin = user.flagAdmin;
+              }
+
               let token = createUserToken(user, userType);
               req.session.token = token;
               return resolve({
@@ -78,7 +83,8 @@ export default function login(req) {
                   user: {
                     name: user.name,
                     email: user.email,
-                    userType
+                    userType,
+                    flagAdmin
                   }
                 }
               });
@@ -118,6 +124,11 @@ export default function login(req) {
               //user found using email
             } else if (res.status == 2001) {
               let user = res.users[0];
+              let flagAdmin = false;
+              if (user.flagAdmin) {
+                flagAdmin = user.flagAdmin;
+              }
+
               let token = jwt.sign({
                 'name': user.name,
                 'email': user.email,
@@ -134,7 +145,8 @@ export default function login(req) {
                   user: {
                     name: user.name,
                     email: user.email,
-                    userType
+                    userType,
+                    flagAdmin
                   }
                 }
               });

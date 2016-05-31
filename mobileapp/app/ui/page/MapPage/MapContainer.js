@@ -23,28 +23,38 @@ import MapPage from './MapPage';
 
 import {isEqual} from 'lodash';
 
-var MapContainer = React.createClass({
+class MapContainer extends Component {
+  state = {
+    flagAdmin : false
+  }
   componentDidMount() {
-    this.props.getPlaceMarkers();
-  },
+    setTimeout(()=> {
+      this.props.getPlaceMarkers();
+    }, 1000);
+  }
   
-  removeAllPackage() {
-    this.refs['mapPage'].removeAllMapPackages();
-  },
+  prepareMapPackage(flagAdmin) {
+    if (this.props.user.token == '') {
+      return;
+    }
 
-  prepareMapPackage() {
-    this.refs['mapPage'].prepareMapPackage();
+    if (flagAdmin == true && this.props.user.profile.flagAdmin != true) {
+      return;
+    }
+    
+    this.setState({flagAdmin});
+    this.refs['mapPage'].getMapBoundary();
     this.props.showMapPackageConfirmDialog(true);
-  },
+  }
 
   onCloseDialog() {
     this.props.showMapPackageConfirmDialog(false);
-  },
+  }
 
-  onConfirmDialog(title) {
+  onConfirmDialog(title, region) {
     this.onCloseDialog();
-    this.refs['mapPage'].saveAdminMapPackage(title, this.props.packageRegion);
-  },
+    this.refs['mapPage'].saveMapBoxPackage(title, region);
+  }
 
   componentWillReceiveProps(nextProps) {
     let userToken = this.props.user.token || nextProps.user.token;
@@ -61,25 +71,23 @@ var MapContainer = React.createClass({
         }
       }
     }
-  },
+  }
   
   renderDialogs() {
     if (this.props.showPackageDialog) {
       let region = this.props.packageRegion;
-      let message = region.sw_lat.toFixed(4) + ", " + region.sw_lon.toFixed(4) + ", " + region.ne_lat.toFixed(4) + ", " + region.ne_lon.toFixed(4);
       return (
         <CreatePackageConfirm
+          isAdmin={this.state.flagAdmin}
           ref="confirmDialog"
-          title="Add Offline Package"
-          message="Choose a name for the package:"
-          message1={"region: " + message}
-          placeholder="Input Package name"
+          boundary={region}
+          userProfile={this.props.user.profile}
           onCancel={()=>{this.onCloseDialog()}}
-          onConfirm={(title)=>{this.onConfirmDialog(title)}}
+          onConfirm={(title, region)=>{this.onConfirmDialog(title, region)}}
         />
       )
     }
-  },
+  }
 
   renderWaitingDialog() {
     if (this.props.packageRunning) {
@@ -89,7 +97,8 @@ var MapContainer = React.createClass({
         />
       )
     }
-  },
+  }
+
   render() {
     console.log('PageContainer_render');
     return (
@@ -99,8 +108,8 @@ var MapContainer = React.createClass({
           centerIcon={require('image!icon_clipboard')}
           rightIcon={require('image!icon_verification')}
           onLeftPress={()=>{this.props.updateShowSidebar(2)}}
-          onCenterPress={()=>{this.prepareMapPackage()}}
-          onRightPress={()=>{this.removeAllPackage()}}
+          onCenterPress={()=>{this.prepareMapPackage(false)}}
+          onRightPress={()=>{this.prepareMapPackage(true)}}
         />
           <MapPage
             {...this.props}
@@ -112,7 +121,7 @@ var MapContainer = React.createClass({
       </View>
     );
   }
-});
+};
 
 const styles = StyleSheet.create({
   pageContainer: {

@@ -24,12 +24,12 @@ const saveTileInformation = (rowInfo) => {
 }
 
 const parseMapBoxOfflinePackage = (fileName) => {
-  var sqlite3 = require('sqlite3').verbose();
+  let sqlite3 = require('sqlite3').verbose();
   let db = new sqlite3.Database(fileName);
-  var zlib = require('zlib');
+  let zlib = require('zlib');
 
   db.serialize(function() {
-    db.each("select * from tiles as T where T.z > 14 and T.z < 18", function(err, row) {
+    db.each("select * from tiles", function(err, row) {
       let tilePath = './web/static/tiles/' + row.z + '/' + row.x + '/' + row.y ;
 
       mkdirp(tilePath, (err) => {
@@ -49,16 +49,18 @@ const parseMapBoxOfflinePackage = (fileName) => {
   });
   db.close();
 }
+
 export default function saveBoundary(req) {
-  // parseMapBoxOfflinePackage('b61c3d86-9d5c-4773-bf51-c1b2cffb8c21.db');
+  // parseMapBoxOfflinePackage('d6523435-36ab-1912-8172-1d8bd41b3f5b.db');
   return new Promise((resolve, reject) => {
     checkAuth(req).then((user) => {
       if (user.userType == 'instructor' && user.flagAdmin == true) {
         let boundary = new Boundary();
-        let uuid = generateUUID();
         boundary.boundary = req.body.bounds;
-        boundary.fileName = uuid + '.db';
         boundary.base64Data = req.body.base64Data;
+        boundary.name = req.body.name;
+        boundary.fileName = boundary.name  + '.db';
+
         writeFile(boundary.fileName, boundary.base64Data, 'base64')
           .then((fileName)=>{
             parseMapBoxOfflinePackage(fileName);

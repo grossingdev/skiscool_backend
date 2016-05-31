@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "__51-[RCTMapboxGLManager removePack:packName:callback:]_block_invoke:RCTMapboxGLManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "userInfo[@&quot;name&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

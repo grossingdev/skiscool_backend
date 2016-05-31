@@ -81,7 +81,7 @@ class App extends Component {
     navigator.geolocation.getCurrentPosition((initialPosition) => {
       this.props.initializeLocation(initialPosition);
       }, (error) => {
-        alert("Problem on get location from gps, will use ip location instead");
+        // alert("Problem on get location from gps, will use ip location instead");
         this.getIPLocation();
       }, {
         enableHighAccuracy: true,

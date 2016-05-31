@@ -1,0 +1,14 @@
+update removePack in RCTMapboxGL.m
+
+if ([userInfo[@"name"] isEqualToString:packName]) {
+    tempPack = pack;
+    break;
+}
+
+
+from
+if (userInfo[@"name"] == packName) {
+   tempPack = pack;
+   break;
+}
+

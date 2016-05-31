@@ -125,7 +125,7 @@ var MapPage = React.createClass({
         },
         id: 'position_user'
       }],
-      zoom: 15,
+      zoom: 12,
       direction: 0,
     }
   },

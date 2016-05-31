@@ -75,7 +75,8 @@ export const createUser = (name, password, fromSocial, age, languages, gender, e
             user: {
               name: user.name,
               email: user.email,
-              userType
+              userType,
+              flagAdmin: false
             }
           }
         });
@@ -160,7 +161,8 @@ export const createUser = (name, password, fromSocial, age, languages, gender, e
             data: {
               'token': token,
               'user': {
-                name, email, userType
+                name, email, userType,
+                flagAdmin: false
               }
             }
           });

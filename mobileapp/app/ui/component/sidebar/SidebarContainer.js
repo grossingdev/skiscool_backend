@@ -49,7 +49,7 @@ class SideDrawer extends React.Component {
         content={<SidebarContent {...this.props} />}
         tapToClose={true}
         initializeOpen={false}
-        openDrawerOffset={0.5}
+        openDrawerOffset={0.45}
         negotiatePan={true}
 		    tweenHandler={Drawer.tweenPresets.parallax}>
 

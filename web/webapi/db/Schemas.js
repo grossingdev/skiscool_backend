@@ -49,6 +49,7 @@ const Schemas = {
   Boundary: new Schema({
     id: Number,
     fileName: String,
+    name: String,
     base64Data: String,
     boundary: [Number], //will contains [start lat, start lon, end lat, end lon]
   }),
